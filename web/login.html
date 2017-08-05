@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /><!-- ie7以ie8识别 -->
+<title>品格学习云平台</title>
+
+    <!-- css加载 -->
+    <link rel="stylesheet" href="css/qr_base.css" type="text/css">
+    <link rel="stylesheet" href="css/form.css" type="text/css">
+    <link rel="stylesheet" href="css/table.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="" type="text/css" id="width1200">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="lib/layer/1.9.3/skin/layer.css" type="text/css">
+    <!-- js加载 -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="lib/template/underscore.js"></script>
+    <script type="text/javascript" src="lib/template/template.js"></script>
+    <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="js/pinge.js"></script>
+</head>
+<body>
+
+<!-- 头部start -->
+<div id="header" class="wrapbox headbg" include="include/head.html"></div>
+<!-- 头部end -->
+
+<!-- 导航start -->
+<div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+<!-- 导航end -->
+
+<!-- 登陆开始 -->
+<form id="Form1" action="Teacher/login_confirm" method="post">
+    <div class="wrapbox loginbg">
+        <div class="container">
+            <div class="loginbox fr">
+              <h1 class="ac color_6">登录</h1>
+              <div class="onepx"></div><!-- 1px线 -->
+              <dd class="border">
+                  <span>账号</span><input type="text" name="phoneno" placeholder="请输入手机号">
+              </dd>
+              <dd class="border">
+                  <span>密码</span><input type="password" name="password" placeholder="请输入密码">
+              </dd>
+              <!--<dd class="border yzmbox">-->
+                  <!--<span>验证码</span>-->
+                  <!--<input type="text" name="vCode" placeholder="验证码">-->
+                  <!--<div class="yanzhengma fr">-->
+                      <!--<img id="kanbuq" src="http://localhost:8080/VerificationCode.jsp" width="112" height="43">-->
+                  <!--</div>-->
+              <!--</dd>-->
+              <dt class="wangjimima">
+                  <label class="fl color_6"><input type="checkbox">&nbsp;保持登录状态</label>
+                  <a href="wangjiMima.html" class="color_red fr">忘记密码？</a>
+              </dt>
+              <dt>
+                  <input class="bg_yellow btn-large ac" type="submit" value="登录"/>
+              </dt>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- 登陆结束 --> 
+
+<!-- 通用底部开始 -->     
+<div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+<!-- 通用底部结束 --> 
+
+</body>
+</html>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+	$("#Form1").attr("action",basePath+$("#Form1").attr("action"));
+    $(document).ready(function(){
+        $('#Form1').bind('submit', function(){
+            ajaxSubmit(this, function(data){
+
+                console.log("返回失败", data);
+                if(data.rtnCode=="0000000"){
+                    //将token保存到cookie中
+                    setCookie(TOKEN, data.bizData.token, 1);
+                    window.location.href="wodeBeikeshi.html";
+                }else{
+                    layer.msg(data.msg,{icon: 5,time:2000});
+                }
+            });
+            return false;
+        });
+    });
+</script>

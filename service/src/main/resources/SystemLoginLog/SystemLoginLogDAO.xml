@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kemile.SystemLoginLog.dao.SystemLoginLogDAO">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+
+    <sql id="Base_Column_List">
+        type
+        ,time
+        ,data
+        ,ip
+        ,name
+    </sql>
+
+    <select id="findOne" resultType="com.kemile.SystemLoginLog.domain.SystemLoginLogEntity">
+        SELECT <include refid="Base_Column_List"/> FROM qr_log WHERE ${property} = #{value}
+    </select>
+
+    <select id="findList" resultType="com.kemile.SystemLoginLog.domain.SystemLoginLogEntity">
+        SELECT <include refid="Base_Column_List"/>
+        FROM qr_log
+        WHERE ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="com.kemile.SystemLoginLog.domain.SystemLoginLogEntity">
+        SELECT <include refid="Base_Column_List"/>
+        FROM qr_log
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="java.util.Map">
+        SELECT * FROM qr_log
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="condition!=null and condition.type!=null">AND type=#{condition.type}</if>
+            <if test="condition!=null and condition.time!=null">AND time=#{condition.time}</if>
+            <if test="condition!=null and condition.data!=null">AND data=#{condition.data}</if>
+            <if test="condition!=null and condition.ip!=null">AND ip=#{condition.ip}</if>
+            <if test="condition!=null and condition.name!=null">AND name=#{condition.name}</if>
+            <if test="condition!=null and condition.startDate!=null and condition.startDate!=''">
+                AND DATE_FORMAT (time,'%Y-%m-%d')  &gt;= '${condition.startDate}'
+            </if>
+            <if test="condition!=null and condition.endDate!=null and condition.endDate!=''">
+                AND DATE_FORMAT(time,'%Y-%m-%d') &lt;='${condition.endDate}'
+            </if>
+            <if test="condition!=null and condition.title!=null and condition.title!=''">
+                AND name LIKE CONCAT(CONCAT('%', #{condition.title}), '%')
+                OR data LIKE CONCAT(CONCAT('%', #{condition.title}), '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        LIMIT ${offset}, ${rows}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM qr_log
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="condition!=null and condition.type!=null">AND type=#{condition.type}</if>
+            <if test="condition!=null and condition.time!=null">AND time=#{condition.time}</if>
+            <if test="condition!=null and condition.data!=null">AND data=#{condition.data}</if>
+            <if test="condition!=null and condition.ip!=null">AND ip=#{condition.ip}</if>
+            <if test="condition!=null and condition.name!=null">AND name=#{condition.name}</if>
+            <if test="condition!=null and condition.startDate!=null and condition.startDate!=''">
+                AND DATE_FORMAT (time,'%Y-%m-%d')  &gt;= '${condition.startDate}'
+            </if>
+            <if test="condition!=null and condition.endDate!=null and condition.endDate!=''">
+                AND DATE_FORMAT(time,'%Y-%m-%d') &lt;='${condition.endDate}'
+            </if>
+            <if test="condition!=null and condition.title!=null and condition.title!=''">
+                AND name LIKE CONCAT(CONCAT('%', #{condition.title}), '%')
+                OR data LIKE CONCAT(CONCAT('%', #{condition.title}), '%')
+            </if>
+        </trim>
+    </select>
+
+    <update id="update">
+        UPDATE qr_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="type!=null">type=#{type},</if>
+            <if test="time!=null">time=#{time},</if>
+            <if test="data!=null">data=#{data},</if>
+            <if test="ip!=null">ip=#{ip},</if>
+            <if test="name!=null">name=#{name},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert">
+        INSERT INTO qr_log (
+        <if test="type!=null">type,</if>
+        time,
+        <if test="data!=null">data,</if>
+        <if test="ip!=null">ip,</if>
+        <if test="name!=null">name</if>
+        )VALUES(
+        <if test="type!=null">#{type},</if>
+        now(),
+        <if test="data!=null">#{data},</if>
+        <if test="ip!=null">#{ip},</if>
+        <if test="name!=null">#{name}</if>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <delete id="deleteByProperty">
+        DELETE FROM qr_log WHERE WHERE ${property} = #{value}
+    </delete>
+
+    <delete id="deleteById">
+        DELETE FROM qr_log WHERE id = #{id}
+    </delete>
+
+    <!-- 批量删除 -->
+    <delete id="deleteByIds">
+        DELETE FROM qr_log
+        <where>
+            id IN
+            <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">
+            #{id}
+            </foreach>
+        </where>
+    </delete>
+
+</mapper>

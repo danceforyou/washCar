@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /><!-- ie7以ie8识别 -->
+	<title>品格学习云平台</title>
+
+	<!-- css加载 -->
+	<link rel="stylesheet" href="css/qr_base.css" type="text/css">
+	<link rel="stylesheet" href="css/form.css" type="text/css">
+	<link rel="stylesheet" href="css/table.css" type="text/css">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" href="" type="text/css" id="width1200">
+	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/zTreeStyle.css" type="text/css"><!-- 树形插件-->
+	<!-- js加载 -->
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="lib/template/underscore.js"></script>
+	<script type="text/javascript" src="lib/template/template.js"></script>
+	<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+	<script type="text/javascript" src="js/pinge.js"></script>
+
+
+	<!--<script id="jsload" type="text/javascript" src=""></script>-->
+</head>
+
+<body>
+
+<!-- 头部start -->
+<div id="header" class="wrapbox headbg" include="include/head.html"></div>
+<!-- 头部end -->
+
+<!-- 导航start -->
+<div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+<!-- 导航end -->
+
+<!-- 专题详情开始 -->
+<div class="container">
+	<div class="zhuantileft fl">
+
+		<dl class="zhuantixqtitle">
+			<dd>
+			<span class="fl">
+				<i class="fontsize20" id="detail_name">--</i>
+				<!--
+				<i class="color_9">发布时间：<a id="detail_createat">--</a></i>
+				<i class="color_9" style="padding-right:0;">发布者：</i>
+				<a href="javascript:void(0);" class="color_blue" id="detail_createby">--</a>
+				-->
+			</span>
+			</dd>
+			<!--
+            <dd><span class="fl"><i class="color_9" style="padding-right:0;">所属类型：</i><a href="#" class="color_blue">亲子教育</a> <a href="#" class="color_blue">早教中心</a> </span></dd>
+            -->
+		</dl>
+		<div class="onepx"></div><!-- 1px横线 -->
+
+		<dl class="anniuzu">
+			<!--
+            <span class="dangqianweizhi">
+              <a href="#" class="color_blue">全部文件</a><em>></em><i>2016年1月汇总</i>
+            </span>
+			-->
+            <span class="fr">
+              <a><i class="fa fa-navicon"></i>列表</a>
+              <a><i class="fa fa-th-large"></i>网格</a>
+            </span>
+		</dl>
+
+		<!-- 列表形式 开始-->
+		<div class="beikeshibox">
+			<table class="table_list beiketable" style="width:100%;">
+				<thead>
+				<tr>
+					<th><span class="fl"><label class="color_6"><input type="checkbox" name="selectlball" id="selectlbAll" onclick="selectLBAll()">&nbsp;文件名</label>
+                <a href="javascript:void(0);" onclick="setTransferLocation(1)" title="转存至我的网盘" style="background-color: #00B83F;color: white"><i class="fa fa-rotate-right"></i>转存至我的网盘</a></span>
+					</th>
+					<th width="10%" class="ac">大小</th>
+					<th width="12%" class="ac">发布者</th>
+					<th width="20%" class="ac">共享时间</th>
+					<th width="12%" class="ac">操作</th>
+				</tr>
+				</thead>
+				<tbody id="table_one"></tbody>
+				<tfoot>
+				<tr>
+					<td colspan="6">
+						<div class="page" id="page_one"></div>
+					</td>
+				</tr>
+				</tfoot>
+			</table>
+		</div>
+		<!-- 列表形式 结束-->
+
+		<!-- 图片形式 开始-->
+		<div class="beikeshibox">
+			<table class="table_list beiketable" style="width:100%;">
+				<thead>
+				<tr>
+					<th><span class="fl">
+                <label class="color_6"><input type="checkbox" name="selecttpall" id="selecttpAll" onclick="selectTPAll()">&nbsp;文件名</label>
+                <a href="javascript:void(0);" onclick="setTransferLocation(2)" style="background-color: #00B83F;color: white"><i class="fa fa-rotate-right"></i>转存至我的网盘</a></span>
+					</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class="tupianxingshi">
+					<td>
+						<div class="beikeliebiao" id="table_two"></div>
+
+						<!-- 分页 start -->
+						<div class="page" id="page_two"></div>
+						<!-- 分页 end -->
+
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- 图片形式 结束-->
+	</div>
+
+
+	<div class="zhuantiright fr">
+		<dl class="luntanliebiao">
+			<dt class="bg_yellow"><i class="fontsize18">论坛动态</i><a class="fr" target="_blank" id="gotoBBS">进入论坛>></a></dt>
+			<div id="bbs_content">
+				<iframe id="iframeid" name="content_frame" style="min-height: 348px;" marginwidth=0 scrolling=no marginheight=0 width=100% height=100%  frameborder=0></iframe>
+			</div>
+		</dl>
+	</div>
+
+</div>
+<!-- 专题详情结束 -->
+
+<!-- 通用底部开始 -->
+<div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+<!-- 通用底部结束 -->
+<input type="hidden" id="moveFid" />
+<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="js/jquery.ztree.core.js"></script><!-- 树形插件-->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/disk.js"></script>
+<script type="text/javascript" src="js/timeago.js"></script>
+
+
+<script type="text/javascript">
+
+	function lef(){
+		var n = self.location.href.split("=")//查看是否包含参数
+		var para=n[1];
+		switch(para){
+			case "1":para=2;break;
+			case "2":para=37;break;
+			case "3":para=44;break;
+			case "4":para=45;break;
+			case "5":para=46;break;
+			case "6":para=47;break;
+			case "7":para=48;break;
+			case "8":para=49;break;
+			case "9":para=50;break;
+			case "10":para=51;break;
+			case "11":para=52;break;
+			case "12":para=53;break;
+			case "13":para=54;break;
+			case "14":para=55;break;
+			case "15":para=56;break;
+			case "16":para=57;break;
+			case "17":para=58;break;
+			case "18":para=59;break;
+			case "19":para=60;break;
+			case "20":para=61;break;
+			case "21":para=62;break;
+			case "22":para=63;break;
+			case "23":para=64;break;
+			case "24":para=65;break;
+			default: para=1;
+		}
+		$('iframe').attr('src','http://pingeluntan.9sheji.cn/retie.php?fid='+para);
+	}
+	lef();
+
+
+</script>
+
+
+
+<script>
+
+
+	var id = getQueryStr(window.location.href,"id");//课程id
+	var kechengid=id;
+	var store_detail,store_shares;
+	var view_one = 1,view_two = 2;
+	var pagesize_one = 10,pagesize_two = 18;//分页条数
+	var zNodes;
+	var islogin = true;
+	$(function(){
+		id = empty(id) ? 1 : id;
+		load_detail();
+		load_shares(pagesize_one,id);
+		load_shares(pagesize_two,id);
+		loadDirTreeData();
+	});
+	//加载专题详情数据
+	function load_detail(){
+		ajaxGetesFun("CourseProject/findInfo/"+id, null, function(res){
+			store_detail = res.bizData;
+			var keywords = store_detail.keywords;
+			render_detail(store_detail);
+//			load_forum(keywords);
+			$("#gotoBBS").attr("href","http://pingeluntan.9sheji.cn");
+		},null, "加载专题详情数据");
+	}
+	//根据课程，加载该课程的文件分享列表
+	function load_shares(pagesize,courseid){
+		ajaxGetesFun("MyFile/selectByCourse/"+pageIndex, {isshare:1,courseid:id,pagesize:pagesize}, function(res){
+			store_shares = res.bizData;
+			if(pagesize == pagesize_one){
+				render_shares_one(store_shares);
+			}else{
+				render_shares_two(store_shares);
+			}
+		},function(res){
+			if(pagesize == pagesize_one){
+				render_shares_one_noexist(res);
+			}else{
+				render_shares_two_noexist(res);
+			}
+		}, "加载课程的文件分享列表数据");
+	}
+//	function load_forum(keywords){
+//		if(!empty(keywords)){
+//			ajaxGetesFun("Bbs/module", {keywords:keywords}, function(res){
+//				render_bbs(res.bizData);
+//			},function(err){
+//				layer.msg(err.msg, {icon: 5, time: 1000});
+//			}, "加载论坛消息");
+//		}
+//	}
+	//分页事件
+	function gotopage(target) {
+		pageIndex = target;//当前页码
+		load_data(search_condition,target);
+		//分页栏id，总页数，目标页码，每页显示条数
+		setpage("pages",results,target,pageSize);
+	}
+	function render_detail(data){
+		$("#detail_name").html(data.name.substr(0,25));
+	}
+	function render_bbs(data){
+		var str = "";
+		$.each(data,function(index,value){
+			var title = value.name.substr(0,12);
+			var indexstr,indexnum = index + 1;
+			var id = value.id;
+			if(indexnum > 3){
+				indexstr = indexnum > 9 ? '<i>'+indexnum+'</i>' : '<i>0'+indexnum+'</i>';
+			}else{
+				indexstr = '<i class="qiansan">0'+indexnum+'</i>';
+			}
+			str += '<dd><a target="_blank" href="http://pingeluntan.9sheji.cn"></span></dd>';
+		});
+		$("#bbs_content").html(str);
+		$("span.timeago").timeago();
+	}
+	function render_shares_one(data){
+		var str = "";
+		$.each(data.rows,function(index,value){
+			var id = value.id;
+			var name = value.name.substr(0,25);
+			var type = ifFileTypeLb(value.type);
+			var link = openFile(value.type,id,kechengid);
+//			console.log("==========>",link);
+			str += '<tr class="liebiaoxingshi">'
+					+'<td class="lbal al"><input type="checkbox" name="checkbox_1" value="'+id+'"> '+type+'<a target="_blank" href="'+ (link)+'">'+name+'</a></td>'
+					+'<td class="lbac ac">'+getFormetFileSize(parseInt(value.size))+'</td>'
+					+'<td class="lbac ac">'+value.teacher_name+'</td>'
+					+'<td class="lbac ac">'+dates("Y-m-d H:i",value.sharetime)+'</td>'
+					+'<td class="lbac ac"><a href="javascript:void(0);" onclick=downloades("'+id+'") title="下载"><i class="fa fa-cloud-download"></i>下载</a></td>'
+					+'</tr>';
+		});
+		$("#table_one").html(str);
+		setpage("page_one",data.records,pageIndex,pagesize_one);
+	}
+	function render_shares_two(data){
+		var str = "";
+		$.each(data.rows,function(index,value){
+			var id = value.id;
+			var type = ifFileTypeWG(value.type);
+			var link = openFile(value.type,id,kechengid);
+			var name = value.name;
+			if(name.length > 5){
+				name = name.substr(0,10)+"...";
+			}
+			str += '<dl title="'+value.name+'" onclick="switchOn(this)" data-id="'+value.id+'">'
+					+type+'<dd><a target="_blank" href="'+link+'">'+name+'</a></dd>'
+					+'</dl>';
+		});
+		$("#table_two").html(str);
+		setpage("page_two",data.records,pageIndex,pagesize_two);
+	}
+	function render_shares_one_noexist(res){
+		$("#table_one").html('<tr class="liebiaoxingshi"><td class="lbac ac meiyoushuju" colspan="5"><img src="images/testimg/zanwushuju.png" style="width:100%;"></td></tr>');
+	}
+	function render_shares_two_noexist(res){
+		$("#table_two").html('<div style="text-align:center" class="meiyoushuju"><img src="images/testimg/zanwushuju.png" style="width:100%;"></div>');
+	}
+
+	function switchOn(obj){
+		if($(obj).hasClass("on")){
+			$(obj).attr("class","");
+		}else{
+			$(obj).attr("class","on");
+		}
+	}
+
+
+
+	function setTransferLocation(loc){
+		if(islogin == true){
+			var objs = loc == 1 ? $("input[name=checkbox_1]:checked") : $(".beikeliebiao .on");
+
+			if(objs.length <= 0){//没有选择文件
+				return false;
+			}
+			var popuobj = ".yidongdao";
+			$(popuobj).fadeIn(100);
+			$(".popu_close,.blackbg,.popuclose_btn").bind("click",function(){
+				$(popuobj).fadeOut(100);
+			});
+			/*位置控制*/
+			$(popuobj).find(".popu").css({left:($(window).width()-$(popuobj).find(".popu").width())/2+"px",top:($(window).height()-$(popuobj).find(".popu").height())/2+"px"});
+			$(window).resize(function(){
+				$(popuobj).find(".popu").css({left:($(window).width()-$(popuobj).find(".popu").width())/2+"px",top:($(window).height()-$(popuobj).find(".popu").height())/2+"px"});
+			});
+			$("#loc").val(loc);
+		}else{
+			transAndDownloadFilters();
+		}
+	}
+
+
+
+	function transfer(target){
+		if(islogin == true){
+			var selectors = new Array();
+			var loc = $("#loc").val();
+			if(loc == 1){
+				var objs = $("input[name=checkbox_1]:checked");
+				for(var i=0;i<objs.length;i++){
+					selectors.push(objs[i].value);
+				}
+			}else{
+				var objs = $(".beikeliebiao .on");
+				for(var i=0;i<objs.length;i++){
+					selectors.push(objs.eq(i).attr("data-id"));
+				}
+			}
+			var link = createLink("ids",selectors);
+			ajaxGetesFun("MyFile/transfer?"+link, {target:target}, function(res){
+				layer.msg("文件移动"+(res.bizData == true ? "成功" : "失败"),{icon: 6,time:2000});
+				$(".yidongdao").fadeOut(100);
+			},null, "文件转存");
+		}else{
+			transAndDownloadFilters();
+		}
+	}
+	//下载
+	function downloades(fileid){
+		if(islogin == true){
+			window.open(basePath+"MyFile/"+fileid+"/download");
+		}else{
+			transAndDownloadFilters();
+		}
+	}
+	function transAndDownloadFilters(){
+		layer.confirm('您还没有登录，是否去登录？',{icon: 3},function(index){
+			window.location.href="login.html";
+		});
+	}
+</script>
+<script>
+	var setting = {
+		view: {
+			dblClickExpand: false,
+			showLine: false
+		},
+		data: {
+			simpleData: {
+				enable: true
+			}
+		},
+		callback: {
+			onClick: onClick
+		}
+	};
+
+	function onClick(e,treeId, treeNode) {
+		var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+		zTree.expandNode(treeNode);
+	}
+
+	function loadDirTreeData(){
+		ajaxGetesFun("MyFile/selectAllFileDirList",null,function(res){
+			var nodes = res.bizData;
+			zNodes = treeFormat(nodes);
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		},function(res){
+			if(res.rtnCode == "0006666"){//授权登录失效
+				islogin = false;
+			}else{
+				layer.msg(res.msg, {icon: 5, time: 1000});
+			}
+		},"加载文件夹树形菜单");
+	}
+
+
+
+	function submits(){
+		var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+		var  nodes = zTree.getSelectedNodes(true);
+		if(nodes.length==0){
+			layer.msg("请选择要移动到的文件夹", {icon: 5, time: 1000});
+			return false;
+		}
+		transfer(nodes[0].id);//转存到目标文件夹
+	}
+</script>
+<!-- 树形结构开始 -->
+<div class="yidongdao" style="display:none">
+	<div class="blackbg transparent"></div>
+	<div class="popu wenjianyidongpopu">
+		<dl class="tktitle bg_green">移动到 <a href="javascript:;" class="popu_close">×</a><!-- 关闭按钮 --></dl>
+		<form action="#">
+			<div class="tankuangdiv">
+				<table class="nobordertable" style="width:100%" border="0">
+					<tr>
+						<td class="al" colspan="2">
+							<!-- 树形结构开始 -->
+							<ul id="treeDemo" class="ztree"></ul>
+							<!-- 树形结构结束 -->
+						</td>
+					</tr>
+					<tr>
+						<td align="center"><input type="button" onclick="submits()" value="确定" class="btn fl" /></td>
+						<input type="hidden" id="loc" />
+					</tr>
+				</table>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- 树形结构结束 -->
+<script type="text/javascript">
+	/*列表形式 全选*/
+	function selectLBAll(){
+		var checklist = document.getElementsByName("checkbox_1");
+		if(document.getElementById("selectlbAll").checked)
+		{
+			for(var i=0;i<checklist.length;i++)
+			{
+				checklist[i].checked = 1;
+			}
+		}else{
+			for(var j=0;j<checklist.length;j++)
+			{
+				checklist[j].checked = 0;
+			}
+		}
+	}
+	/*图片形式 全选*/
+	function selectTPAll(){
+		var checklist = $(".beikeliebiao dl");
+		if(document.getElementById("selecttpAll").checked)
+		{
+			for(var i=0;i<checklist.length;i++)
+			{
+				checklist.attr("class","on");
+			}
+		}else{
+			for(var j=0;j<checklist.length;j++)
+			{
+				checklist.attr("class","");
+			}
+		}
+	}
+
+	/*图片形式 单独选中*/
+	$(".beikeliebiao dl").each(function(e){
+		$(this).click(function(){
+			if($(this).hasClass("on")){
+				$(this).attr("class","");
+			}else{
+				$(this).attr("class","on");
+			}
+		})
+	})
+
+	/*列表 网格切换*/
+	$(function(){
+		b_tab($(".anniuzu .fr a"),$(".beikeshibox"),"on");
+	})
+
+
+</script>
+
+	</body>
+</html>

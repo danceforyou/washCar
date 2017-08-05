@@ -1,0 +1,73 @@
+/* 窗口小于等于1000px时 */
+/* 内容宽 */
+.container {
+    width: 1000px;
+}
+/* 备课室右侧 */
+.rightbox{
+	width: 800px;
+}
+/* 讲师详情右侧 */
+.view_info {
+	width:670px;
+}
+/* 讲师列表宽度 */
+.cf_daoshi .iteam_list li {
+ width:470px;
+}
+/* 邀约讲师右侧 */
+.yaoyuedaoshi .yaoyueleft{
+	width: 514px;
+}
+.yaoyuedaoshi .yaoyueleft img{
+	height: 480px;
+	margin-top: 45px;
+}
+.yaoyuedaoshi .yaoyueleft{	
+	padding-right: 0;
+}
+.yaoyuedaoshi .yaoyueright{
+	width: 485px;
+}
+.yaoyuedaoshi .yaoyueright table{
+	margin-left: 0px;
+}
+/* 专题详情左侧 */
+.zhuantileft{
+	width: 680px;
+}
+/* 搜索框 */
+.searchbox .searchinput{
+	width: 180px;
+}
+.searchbox .searchinput:hover {
+  width:220px;
+}
+/* 导航 */
+.nav{
+	margin-left: 10px;
+}
+.nav li{
+	margin-right:5px;	
+}
+/* 资料库列表 */
+.cf_filelist .iteam_list li {
+	width:234px;
+}
+/* 备课室图片显示形式列表 */
+.beikeliebiao dl{
+	margin: 0 18px 20px;
+}
+/* 课堂专题列表 */
+.cf_zhuanti .iteam_list{
+	margin-left: -10px;
+}
+.cf_zhuanti .iteam_list li {
+	padding:12.5px;
+	width:215px;
+	height:170px;
+	margin-left: 10px;
+}
+.cf_zhuanti .iteam_list li a.img{
+	height: 116px;
+}

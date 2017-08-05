@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /><!-- ie7以ie8识别 -->
+<title>品格学习云平台</title>
+
+<!-- css加载 -->
+<link rel="stylesheet" href="css/qr_base.css" type="text/css">
+<link rel="stylesheet" href="css/form.css" type="text/css">
+<link rel="stylesheet" href="css/table.css" type="text/css">
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="" type="text/css" id="width1200">
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="css/zTreeStyle.css" type="text/css"><!-- 树形插件-->
+<!-- js加载 -->
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="lib/template/underscore.js"></script>
+    <script type="text/javascript" src="lib/template/template.js"></script>
+    <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="js/pinge.js"></script>
+</head>
+<body>
+
+<!-- 头部start -->
+<div id="header" class="wrapbox headbg" include="include/head.html"></div>
+<!-- 头部end -->
+
+<!-- 导航start -->
+<div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+<!-- 导航end -->
+
+<!-- 专题详情开始 -->   
+    <div class="container">
+          <dl class="zhuantixqtitle">
+			  <dd><span class="fl"><i class="fontsize20" id="detail_name">--</i><i class="color_9" id="detail_createat"></i><i class="color_9">发布者：<a href="javascript:void(0);" class="color_blue" id="detail_createby">--</a></i></span>
+			  <span class="fr">
+			  <a href="javascript:transferes();" id="btn_transferes" class="btn_yellow fl"><i class="fa fa-rotate-right"></i>转存至我的网盘</a>
+			  <a href="javascript:downloades();" id="btn_downloades" class="btn_green fl"><i class="fa fa-cloud-download"></i>文件下载</a></span></dd>
+          </dl>
+		  <!-- 图片预览容器 -->
+          <div class="wenjianshowbox" id="imageShow" style="display:none;min-height:300px;text-align: center;"></div>
+		  <!-- 其他文件预览容器 -->
+		  <dl class="wenjianshowbox wenjianopen ac" id="otherFile" style="display:none;min-height:300px;padding:100px 0"></dl>
+		  <!-- 文件已删除 -->
+		  <div id="file_deleted" style="display:none;min-height:300px;text-align: center;margin-top:20px;font-size:20px;color:#666;">
+				文件已删除
+		  </div>
+    </div>
+</div>
+<!-- 专题详情结束 --> 
+
+<!-- 通用底部开始 -->     
+<div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+<!-- 通用底部结束 --> 
+
+<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="js/jquery.ztree.core.js"></script><!-- 树形插件-->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/disk.js"></script>
+<script>
+	var id = getQueryStr(window.location.href,"id");
+	var source = getQueryStr(window.location.href,"source");//请求来源
+	var zNodes;
+	var islogin = true;
+	$(function(){
+		if(source == "my"){//请求来自我的备课室，隐藏转载按钮
+			$("#btn_transferes").css("display","none");
+		}
+		id = empty(id) ? 1 : id;
+		loadDirTreeData();//加载树形结构数据
+		//loadCourse(id);//加载课程信息
+		loadFileInfo();//查询文件信息
+	});
+	function loadFileInfo(){
+		ajaxGetesFun("MyFile/findFileByMy/"+id,null,function(res){
+			var myfile = res.bizData.myfile;
+			var files = res.bizData.files;
+			renderMyFile(files);
+			if(source == "my"){
+				$("#detail_createat").html('发布时间：'+myfile.createDate);
+			}else{
+				$("#detail_createat").html('发布时间：'+dates("Y-m-d H:i",myfile.sharetime));
+			}
+			$("#detail_name").html(myfile.name);
+			$("#detail_createby").html(myfile.user_name);
+			$("#detail_createby").attr("href","fabuzheWenjian.html?id="+myfile.user_id);
+        },function(res){
+			if(res.rtnCode == "0200008"){//文件已删除,禁转存下载
+				$("#file_deleted").css("display","block");
+				$("#btn_downloades").css("display","none");
+			}else{
+				layer.msg(res.msg, {icon: 5, time: 1000});
+			}
+        },"加载文件信息");
+	}
+	function renderMyFile(bizData){
+		var pattern = bizData.pattern;
+			var path = bizData.path;
+			var size = getFormetFileSize(bizData.size);
+			if(image_arrs.indexOf(pattern) >= 0){//图片
+				$("#imageShow").html('<img src="'+imageShowPath+bizData.path+'" />');
+				$("#imageShow").css("display","block");
+			}else{//其他格式
+				var classes = "geshi_qita";//其他文件格式
+				if(pattern == ".rar"){//rar格式
+					classes = "geshi_rar";
+				}else if(pattern == ".zip"){//zip格式
+					classes = "geshi_zip";
+				}
+				var str = '<span class="span_o wenjiangeshi '+classes+'"></span> '
+							  +'<span class="span_o color_7">文件大小：'+size+'</span>'
+						   +'<span class="span_o"><input value="下载" class="btn" type="button" onclick="downloades()"></span>';
+				$("#otherFile").html(str);
+				$("#otherFile").css("display","block");
+			}
+	}
+	function loadDirTreeData(){
+          ajaxGetesFun("MyFile/selectAllFileDirList",null,function(res){
+				var bizData = res.bizData;
+				$.fn.zTree.init($("#treeDemo"), setting, treeFormat(bizData));
+          },function(res){
+			if(res.rtnCode == "0006666"){//授权登录失效,未登录状态
+				islogin = false;
+			  }else{
+				layer.msg(res.msg, {icon: 5, time: 1000});
+			  }
+          },"加载文件夹树形菜单");
+      }
+	  
+	function loadCourse(id){
+		ajaxGetesFun("CourseProject/findByFile/"+id, null, function(res){
+			render_detail(res.bizData);
+		},null, "根据文件查询课程信息");
+	}
+	function render_detail(bizData){
+		$("#detail_name").html(bizData.name.substr(0,25));
+	}
+	//打开转存框
+	function transferes(){
+		if(islogin == true){
+			var popuobj = ".yidongdao";
+			$(popuobj).fadeIn(100);
+			$(".popu_close,.blackbg,.popuclose_btn").bind("click",function(){
+				 $(popuobj).fadeOut(100);
+			});  
+			/*位置控制*/
+			$(popuobj).find(".popu").css({left:($(window).width()-$(popuobj).find(".popu").width())/2+"px",top:($(window).height()-$(popuobj).find(".popu").height())/2+"px"});   
+			$(window).resize(function(){  
+				$(popuobj).find(".popu").css({left:($(window).width()-$(popuobj).find(".popu").width())/2+"px",top:($(window).height()-$(popuobj).find(".popu").height())/2+"px"});   
+			});
+		}else{
+			transAndDownloadFilters();
+		}
+	}
+	//转存，登录过滤
+	function transfer(target){
+		if(islogin == true){
+			var link = "ids="+id;
+			ajaxGetesFun("MyFile/transfer?"+link, {target:target}, function(res){
+				$(".yidongdao").fadeOut(100);
+				if(res.bizData == true){
+					layer.msg("转存成功", {icon: 6, time: 1000});
+				}else{
+					layer.msg("转存失败", {icon: 5, time: 1000});
+				}
+			},function(err){
+				layer.msg("转存失败", {icon: 5, time: 1000});
+			}, "文件转存");
+		}else{
+			transAndDownloadFilters();
+		}
+	}
+	//下载，登录过滤
+	function downloades(){
+		if(islogin == true){
+			window.open(basePath+"MyFile/"+id+"/download");
+		}else{
+			transAndDownloadFilters();
+		}
+	}
+	function transAndDownloadFilters(){
+		layer.confirm('您还没有登录，是否去登录？',{icon: 3},function(index){
+			window.location.href="login.html";
+		});
+	}
+</script>
+<!-- 树形结构 -->
+<script>
+	var setting = {
+      view: {
+        dblClickExpand: false,
+        showLine: false
+      },
+      data: {
+        simpleData: {
+          enable: true
+        }
+      },
+      callback: {
+        onClick: onClick
+      }
+    };
+
+    function onClick(e,treeId, treeNode) {
+      var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+      zTree.expandNode(treeNode);
+    }
+	
+	  function submits(){
+		var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+       var  nodes = zTree.getSelectedNodes(true);
+        if(nodes.length==0){
+            layer.msg("请选择要移动到的文件夹", {icon: 5, time: 1000});
+            return false;
+        }
+		transfer(nodes[0].id);//转存到目标文件夹
+	  }
+</script>
+<!-- 树形结构开始 -->
+<div class="yidongdao" style="display:none">
+    <div class="blackbg transparent"></div>
+    <div class="popu wenjianyidongpopu">          
+          <dl class="tktitle bg_green">移动到 <a href="javascript:;" class="popu_close">×</a><!-- 关闭按钮 --></dl>   
+          <form action="#">   
+          <div class="tankuangdiv">         
+            <table class="nobordertable" style="width:100%" border="0">
+              <tr>
+                  <td class="al" colspan="2">
+                        <!-- 树形结构开始 -->
+                        <ul id="treeDemo" class="ztree"></ul>
+                        <!-- 树形结构结束 -->
+                  </td>
+              </tr>
+              <tr>
+                  <td align="center"><input type="button" onclick="submits()" value="确定" class="btn fl" /></td>
+              </tr>
+            </table>
+          </div>
+          </form>
+    </div>
+</div>
+</body>
+</html>

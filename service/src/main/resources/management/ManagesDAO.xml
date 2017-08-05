@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kemile.management.dao.ManagesDAO">
+
+    <!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 只要在对应的mapper配置文件中加入<cache />标签即可-->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <sql id="Base_Column_List">
+        id, rid, account, name, alias, 
+        creator, creatorDate, lastModfier, lastModDate, status,lastloginDate,lastloginIP,loginNumber,email
+    </sql>
+    <sql id="Base_NotAliasColumn_List">
+        id, rid, account, name, 
+        creator, creatorDate, lastModfier, lastModDate, status,lastloginDate,lastloginIP,loginNumber,email
+    </sql>
+
+    <select id="findOne" resultType="com.kemile.management.domain.Manages">
+        SELECT id, account, name, adress, phone, status
+        FROM manager
+        WHERE manager.${property} = #{value}
+    </select>
+
+    <select id="selectOne" resultType="com.kemile.management.domain.Manages">
+        SELECT id, account, name, adress, phone, status
+        FROM manager
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition!=null and condition.account!=null">AND account = #{condition.account}</if>
+            <if test="condition!=null and condition.password!=null">AND password = #{condition.password}</if>
+        </trim>
+    </select>
+    
+    <select id="queryPage" resultType="java.util.Map">
+    	SELECT id, account, name, adress, phone, status
+        FROM manager
+        <where>
+        	<if test="condition!=null and condition.id!=null">AND id = #{condition.id}</if>
+        	<if test="condition!=null and condition.account!=null">AND account = #{condition.account}</if>
+            <if test="condition!=null and condition.password!=null">AND password = #{condition.password}</if>
+        </where>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        LIMIT ${offset}, ${rows}
+    </select>
+    
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM manager
+        <where>
+        	<if test="condition!=null and condition.account!=null">AND  account = #{condition.account}</if>
+            <if test="condition!=null and condition.password!=null">AND  password = #{condition.password}</if>
+        </where>
+    </select>
+
+    <select id="periodOfTime" resultType="java.lang.Integer">
+        SELECT count(*) FROM manager
+        WHERE creatorDate between #{startDate} and #{endDate};
+    </select>
+    
+    <update id="update">
+    	UPDATE manager
+    	<trim prefix="SET" suffixOverrides=",">
+            <if test="account!=null">account=#{account},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="name!=null">name=#{name},</if>
+            <if test="adress!=null">adress=#{adress},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="status!=null">status=#{status},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert">
+        INSERT INTO manager (
+        account,password,name,
+            <if test="adress!=null">adress,</if>
+            <if test="phone!=null">phone,</if>
+            <if test="status!=null">status</if>
+        )VALUES(
+        #{account},#{password},#{name},
+            <if test="adress!=null">#{adress},</if>
+            <if test="phone!=null">#{phone},</if>
+            <if test="status!=null">#{status}</if>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+
+
+    <delete id="deleteByIds">
+        DELETE FROM manager
+        <where>
+            id IN
+            <foreach collection="collection" item="id" open="(" separator="," close=")" >
+                #{id}
+            </foreach>
+        </where>
+    </delete>
+
+</mapper>

@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <!-- ie7以ie8识别 -->
+    <title>品格学习云平台</title>
+    <!-- css加载 -->
+    <link rel="stylesheet" href="css/qr_base.css" type="text/css">
+    <link rel="stylesheet" href="css/form.css" type="text/css">
+    <link rel="stylesheet" href="css/table.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="" type="text/css" id="user_width1200">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="lib/Validform/5.3.2/validform.css" type="text/css">
+    <link rel="stylesheet" href="lib/uploadify/uploadify.css" type="text/css">
+    <!-- js加载 -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="lib/template/underscore.js"></script>
+    <script type="text/javascript" src="lib/template/template.js"></script>
+    <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="lib/Validform/5.3.2/Validform.min.js"></script>
+    <script type="text/javascript" src="lib/uploadify/jquery.uploadify.js"></script>
+    <script type="text/javascript" src="js/pinge.js"></script>
+</head>
+
+<body>
+    <!-- 头部start -->
+    <div id="header" class="wrapbox headbg" include="include/head.html"></div>
+    <!-- 头部end -->
+    <!-- 导航start -->
+    <div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+    <!-- 导航end -->
+    <!-- 用户中心 -->
+    <div class="container beikeshileftbg">
+        <!--侧边菜单开始-->
+        <div class="leftbox fl">
+            <dl>
+                <dd><a href="userIndex.html"><span class="usericon u_ziliao"></span>基本资料</a></dd>
+                <dd class="on"><a href="tuijianJiangshi.html"><span class="usericon u_tuijian"></span>推荐讲师</a></dd>
+                <dd><a href="tongzhiZhongxin.html"><span class="usericon u_tongzhi"></span>通知中心</a></dd>
+            </dl>
+        </div>
+        <!--侧边菜单结束-->
+        <div class="rightbox fr">
+        <div class="tuijian_form">
+            <h3>推荐讲师</h3>
+            <div class="line"></div>
+            <form id="J_Form" method="post">
+                <table class="table_list" style="width:100%">
+                    <tbody>
+                        <tr>
+                            <td class="ar"><i class="c_red">*</i>姓名</td>
+                            <td>
+                                <input type="text" class="ip-text ip-text-nomar" id="name" name="name" datatype="*" nullmsg="请输入姓名" style="width:240px" placeholder="请输入姓名" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ar" width="15%">性别</td>
+                            <td>
+                                <label class="ip-r">
+                                    <input type="radio" name="sex" value="1" checked>男</label>
+                                <label class="ip-r">
+                                    <input type="radio" name="sex" value="2">女</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ar"><i class="c_red">*</i>所在地区</td>
+                            <td>
+                                <label class="ip-sc">
+                                    <select id="provinces"></select>
+                                </label>
+                                <label class="ip-sc">
+                                    <select id="city"></select>
+                                </label>
+                                <label class="ip-sc">
+                                    <select id="zone"></select>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ar"><i class="c_red">*</i>手机号</td>
+                            <td>
+                                <input type="text" class="ip-text" style="width:260px" name="phone" datatype="m" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ar">邮箱</td>
+                            <td>
+                                <input type="text" class="ip-text" style="width:260px" name="email" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ar">年龄</td>
+                            <td>
+                                <input type="text" class="ip-text" style="width:260px" name="age" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ar"><i class="c_red">*</i>擅长领域</td>
+                            <td>
+                                <input type="text" class="ip-text" style="width:260px" name="goodat" datatype="*"  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ar">课程主题</td>
+                            <td>
+                                <input type="text" class="ip-text" name="coursetitle" style="width:260px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ar">教龄</td>
+                            <td>
+                                <label class="ip-sc">
+                                    <select name="teachage">
+                                        <option value="1-3年">1-3年</option>
+                                        <option value="4-6年">4-6年</option>
+                                        <option value="6-10年">6-10年</option>
+                                        <option value="10年以上">10年以上</option>
+                                    </select>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ar">附件</td>
+                            <td>
+                                <input type="file" id="myfile" name="myfile" multiple="true" value="上传文件">
+                                <div id="group_attach"></div>
+                                <span class="tips" style="display:block;padding-top:5px;">讲解视频，照片，文稿等。</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="submit"><button type="submit" id="btn_submit" class="btn">提交</button></div>
+                <input type="hidden" name="address" id="address" value=""/>
+            </form>
+            <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- 用户中心结束 -->
+    <!-- 通用底部开始 -->
+    <div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+    <!-- 通用底部结束 -->
+
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/area.js"></script>
+<script type="application/javascript">
+    $(function(){
+        setup("陕西","西安","雁塔区");
+        $("#J_Form").attr("action",basePath+$("#J_Form").attr("action"));
+        $("#J_Form").Validform({
+            tiptype:3,
+            url:basePath+'Lecturer/recommender',
+            callback:function(form){
+                //提交成功，按钮变为不可点击状态
+                var formObj = form[0];
+                var provinces = $("#provinces").val();
+                var city = $("#city").val();
+                var zone = $("#zone").val();
+                $("#address").val(provinces+","+city+","+zone);//地址，省市区字符串
+
+        //        var attaches = $("input[name='attaches[]']");
+        //        var attachStr = "";
+        //        for(var i=0;i<attaches.length;i++){
+        //            var item = attaches[i];
+        //            if(i == attaches.length - 1){
+        //                attachStr += item.value;
+          //          }else{
+          //              attachStr += item.value+",";
+          //          }
+          //      }
+         //       $("#attach").val($("#group_attach").val());//附件字符串
+
+                ajaxSubmit(formObj, function(data){
+                    if(data.rtnCode != "0000000"){
+                        layer.msg(res.msg,{icon: 5,time:2000});
+                    }else{
+                        var b = data.bizData;
+                        if(b){
+                            $("#btn_submit").addClass("gray_btn").removeClass("btn");
+                            $("#btn_submit").attr("disabled","disabled");
+                            layer.msg("推荐成功",{icon: 6,time:2000});
+                        }else{
+                            layer.msg("推荐失败",{icon: 5,time:2000});
+                        }
+                    }
+                });
+                return false;
+            }
+        });
+    });
+</script>
+<script type="application/javascript">
+	var index = 0;
+    $(function() {
+        $('#myfile').uploadify({
+            'formData'     : {
+				
+            },
+            'swf'      : 'lib/uploadify/uploadify.swf',
+            'uploader' : basePath+'fileUpload',
+            'buttonText': '上传附件',
+            removeCompleted:true,
+            'fileObjName':"myfile",//文件上传对象的名称
+            buttonClass:"upload_btn",//按钮样式
+            //选择文件后自动上传
+            'auto': true,
+            //设置为true将允许多文件上传
+            'multi': false,
+            //上传成功后执行
+            'onUploadSuccess': function (file, dataStr, response) {
+                var data = eval("("+dataStr+")");
+				if(myBrowser() == "FF"){
+					var path = data.path;
+					var name = data.name;
+					index++;
+					if(!empty(path)){
+						$("#group_attach").html('<div id="'+index+'"><input type="hidden" name="attach" value="'+path+'" />'+name+' <a href=javascript:attach_remove("'+index+'")>删除</a><div/>');
+					}
+				}else{
+					if(data.rtnCode == "0000000"){
+						var bizData = data.bizData;
+						var path = bizData.path;
+						var ts = data.ts;
+						$("#group_attach").html('<div id="'+ts+'"><input type="hidden" name="attach" value="'+path+'" />'+bizData.name+' <a href=javascript:attach_remove("'+ts+'")>删除</a><div/>');
+					}
+				}
+            }
+        });
+    });
+	
+    function attach_remove(obj){
+        if(confirm("上传一次不容易，确定要删除吗？")){
+            $("#"+obj).remove();
+        }
+    }
+</script>
+</body>
+</html>

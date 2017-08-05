@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kemile.SystemAgencyFinanceInfo.dao.SystemAgencyFinanceInfoDAO">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+
+    <sql id="Base_Column_List">
+        id
+        ,creattime
+        ,name
+        ,tao
+        ,sumMoney
+        ,sumAgency
+    </sql>
+
+    <select id="findOne" resultType="com.kemile.SystemAgencyFinanceInfo.domain.SystemAgencyFinanceInfoEntity">
+        SELECT <include refid="Base_Column_List"/> FROM jc_agency WHERE ${property} = #{value}
+    </select>
+
+    <select id="findList" resultType="com.kemile.SystemAgencyFinanceInfo.domain.SystemAgencyFinanceInfoEntity">
+        SELECT <include refid="Base_Column_List"/>
+        FROM jc_agency
+        WHERE ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="com.kemile.SystemAgencyFinanceInfo.domain.SystemAgencyFinanceInfoEntity">
+        SELECT <include refid="Base_Column_List"/>
+        FROM jc_agency
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="java.util.Map">
+        SELECT
+        s.id,
+        s.creattime,
+        s.name,
+        coalesce((SELECT SUM(tao) from jc_order where id in (SELECT order_id from at_income_statistics where agency_id = s.id)),0) as tao,
+        coalesce((SELECT SUM(countincome) from at_income_statistics where agency_id = s.id),0) as sumMoney,
+        coalesce((SELECT SUM(agencyincome) from at_income_statistics where agency_id = s.id),0) as sumAgency
+        FROM jc_agency s
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="condition!=null and condition.tao!=null">AND tao=#{condition.tao}</if>
+            <if test="condition!=null and condition.sumMoney!=null">AND sumMoney=#{condition.sumMoney}</if>
+            <if test="condition!=null and condition.sumAgency!=null">AND sumAgency=#{condition.sumAgency}</if>
+
+            <if test="condition!=null and condition.logmin!=null and condition.logmin!=''">
+                AND DATE_FORMAT (creattime,'%Y-%m-%d')  &gt;= '${condition.logmin}'
+            </if>
+            <if test="condition!=null and condition.logmax!=null and condition.logmax!=''">
+                AND DATE_FORMAT(creattime,'%Y-%m-%d') &lt;='${condition.logmax}'
+            </if>
+            <if test="condition!=null and condition.title!=null and condition.title!=''">
+                AND name LIKE CONCAT(CONCAT('%', #{condition.title}), '%')
+            </if>
+
+        </trim>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        LIMIT ${offset}, ${rows}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM jc_agency
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="condition!=null and condition.tao!=null">AND tao=#{condition.tao}</if>
+            <if test="condition!=null and condition.sumMoney!=null">AND sumMoney=#{condition.sumMoney}</if>
+            <if test="condition!=null and condition.sumAgency!=null">AND sumAgency=#{condition.sumAgency}</if>
+
+            <if test="condition!=null and condition.logmin!=null and condition.logmin!=''">
+                AND DATE_FORMAT (creattime,'%Y-%m-%d')  &gt;= '${condition.logmin}'
+            </if>
+            <if test="condition!=null and condition.logmax!=null and condition.logmax!=''">
+                AND DATE_FORMAT(creattime,'%Y-%m-%d') &lt;='${condition.logmax}'
+            </if>
+            <if test="condition!=null and condition.title!=null and condition.title!=''">
+                AND name LIKE CONCAT(CONCAT('%', #{condition.title}), '%')
+            </if>
+        </trim>
+    </select>
+
+    <update id="update">
+        UPDATE jc_agency
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="creattime!=null">creattime=#{creattime},</if>
+            <if test="name!=null">name=#{name},</if>
+            <if test="tao!=null">tao=#{tao},</if>
+            <if test="sumMoney!=null">sumMoney=#{sumMoney},</if>
+            <if test="sumAgency!=null">sumAgency=#{sumAgency},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert">
+        INSERT INTO jc_agency (
+        <if test="creattime!=null">creattime,</if>
+        <if test="name!=null">name,</if>
+        <if test="tao!=null">tao,</if>
+        <if test="sumMoney!=null">sumMoney,</if>
+        <if test="sumAgency!=null">sumAgency,</if>
+        )VALUES(
+        <if test="creattime!=null">#{creattime},</if>
+        <if test="name!=null">#{name},</if>
+        <if test="tao!=null">#{tao},</if>
+        <if test="sumMoney!=null">#{sumMoney},</if>
+        <if test="sumAgency!=null">#{sumAgency},</if>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <delete id="deleteByProperty">
+        DELETE FROM jc_agency WHERE WHERE ${property} = #{value}
+    </delete>
+
+    <delete id="deleteById">
+        DELETE FROM jc_agency WHERE id = #{id}
+    </delete>
+
+    <!-- 批量删除 -->
+    <delete id="deleteByIds">
+        DELETE FROM jc_agency
+        <where>
+            id IN
+            <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">
+            #{id}
+            </foreach>
+        </where>
+    </delete>
+
+</mapper>

@@ -1,0 +1,62 @@
+<div class="container head">
+    <span class="color_7 fl">您好，欢迎来到德耕教育云平台！</span>
+    <!-- 登陆前 -->
+    <span id="login_info" class="fr">
+        <a href="login.html" class="color_red">登录</a>
+        <!--<i><a href="javascript:void(0);" class="color_7">常见问题</a></i>-->
+        <!--<i><a href="javascript:void(0);" class="color_7">关于平台</a></i>-->
+    </span>
+    <!-- 登陆后
+    <span class="fr">
+        <a href="user/index.html" class="color_red">zhangshan</a>
+        <a href="#" class="color_7">安全退出</a>
+        <i><a href="changjianWenti.html" class="color_7">常见问题</a></i>
+        <i><a href="guanyuPingtai.html" class="color_7">关于平台</a></i>
+    </span>
+    -->
+</div>
+<script>
+	var token = undefined;
+    $(document).ready(function() {
+        token = getCookie(TOKEN);
+        if (token != '') {
+            var url = "Teacher/getTeacherToken";
+            var successFun = function (data) {
+                var Teacher = data.bizData;
+                var html = '<a href="userIndex.html" class="color_red">' + Teacher.username + '</a>';
+                html += '<a href="javascript:void(0);" class="color_7" onclick="conlogout()">安全退出</a>';
+//                html += '<i><a href="javascript:void(0);" class="color_7">常见问题</a></i>';
+//                html += '<i><a href="javascript:void(0);" class="color_7">关于平台</a></i>';
+                $('#login_info').html(html);
+            }
+            var errorFun = function(data){
+                console.log("获取教师登陆信息返回失败", data);
+            }
+            ajaxPostFun(url, {'Token': token}, successFun, errorFun, "获取教师登陆信息");
+        }
+    })
+
+    function logout(){
+        var url = "Teacher/logout";
+        var token = getCookie(TOKEN);
+        var exp = new Date();
+        exp.setTime(exp.getTime() -1);
+        document.cookie = name + "=" + token + "; expires=" + exp.toGMTString();
+        var successFun = function (data) {
+            token="";
+            location.href = "index.html";
+        }
+        ajaxPostFun(url, {'Token': ""}, successFun, null, "退出登陆");
+    }
+    function conlogout(){
+        if (confirm("您确定要退出吗？")) {
+            var token = getCookie(TOKEN);
+            var exp = new Date();
+            exp.setTime(exp.getTime() -1);
+            document.cookie = TOKEN + "=" + token + "; expires=" + exp.toGMTString();
+            logout();
+        } else {
+        }
+
+    }
+</script>

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <!-- ie7以ie8识别 -->
+    <title>邀约讲师</title>
+    <!-- css加载 -->
+    <link rel="stylesheet" href="css/qr_base.css" type="text/css">
+    <link rel="stylesheet" href="css/form.css" type="text/css">
+    <link rel="stylesheet" href="css/table.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="" type="text/css" id="width1200">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="lib/Validform/5.3.2/validform.css" type="text/css">
+    <!-- js加载 -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="lib/template/underscore.js"></script>
+    <script type="text/javascript" src="lib/template/template.js"></script>
+    <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="lib/Validform/5.3.2/Validform.min.js"></script>
+    <script type="text/javascript" src="js/pinge.js"></script>
+</head>
+
+<body>
+    <!-- 头部start -->
+    <div id="header" class="wrapbox headbg" include="include/head.html"></div>
+    <!-- 头部end -->
+    <!-- 导航start -->
+    <div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+    <!-- 导航end -->
+    <!--内容开始-->
+    <div class="container yaoyuedaoshi">
+        <div  class="yaoyueleft fl"><img src="images/yaoyueimg.jpg" /></div>
+        <div class="yaoyueright fr"> 
+
+        <form action="" id="J_Form" method="post" class="form form-horizontal">
+            <table class="nobordertable" border="0">
+              <tr>
+                  <td colspan="2"><h3  style="padding:0;margin:2px 190px;">邀约讲师</h3></td>
+              </tr>
+              <tr>
+                  <td class="ar" width="100">你的姓名：</td>
+                  <td width="385">
+                      <input type="text" class="ip-text ip-text-nomar" id="teachname" name="teachname" datatype="*" nullmsg="请输入姓名" style="width:240px" placeholder="请输入姓名" />
+                      <font color="#ff0000">*</font> </td>
+              </tr>
+              <tr>
+                  <td class="ar">机构名称：</td>
+                  <td>
+                      <input type="text" class="ip-text ip-text-nomar" name="kinder" id="kinder" datatype="*" nullmsg="请输入机构名称" style="width:240px" placeholder="请输入机构名称" />
+                      <font color="#ff0000">*</font>  </td>
+              </tr>
+              <tr>
+                  <td class="ar">机构地区：</td>
+                  <td>
+                        <label class="ip-sc" style="margin:0;">
+                            <select style="width:63px" id="provinces"></select>
+                        </label>
+                        <label class="ip-sc">
+                            <select style="width:63px" id="city"></select>
+                        </label>
+                      <label class="ip-sc">
+                          <select style="width:63px" id="zone"></select>
+                      </label>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="ar">详细地址：</td>
+                  <td>
+                      <input type="text" class="ip-text ip-text-nomar" name="addr" id="addr" datatype="*" nullmsg="请输入详细地址" style="width:240px" placeholder="请输入详细地址" />
+                      <font color="#ff0000">*</font>  </td>
+              </tr>
+              <tr>
+                  <td class="ar">手机号：</td>
+                  <td>
+                      <input type="text" class="ip-text ip-text-nomar" name="phone" style="width:240px" datatype="m" nullmsg="请输入合法的手机号" placeholder="请输入手机号" />
+                      <font color="#ff0000">*</font> </td>
+              </tr>
+              <tr>
+                  <td class="ar">邮箱：</td>
+                  <td>
+                      <input type="text" class="ip-text ip-text-nomar" name="email" style="width:240px" datatype="e" nullmsg="请输入合法的邮箱" placeholder="请输入邮箱" />
+                      <font color="#ff0000">*</font>  </td>
+              </tr>
+              <tr>
+                  <td class="ar">授课时间描述：</td>
+                  <td>
+                      <input type="text" class="ip-text ip-text-nomar" name="teachtime" style="width:240px" datatype="*" nullmsg="请输入授课时间" placeholder="请输入授课时间" />
+                      <font color="#ff0000">*</font>  </td>
+              </tr>
+              <tr>
+                  <td class="ar">交通方式：</td>
+                  <td>
+                      <input type="text" class="ip-text ip-text-nomar" name="traffic" style="width:240px" datatype="*" nullmsg="请输入交通方式" placeholder="请输入交通方式" />
+                      <font color="#ff0000">*</font>  </td>
+              </tr>
+              <tr>
+                  <td class="ar">安排差旅：</td>
+                  <td>
+                        <label class="ip-r">
+                            <input type="radio" name="istravel" value="1" checked>是</label>
+                        <label class="ip-r">
+                            <input type="radio" name="istravel" value="2">否</label>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="ar">备注：</td>
+                  <td>
+                        <textarea class="ip-area" name="note" style="width:220px;margin:0;"  placeholder="备注"></textarea>
+                       </td>
+              </tr>
+                <tr>
+
+                    <td class="ar"></td>
+                    <td>
+                <font color="#ff0000">*</font> 为必填项
+                    </td>
+                </tr>
+              <tr>
+                  <td class="ar">&nbsp;</td>
+                  <td>
+                      <input type="submit" value="提交" class="btn" id="btn_submit" />
+                      <input type="hidden" name="lecturer" id="lecturer" />
+                      <input type="hidden" name="kinderaddr" id="kinderaddr"/>
+                  </td>
+              </tr>
+            </table>
+        </form>
+            
+        </div>
+    </div>
+    <!--内容结束-->
+    <!-- 通用底部开始 -->
+    <div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+    <!-- 通用底部结束 -->
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/area.js"></script>
+    <script type="text/javascript">
+        var id = getQueryStr(window.location.href,"id");//讲师id
+        $(function(){
+            setup("陕西","西安","雁塔区");
+            $("#J_Form").attr("action",basePath+$("#J_Form").attr("action"));
+            $("#lecturer").val(id);//邀约讲师id
+            $("#J_Form").Validform({
+                tiptype:3,
+                url:basePath+'LecturerInvite/insert',
+                callback:function(form){
+                    //提交成功，按钮变为不可点击状态
+                    var formObj = form[0];
+                    var provinces = $("#provinces").val();
+                    var city = $("#city").val();
+                    var zone = $("#zone").val();
+                    $("#kinderaddr").val(provinces+","+city+","+zone);
+                    ajaxSubmit(formObj, function(data){
+                        if(data.rtnCode != "0000000"){
+                            layer.msg(res.msg,{icon: 5,time:2000});
+                        }else{
+                            var b = data.bizData;
+                            if(b){
+                                $("#btn_submit").addClass("gray_btn").removeClass("btn");
+                                $("#btn_submit").attr("disabled","disabled");
+                                layer.msg("邀约成功",{icon: 6,time:2000});
+                            }else{
+                                layer.msg("邀约失败",{icon: 5,time:2000});
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

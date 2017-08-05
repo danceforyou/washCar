@@ -1,0 +1,53 @@
+<div class="container">
+    <a class="fl logo" href="index.html"><img src="images/logo.png"/></a>
+    <ul class="fl nav">
+        <li><a href="index.html" id="nav_1">资料库</a></li>
+        <li><a href="KetangZhuanti.html" id="nav_2" >课堂专题</a></li>
+        <li><a href="#" id="nav_3" onclick="verification()">我的备课室</a></li>
+        <li><a href="mingxingJiangshi.html" id="nav_4">明星讲师</a></li>
+        <li><a target="_blank" id="bbs_link">交流社区</a></li>
+    </ul>
+    <div class="searchbox fr">
+        <input type="text" class="searchinput fl" name="keyword" id="keyword" placeholder="输入关键字">
+        <a href="javascript:void(0);" id="search_button" onclick="searchByKeyword()" class="fa-search fa fr"></a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<script>
+
+$(function(){
+	var location = window.location.href;
+	if(location.indexOf("index.html") >= 0){
+		$("#nav_1").addClass("on");
+	}else if(location.indexOf("KetangZhuanti.html") >= 0){
+		$("#nav_2").addClass("on");
+	}else if(location.indexOf("wodeBeikeshi.html") >= 0){
+		$("#nav_3").addClass("on");
+	}else if(location.indexOf("mingxingJiangshi.html") >= 0){
+		$("#nav_4").addClass("on");
+	}
+	$("#bbs_link").attr("href","http://pingeluntan.9sheji.cn");
+//	$("#bbs_link").attr("href",bbsUrl);
+	//绑定搜索框回车时间
+	$("#keyword").on("keypress",function(event){
+		if(event.keyCode == "13"){
+			searchByKeyword();
+		}
+	});
+});
+function searchByKeyword(){
+	var keyword = $("#keyword").val();
+	if(!empty(keyword)){
+		window.location.href="search_result.html?keyword="+keyword;
+	}
+}
+	function verification(){
+		var token = getCookie(TOKEN);
+		if(token!=''){
+			location.href = "wodeBeikeshi.html";
+		}else{
+			location.href = "login.html";
+		}
+		//alert(token);
+	}
+</script>

@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <!-- ie7以ie8识别 -->
+    <title>品格学习云平台</title>
+    <!-- css加载 -->
+    <link rel="stylesheet" href="css/qr_base.css" type="text/css">
+    <link rel="stylesheet" href="css/form.css" type="text/css">
+    <link rel="stylesheet" href="css/table.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="" type="text/css" id="user_width1200">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <!-- js加载 -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="lib/template/underscore.js"></script>
+    <script type="text/javascript" src="lib/template/template.js"></script>
+    <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="js/pinge.js"></script>
+    <script type="text/javascript" src="js/page.js"></script>
+</head>
+
+<body>
+<!-- 头部start -->
+<div id="header" class="wrapbox headbg" include="include/head.html"></div>
+<!-- 头部end -->
+<!-- 导航start -->
+<div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+<!-- 导航end -->
+    <!-- 用户中心 -->
+    <div class="container beikeshileftbg">
+        <!--侧边菜单开始-->
+        <div class="leftbox fl">
+            <dl>
+                <dd><a href="userIndex.html"><span class="usericon u_ziliao"></span>基本资料</a></dd>
+                <dd><a href="tuijianJiangshi.html"><span class="usericon u_tuijian"></span>推荐讲师</a></dd>
+                <dd class="on"><a href="tongzhiZhongxin.html"><span class="usericon u_tongzhi"></span>通知中心</a></dd>
+            </dl>
+        </div>
+        <!--侧边菜单结束-->
+        <div class="rightbox fr">
+        <div class="tongzhi">
+            <h3>通知中心</h3>
+            <div class="line"></div>
+            <table class="table_list2" style="width:100%">
+            <thead>
+              <th>通知内容</th>
+              <th width="18%">时间</th>
+            </thead>
+                <tbody id="datatbody">
+
+                </tbody>
+            </table>
+            <div id="pages" class="page" style="margin: 8px 0;"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- 用户中心结束 -->
+    <!-- 通用底部开始 -->
+    <div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+    <!-- 通用底部结束 -->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+
+   var pagesize=12;
+   var results = 0;
+   $(function(){
+
+       loadData(1);
+
+   })
+   function loadData(page){
+       var url="Notice/selectUserList/"+page;
+       ajaxGetFun(url,"",function(res){
+           records = res.bizData;
+           renderTable(records);
+           results = records.records;
+           setpage("pages",results,page,pagesize);
+       },function(res){
+
+           layer.msg(res.msg,{icon: 5,time:2000});
+       },"课堂专题")
+   }
+   //分页事件
+   function gotopage(target) {
+       pageIndex = target;//当前页码
+       loadData(target);
+       //分页栏id，总页数，目标页码，每页显示条数
+       setpage("pages",results,target,pagesize);
+   }
+   function renderTable(res){
+       var data=res.rows;
+       var lis="";
+       for(var i=0;i<data.length;i++){
+           var conent=data[i].data;
+           var datetime=data[i].datetime;
+           var title="";
+           if(conent.length>=20){
+                title=data[i].datastr=str.substring(0,19)+"...";
+           }else{
+                title=conent;
+           }
+            datetime=timeFormat(datetime,false);
+           lis+='<tr class="tzbiaoti">'
+              +'<td><a>'+title+'</a></td>'
+                   +'<td class="ac">'+datetime+'</td>'
+                   +'</tr>'
+                   +'<tr class="tzneirong" style="display:none">'
+                   +'<td colspan="2">'+conent+'</td>'
+                   + '</tr>';
+       }
+       results = res.results;
+       $("#datatbody").html(lis);
+       titleContentShowOrHide();
+   }
+   function titleContentShowOrHide(){
+       var _b_msg0=$(".tzbiaoti");
+       var _b_msg1=$(".tzneirong");
+       _b_msg1.hide();
+       _b_msg0.each(function(e){
+           $(this).toggle(function(){
+               _b_msg1.hide().eq(e).show();
+           },function(){
+               _b_msg1.hide().eq(e).hide();
+           })
+       })
+   }
+</script>
+
+</body>
+
+</html>

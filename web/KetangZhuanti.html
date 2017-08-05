@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <!-- ie7以ie8识别 -->
+    <title>品格学习云平台</title>
+    <!-- css加载 -->
+    <link rel="stylesheet" href="css/qr_base.css" type="text/css">
+    <link rel="stylesheet" href="css/form.css" type="text/css">
+    <link rel="stylesheet" href="css/table.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="" type="text/css" id="width1200">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="lib/layer/1.9.3/skin/layer.css" type="text/css">
+    <!-- js加载 -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="lib/template/underscore.js"></script>
+    <script type="text/javascript" src="lib/template/template.js"></script>
+    <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+
+    <script type="text/javascript" src="js/page.js"></script>
+    <script type="text/javascript" src="js/pinge.js"></script>
+
+</head>
+
+<body class="bg_f9">
+    <!-- 头部start -->
+    <div id="header" class="wrapbox headbg" include="include/head.html"></div>
+    <!-- 头部end -->
+    <!-- 导航start -->
+    <div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+    <!-- 导航end -->
+    <!--内容开始-->
+    <div class="container">
+      <div class="cf_zhuanti">
+         <ul class="iteam_list" id="listdata">
+
+           
+         </ul>
+         <div class="clearfix"></div>
+          <div id="pages" class="page"></div>
+      </div>
+    </div>
+    <!--内容结束-->
+    <!-- 通用底部开始 -->
+    <div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+    <!-- 通用底部结束 -->
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+
+<script type="text/javascript">
+    var pagesize=12;
+    var results = 0;
+    $(function(){
+
+        loadData(1);
+    })
+    function loadData(page){
+        var url="CourseProject/list/"+page;
+        ajaxGetFun(url,{limit:pagesize},function(res){
+            records = res.bizData;
+            renderTable(records);
+            results = records.records;
+            setpage("pages",results,page,pagesize);
+        },function(){
+            layer.msg(error.msg,{icon: 5,time:1000});
+        }
+ ,"课堂专题")
+    }
+    //分页事件
+    function gotopage(target) {
+        pageIndex = target;//当前页码
+        loadData(target);
+        //分页栏id，总页数，目标页码，每页显示条数
+        setpage("pages",results,target,pagesize);
+    }
+    function renderTable(res){
+        var data=res.rows;
+        var lis="";
+        for(var i=0;i < data.length;i++){
+            var path=imageShowPath+data[i].pic;
+            //data:image/png;base64,
+            lis+='<li><a class="img" href="zhuantiXiangqing.html?id='+data[i].id+'"><img  class="lazy" src="'+path+'" alt="" /></a><a href="zhuantiXiangqing.html?id='+data[i].id+'">'+data[i].name+'</a></li>';
+        }
+        results = res.results;
+        $("#listdata").html(lis);
+    }
+
+</script>
+</html>

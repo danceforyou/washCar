@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kemile.food.dao.FoodDAO">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+
+    <sql id="Base_Column_List">
+        id,name, dishId, price,
+        (SELECT name FROM dish where dish.id = food.dishId)AS dishName
+
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="insert">
+        INSERT INTO food (name, dishId, price)
+        VALUES(#{name}, #{dishId}, #{price} )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+    </insert>
+
+    <!-- 根据id查询 -->
+    <select id="findOne" resultType="com.kemile.food.domain.Food">
+        SELECT <include refid="Base_Column_List" />
+        FROM food
+        WHERE food.${property} = #{value}
+    </select>
+    <!-- 根据id查询 -->
+    <select id="findbyid" resultType="com.kemile.food.domain.Food">
+        SELECT <include refid="Base_Column_List" />
+        FROM food WHERE id = #{id}
+    </select>
+
+
+    <!-- 列表 -->
+    <select id="foodList" resultType="java.util.Map">
+        SELECT id,name, dishId, price,
+        (SELECT name FROM dish where dish.id = food.dishId)AS dishName
+        FROM food
+        <where>
+            <if test="keyword!=null ">name LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
+        </where>
+        ORDER BY #{sort} DESC
+        LIMIT ${start},${limit}
+    </select>
+    <select id="foodTotal" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM food
+        <where>
+            <if test="keyword!=null ">name LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
+        </where>
+    </select>
+
+
+
+    <!-- 更新用户信息 -->
+    <update id="update">
+        UPDATE food
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name!=null and name !='' ">name=#{name},</if>
+            <if test="name!=null and name !='' ">dishId=#{dishId},</if>
+            <if test="name!=null and name !='' ">price=#{price},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteByIds">
+        DELETE FROM food
+        <where>
+            id IN
+            <foreach collection="collection" item="id" open="(" separator="," close=")" >
+                #{id}
+            </foreach>
+        </where>
+    </delete>
+
+
+</mapper>

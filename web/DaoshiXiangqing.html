@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <!-- ie7以ie8识别 -->
+    <title>品格学习云平台</title>
+    <!-- css加载 -->
+    <link rel="stylesheet" href="css/qr_base.css" type="text/css">
+    <link rel="stylesheet" href="css/form.css" type="text/css">
+    <link rel="stylesheet" href="css/table.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="" type="text/css" id="width1200">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <!-- js加载 -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="lib/template/underscore.js"></script>
+    <script type="text/javascript" src="lib/template/template.js"></script>
+    <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="js/pinge.js"></script>
+</head>
+
+<body class="bg_f9">
+    <!-- 头部start -->
+    <div id="header" class="wrapbox headbg" include="include/head.html"></div>
+    <!-- 头部end -->
+    <!-- 导航start -->
+    <div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+    <!-- 导航end -->
+    <!--内容开始-->
+    <div class="container">
+      <div class="cf_daoshi_view">
+         <div class="sidebar">
+           <div class="daoshi_info">
+             <img src="" id="headpic" style="width:164px;height:164px;" onerror="javascript:userHeadpic_notfound(this)">
+             <h3 id="name">--</h3>
+             <span class="dangqi" >(档期：<a id="schedule">--</a>)</span>
+             <span class="xingji">讲师星级:
+                 <span class="rating" id="level"></span>
+             </span>
+              <div class="clearfix"></div>
+             <a href="javascript:void(0);" id="invite" class="yy_btn"><i  class="fa fa-user-plus"></i>邀约讲师</a>
+             </div>
+             <div class="daoshi_jianjie">
+             <h3>导师简介</h3>
+             <p class="intro" id="intro"></p>
+           </div>
+         </div>
+         <div class="view_info">
+           <h3>课程介绍</h3>
+           <div class="line"></div>
+		   <!--
+           <ul class="kecheng_list" id="courseintro"></ul>
+		   -->
+		   <ul class="kecheng_list" id="courseintro"></ul>
+            <h3>详细介绍</h3>
+            <div class="line"></div>
+            <div class="info_view" id="other"></div>
+           <p class="intro"></p>
+         </div>
+         <div class="clearfix"></div>
+       
+      </div>
+    </div>
+    <!--内容结束-->
+    <!-- 通用底部开始 -->
+    <div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+    <!-- 通用底部结束 -->
+
+<!-- js加载 -->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    var id = getQueryStr(window.location.href,"id");//讲师id
+    $(function(){
+        loadData(id);
+		loadCourse(id);
+        $("#invite").on("click",function(){
+            window.open("yaoyueDaoshi.html?id="+id);
+        });
+        $('img').error(function(){
+            $(this).attr('src', 'images/default_user.png');
+        });
+    });
+	
+	function loadCourse(id){
+        ajaxGetFun("lectureCourse/list/1", {lecture:id}, function(res){
+            if(res.rtnCode != "0000000"){
+                layer.msg(res.msg,{icon: 6,time:2000});
+            }else{
+                rows = res.bizData.rows;
+				var str = "";
+				$.each(rows,function(index,value){
+					str += '<li><i class="fa fa-book"></i>'+(index+1)+"."+value.name+'<span class="intro">'+value.desc+'</span></li>';
+				});
+				$("#courseintro").html(str);
+            }
+        }, function(err){
+			$("#courseintro").html('<li><span class="intro" style="text-align:center;">暂时没有找到课程信息</span></li>');
+		}, "查询讲师课程列表");
+	}
+
+    function loadData(id){
+        ajaxGetFun("Lecturer/findOne", {id:id}, function(res){
+            obj = res.bizData;
+            var schedule = (obj.schedule == null || obj.schedule == undefined || obj.schedule == "") ? "暂无档期" : obj.schedule;
+            var intro = (obj.intro == null || obj.intro == undefined || obj.intro == "") ? "......" : obj.intro;
+            var headpic = imageShowPath+obj.headpic;
+            $("#name").html(obj.name);
+            $("#headpic").attr("src",headpic);
+            $("#schedule").html(schedule);
+            $("#intro").html(intro);
+            $("#level").html(levelStr(obj.level));
+			if(empty(obj.other)){
+				$("#other").html('<div style="text-align:center;color: #888;margin-top:20px;display: block;font-size: 12px;line-height: 200%;">暂时没有详细介绍信息</div>');
+			}else{
+				$("#other").html(obj.other);
+			}
+        },null, "加载明星讲师数据");
+    }
+    function levelStr(level){
+        var str = "";
+        for(var i=0;i<level;i++){
+            str += '<span class="fa fa-star"></span>';
+        }
+        return str;
+    }
+    function userHeadpic_notfound(obj){
+        $(obj).removeAttr("onerror");
+        $(obj).attr('src', 'images/default_user.png');
+    }
+</script>
+</body>
+</html>

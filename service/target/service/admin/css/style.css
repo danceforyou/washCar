@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* 你自己的样式 */
+
+.shixuan{
+    margin-bottom: 30px;
+}
+
+#provinces{
+    margin-right: 20px;
+}
+.shixuan select{
+    width: 120px;
+    height: 30px;
+    margin-left: 0px;
+}
+.shixuan .btn-success{
+    margin-left: 40%;
+}
+
+#financediv ul li {float:left; margin-right: 50px; font-size: 17px; }
+#financediv ul {margin-bottom: 50px; }
+.redcol{color: red; font-weight: 600;}
+#financediv textarea{width: 600px; height: 100px; resize: none}
+#monthbody td{text-align: center}
+.selectBg{
+    width: 120px;
+    height: 31px;
+    line-height: 31px;
+}
+
+.page-container{ padding:0 20px;}

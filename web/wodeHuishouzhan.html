@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /><!-- ie7以ie8识别 -->
+<title>品格学习云平台</title>
+
+<!-- css加载 -->
+<link rel="stylesheet" href="css/qr_base.css" type="text/css">
+<link rel="stylesheet" href="css/form.css" type="text/css">
+<link rel="stylesheet" href="css/table.css" type="text/css">
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="" type="text/css" id="width1200">
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+<!-- js加载 -->
+  <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="lib/template/underscore.js"></script>
+  <script type="text/javascript" src="lib/template/template.js"></script>
+  <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+
+  <script type="text/javascript" src="js/page.js"></script>
+  <script type="text/javascript" src="js/pinge.js"></script>
+</head>
+<body>
+
+
+<!-- 头部start -->
+<div id="header" class="wrapbox headbg" include="include/head.html"></div>
+<!-- 头部end -->
+<!-- 导航start -->
+<div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+<!-- 导航end -->
+
+<!-- 我的备课室开始 -->   
+    <div class="container beikeshileftbg">
+        <div class="leftbox fl">
+          <dl>
+            <dd><a href="wodeBeikeshi.html"><span class="menuicon m_wenjian"></span>全部文件</a></dd>
+            <dd><a href="wodeBeikeshi.html?type=pic&typeid=2"><span class="menuicon m_tupian"></span>图片</a></dd>
+            <dd><a href="wodeBeikeshi.html?type=video&typeid=4"><span class="menuicon m_shipin"></span>视频</a></dd>
+            <dd><a href="wodeBeikeshi.html?type=document&typeid=3"><span class="menuicon m_wendang"></span>文档</a></dd>
+            <dd><a href="wodeBeikeshi.html?type=other&typeid=6"><span class="menuicon m_qita"></span>其他</a></dd>
+            <dd><a href="wodeGongxiang.html"><span class="menuicon m_gongxiang"></span>我的共享</a></dd>
+            <dd class="on"><a href="wodeHuishouzhan.html"><span class="menuicon m_huishouzhan"></span>回收站</a></dd>
+          </dl>
+
+          <dl class="neicundaxiao">
+            <dt><span><i class="bg_green" id="percentSize"></i></span></dt>
+            <dt id="usesizeAndTotalSize"></dt>
+          </dl>
+        </div>
+        <div class="rightbox fr">
+
+          <dl class="anniuzu">
+            <span class="tishi">
+
+              <i class="fa fa-lightbulb-o"></i>温馨提示：30天后自动清空！
+                <a href="javascript:void(0)" id="backDir" onclick="backDir()" class="color_blue">返回上一步</a>
+            </span>
+            <span class="fr">
+              <a><i class="fa fa-navicon"></i>列表</a>
+              <a><i class="fa fa-th-large"></i>网格</a>
+            </span>          
+          </dl>
+
+          <!-- 列表形式 开始-->
+          <div class="beikeshibox">
+          <table class="table_list beiketable" style="width:100%;">
+          <thead>
+            <tr>
+              <th><span class="fl"><label class="color_6"><input type="checkbox" name="selectlball" id="selectlbAll" onclick="selectLBAll()">&nbsp;文件名</label>
+                <a href="javascript:void(0);" onclick="restoreFile(1)"><i class="fa fa-mail-forward"></i>还原</a><a href="javascript:void(0);" onclick="delFile(1)"><i class="fa fa-trash"></i>删除</a></span>
+              </th>
+              <th width="18%" class="ac">删除时间</th>
+              <th width="10%" class="ac">浏览次数</th>
+              <th width="10%" class="ac">保存次数</th>
+              <th width="10%" class="ac">下载次数</th>
+            </tr>            
+          </thead>
+          <tbody id="DiskFilelb">
+
+
+          </tbody>
+
+
+          </table>
+            <!-- 分页 start -->
+            <div id="pages" class="page"></div>
+            <!-- 分页 end -->
+          </div>
+          <!-- 列表形式 结束-->
+          
+          <!-- 图片形式 开始-->
+          <div class="beikeshibox">
+          <table class="table_list beiketable" style="width:100%;">
+          <thead>            
+            <tr>
+              <th><span class="fl">
+                <label class="color_6"><input type="checkbox" name="selecttpall" id="selecttpAll" onclick="selectTPAll()">&nbsp;文件名</label>
+                <a href="javascript:void(0);" onclick="restoreFile(2)"><i class="fa fa-mail-forward"></i>还原</a><a href="javascript:void(0);" onclick="delFile(2)"><i class="fa fa-trash"></i>删除</a></span>
+                </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="tupianxingshi">
+              <td>
+              <div id="DiskFilewg" class="beikeliebiao">
+
+              </div>
+
+              <!-- 分页 start -->
+                <div id="pages2" class="page"></div>
+              <!-- 分页 end -->
+
+              </td>
+            </tr>
+          </tbody>
+          </table>
+          </div>
+          <!-- 图片形式 结束-->
+
+
+        </div>
+    </div>
+<!-- 我的备课室结束 -->
+
+<!-- 通用底部开始 -->
+<div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+
+<!-- 通用底部结束 -->
+<input type="hidden" id="parentDirId" value="">
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+/*列表形式 全选*/
+function selectLBAll(){
+ var checklist = document.getElementsByName("lbinput");
+   if(document.getElementById("selectlbAll").checked)
+   {
+   for(var i=0;i<checklist.length;i++)
+   {
+      checklist[i].checked = 1;
+   }
+ }else{
+  for(var j=0;j<checklist.length;j++)
+  {
+     checklist[j].checked = 0;
+  }
+ }
+}
+/*图片形式 全选*/
+function selectTPAll(){
+ var checklist = $(".beikeliebiao dl");
+  if(document.getElementById("selecttpAll").checked)
+   {  
+   for(var i=0;i<checklist.length;i++)
+   {
+      checklist.attr("class","on");
+   }
+ }else{
+  for(var j=0;j<checklist.length;j++)
+  {
+      checklist.attr("class","");
+  }
+ }
+}
+
+/*图片形式 单独选中*/
+$(".beikeliebiao dl").each(function(e){
+  $(this).click(function(){
+    if($(this).hasClass("on")){
+      $(this).attr("class","");
+    }else{
+      $(this).attr("class","on");
+    }
+  })
+})
+
+/*列表 网格切换*/
+$(function(){
+    b_tab($(".anniuzu .fr a"),$(".beikeshibox"),"on");                   
+})
+</script>
+<script>
+  var pagesize=10;
+  var results = 0;
+  var search_condition="";//存储当前搜索条件
+  var fid="";
+  $(function(){
+    loadMyDiskInfo();
+  })
+  //读取我的网盘信息
+  function loadMyDiskInfo() {
+    ajaxGetFun("CloudDisc/myDiskInfo", "", function (res) {
+      var data=res.bizData;
+      var objdata=res.bizData.object;
+       $("#percentSize").css("width",(objdata.usedSize/objdata.totalSize)*100+"%");
+      $("#usesizeAndTotalSize").html(data.usedsize+"/"+data.totalsize);
+      $("#parentDirId").val(data.myfile_id);
+      //加载网盘数据
+      fid=data.myfile_id;
+      loadMydiskFileList(data.myfile_id,1);
+
+
+    }, function (res) {
+      layer.msg(res.msg, {icon: 5, time: 1000});
+    })
+  }
+
+
+  // 读取我的网盘文件
+  function loadMydiskFileList(parentId,page){
+    loadBackir();// 监测是否显示返回上一步
+
+    var csshref=$("#width1200").attr("href");
+
+    var index=csshref.indexOf("1200");
+    var wglimit="";
+
+    if(index<0){
+      //21
+      wglimit=15;
+    }else{
+      //15
+      wglimit=21;
+    }
+    requestDiskFileInfo(parentId,page,10,1)
+    requestDiskFileInfo(parentId,page,wglimit,2)
+  }
+
+  /**
+   * 请求网盘数据
+   * @param parentId
+   * @param page
+   * @param limit
+   * @param type
+   */
+  function  requestDiskFileInfo(parentId,page,limit,type){
+    var con="";
+    if(search_condition==""){
+      if(parentId!=""){
+        con="&parent_id="+parentId;
+      }
+    }
+    var url="MyFile/mylist/"+page+"?"+"status=0";
+    ajaxGetFun(url,{pagesize:limit}, function (res) {
+      records = res.bizData;
+      pagesize=records.pagesize;
+      results = records.records;
+      if(type==1){
+        loadDiskInfoLB(records);
+        setpage("pages",results,page,limit);
+      }else{
+        if(records.rows.length>0 && page>1){
+          loadDiskInfoWG(records);
+          setpage("pages2",results,page,limit);
+        }else if(records.rows.length==0 && page==1){
+           $("#DiskFilewg").html("");
+
+          loadDiskInfoWG(records);
+          setpage("pages2",results,page,limit);
+        }else{
+          loadDiskInfoWG(records);
+          setpage("pages2",results,page,limit);
+        }
+      }
+
+
+    }, function (res) {
+      layer.msg(res.msg, {icon: 5, time: 1000});
+    })
+  }
+  // 读取我的网盘文件
+  function loadGoFileList(parentId,page){
+    loadBackir();// 监测是否显示返回上一步
+
+    var csshref=$("#width1200").attr("href");
+
+    var index=csshref.indexOf("1200");
+    var wglimit="";
+
+    if(index<0){
+      //21
+      wglimit=15;
+    }else{
+      //15
+      wglimit=21;
+    }
+    GoDiskFileInfo(parentId,page,10,1)
+    GoDiskFileInfo(parentId,page,wglimit,2)
+  }
+  /**
+   * 进入网盘请求
+   * @param target
+   */
+  function  GoDiskFileInfo(parentId,page,limit,type){
+    var url="MyFile/mylist/"+page;
+    ajaxGetFun(url,{parent_id:parentId,pagesize:limit}, function (res) {
+      records = res.bizData;
+      pagesize=records.pagesize;
+      results = records.records;
+      if(type==1){
+        loadDiskInfoLB(records);
+        setpage("pages",results,page,limit);
+      }else{
+
+        loadDiskInfoWG(records);
+        setpage("pages2",results,page,limit);
+      }
+
+
+    }, function (res) {
+      layer.msg(res.msg, {icon: 5, time: 1000});
+    })
+  }
+  //分页事件
+  function gotopage(target) {
+    pageIndex = target;//当前页码
+    var parentDirId=returnlastFileId();
+    loadMydiskFileList(parentDirId,target);
+    //分页栏id，总页数，目标页码，每页显示条数
+    setpage("pages",results,target,pagesize);
+  }
+  //列表
+  function loadDiskInfoLB(records){
+
+    var data=records.rows;
+    var trs="";
+    if(data.length==0){
+      trs='<tr><td colspan="5" style="text-align:center;"><img src="images/testimg/zanwushuju.png" style="width:100%;"></td></tr>';
+    }else {
+      for (var i = 0; i < data.length; i++) {
+        var dow = "";
+        if (data[i].type != "adir") {
+          dow = '<a href="javascript:void(0);"><i class="fa fa-cloud-download"></i>下载</a>';
+        }
+        var fileTypei = ifFileTypeLb(data[i].type);
+        var remove_time = timeFormat(data[i].remove_time, false);
+
+        trs += '<tr class="liebiaoxingshi" fid="' + data[i].id + '">'
+                + '<td class="lbal al"><input type="checkbox"  fname="' + data[i].name + '"  value="' + data[i].id + '" suffix="' + data[i].type + '" name="lbinput">' + fileTypei + data[i].name + '</td>'
+                + '<td class="lbac ac">' + remove_time + '</td>'
+                + '<td class="lbac ac">' + data[i].readnum + '</td>'
+                + '<td class="lbac ac">' + data[i].savenum + '</td>'
+                + '<td class="lbac ac">' + data[i].sharedownload + '</td>'
+                + '</tr>';
+      }
+    }
+    $("#DiskFilelb").html(trs);
+  }
+  //网格
+  function loadDiskInfoWG(records){
+
+    var data=records.rows;
+    var trs="";
+	
+	if(data.length==0){
+		trs='<div style="text-align:center;"><img src="images/testimg/zanwushuju.png" style="width:100%;"></div>';
+	}else{
+		for(var i=0;i<data.length;i++){
+		  var dow="";
+		  var fileTypei=ifFileTypeWG(data[i].type);
+		  var name = data[i].name;
+			if(name.length > 5){
+				name = name.substr(0,9)+"...";
+			}
+		  trs+='<dl title="'+data[i].name+'" fname="'+data[i].name+'" fid="'+data[i].id+'" suffix="'+data[i].type+'" >'
+				  +fileTypei
+				  +'<dd>'+name+'</dd>'
+				  +'<span class="xuanze"></span>'
+				  +'</dl>';
+		}
+	}
+    
+    $("#DiskFilewg").html(trs);
+    $(".beikeliebiao dl").each(function(e){
+      $(this).find("span").click(function(){
+        if($(this).parent().hasClass("on")){
+          $(this).parent().attr("class","");
+        }else{
+          $(this).parent().attr("class","on");
+        }
+      })
+    })
+  }
+  //判断文件类型列表
+  function ifFileTypeLb(type){
+    var str="";
+    if(type==".txt"){
+      str='<i class="small_ico lb_txt"></i>';
+    }else if(type==".pdf"){
+      str='<i class="small_ico lb_pdf"></i>';
+    }else if(type==".doc" || type==".docx"){
+      str='<i class="small_ico lb_word"></i>';
+    }else if(type==".xls" || type==".xlsx"){
+      str='<i class="small_ico lb_excel"></i>';
+    }else if(type==".ppt" || type==".pptx"){
+      str='<i class="small_ico lb_ppt"></i>';
+    }else if(type==".rar" || type==".zip"){
+      str='<i class="small_ico lb_rar"></i>';
+    }else if(type==".mp3"){
+      str='<i class="small_ico lb_music"></i>';
+    }else if(type==".png" || type==".jpg"|| type==".gif"|| type==".jpeg"|| type==".bmp"){
+      str='<i class="small_ico lb_tupian"></i>';
+    }else if(type==".avi" || type==".rmvb" || type==".mp4" || type==".3gp" || type==".wma" || type==".wmv"){
+      str='<i class="small_ico lb_shipin"></i>';
+    }else if(type=="adir"){
+      str='<i class="small_ico lb_wenjian"></i>';
+    }else{
+      //未知
+      str='<i class="small_ico lb_qita"></i>';
+    }
+    return str;
+
+  }
+  //判断文件类型网格
+  function ifFileTypeWG(type){
+    var str="";
+    if(type==".txt"){
+      str='<dt class="lx_txt"></dt>';
+    }else if(type==".pdf"){
+      str='<dt class="lx_pdf"></dt>';
+    }else if(type==".doc" || type==".docx"){
+      str='<dt class="lx_word"></dt>';
+    }else if(type==".xls" || type==".xlsx"){
+      str='<dt class="lx_excel"></dt>';
+    }else if(type==".ppt" || type==".pptx"){
+      str='<dt class="lx_ppt"></dt>';
+    }else if(type==".rar" || type==".zip"){
+      str='<dt class="lx_rar"></dt>';
+    }else if(type==".mp3"){
+      str='<dt class="lx_music"></dt>';
+    }else if(type==".png" || type==".jpg"|| type==".gif"|| type==".jpeg"|| type==".bmp"){
+      str='<dt class="lx_tupian"></dt>';
+    }else if(type==".avi" || type==".rmvb" || type==".mp4" || type==".3gp" || type==".wma" || type==".wmv"){
+      str='<dt class="lx_shipin"></dt>';
+    }else if(type=="adir"){
+      str='<dt class="lx_wenjian"></dt>';
+    }else{
+      str='<dt class="lx_qita"></dt>';
+    }
+    return str;
+  }
+  //点击文件
+  function clickFile(obj){
+    var suffix=$(obj).attr("suffix");
+    var fid=$(obj).attr("fid");
+    if(suffix=="adir"){
+
+      var pdid=$("#parentDirId").val();
+      $("#parentDirId").val(pdid+","+fid);
+
+      loadGoFileList(fid,1);
+    }else{
+      window.open("wenjianDakai.html?id="+fid);
+    }
+
+  }
+  //返回最后一位文件ID
+  function returnlastFileId(){
+    var padid=$("#parentDirId").val();
+    var pdid=padid.split(",");
+    return pdid[pdid.length-1];
+  }
+  //返回前一位文件ID
+  function returnbeforeFileId(){
+    var padid=$("#parentDirId").val();
+    var pdid=padid.split(",");
+    if(pdid.length>=2){
+      return pdid[pdid.length-2];
+    }else{
+      return pdid[pdid.length-1];
+    }
+  }
+  //返回除最后以为的其他ID
+  function returnlastIdbefore() {
+    var padid=$("#parentDirId").val();
+    var paddids=new Array();
+    paddids=padid.split(",")
+    paddids.pop();
+    var str = paddids.join(",");
+
+    return str
+  }
+  //检测是否显示返回上一页
+  function loadBackir(){
+    var padid=$("#parentDirId").val();
+    var pdid=padid.split(",");
+    if(pdid.length>=2){
+      $("#backDir").show();
+    }else{
+      $("#backDir").hide();
+    }
+  }
+  //返回上一页
+  function backDir(){
+    var padid=$("#parentDirId").val();
+
+    var pdid=padid.split(",");
+    if(pdid.length>=2){
+      $("#parentDirId").val(returnlastIdbefore());
+
+
+      loadMydiskFileList(returnlastFileId(),1);
+    }else{
+      layer.msg("已到根目录", {icon: 5, time: 1000});
+
+    }
+
+  }
+  //获取选中的多选框
+  function  getCheckedBox(type) {
+    var checkId="";
+    var checklist="";
+    var checkedList=new Array();
+    var num=0;
+    if(type==1){
+      //列表
+      checklist = document.getElementsByName("lbinput");
+      for(var i=0;i<checklist.length;i++){
+        var obj = checklist[i];
+        if(obj.type=='checkbox'){
+          if(obj.checked==true){
+
+            checkedList[num]=obj;
+            num++;
+            checkId+="fileIds="+obj.value+"&";
+          }
+        }
+      }
+    }else{
+      checklist = $(".beikeliebiao dl");
+      for(var i=0;i<checklist.length;i++){
+        var obj = checklist[i];
+        if($(obj).attr("class")=="on"){
+
+          checkId+="fileIds="+$(obj).attr("fid")+"&";
+          checkedList[num]=obj;
+          num++;
+        }
+      }
+    }
+    if(checkId==""){
+      layer.msg("请选择文件!", {icon: 5, time: 1000});
+      return false;
+    }
+    var arrary=new Array();
+    arrary[0]=checkId;
+    arrary[1]=checkedList;
+    return arrary;
+  }
+
+
+  function switchType(mode,obj){
+
+    $(obj).parent().children().removeClass("on");
+    $(obj).addClass("on");
+    var parid="";
+
+    switch(mode){
+      case 1://全部
+        search_condition = "";
+        parid=fid;
+        break;
+      case 2://图片
+        search_condition = createLink("pattern",image_arrs);
+        break;
+      case 3://文档
+        search_condition = createLink("pattern",document_arrs);
+        break;
+      case 4://视频
+        search_condition = createLink("pattern",video_arrs);
+        break;
+      case 5://音乐
+        search_condition = createLink("pattern",music_arrs);
+        break;
+      case 6://其他
+        search_condition = createLink("pattern",all_arrs)+"&"+"direction=1&notdir=1";
+
+        break;
+      case 7://我的共享
+        search_condition ="isshare=1";
+        break;
+      case 8://回收站
+        search_condition ="status=1";
+        break;
+      default :
+        search_condition = createLink("pattern",mode.split(","));
+        break;
+    }
+  }
+  //还原
+  function restoreFile(type){
+	var arrary=getCheckedBox(type);
+		if(!arrary){
+		  return;
+		}
+	var tpl = '<div style="text-align:center;">确认还原所选文件？</div>';
+	layer.confirm(tpl,{icon: 3, title:'确认还原'},function(index){
+		var checkId=arrary[0];
+		var checklist=arrary[1];
+		ajaxGetFun("MyFile/restore?"+checkId,"",function(res){
+		  layer.msg("还原成功!", {icon: 6, time: 1000});
+		  loadMydiskFileList(returnbeforeFileId(),1);
+		},function(res){
+		  layer.msg(res.msg, {icon: 5, time: 1000});
+		})
+	});
+  }
+  //删除
+  function delFile(type){
+	var arrary=getCheckedBox(type);
+		if(!arrary){
+		  return;
+		}
+	var tpl = '<div style="text-align:center;">确认删除所选文件？</div>';
+	layer.confirm(tpl,{icon: 3, title:'确认删除'},function(index){
+		var checkId=arrary[0];
+		var checklist=arrary[1];
+		ajaxGetFun("MyFile/delete?"+checkId,"",function(res){
+		  layer.msg("删除成功!", {icon: 6, time: 1000});
+		  loadMydiskFileList(returnbeforeFileId(),1);
+		},function(res){
+		  layer.msg(res.msg, {icon: 5, time: 1000});
+		})
+	});
+  }
+</script>
+</body>
+</html>

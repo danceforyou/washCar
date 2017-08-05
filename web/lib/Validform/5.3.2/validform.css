@@ -1,0 +1,19 @@
+.Validform_error {
+    background-color: #fbe2e2;
+    border-color: #c66161;
+    color: #c00;
+}
+.Validform_wrong, .Validform_right, .Validform_warning {
+    display: inline-block;
+    font-size: 12px;
+    height: 20px;
+    padding-left: 25px;
+    vertical-align: middle;
+}
+.Validform_wrong {
+    background: rgba(0, 0, 0, 0) url("../../../images/icon_error_s.png") no-repeat scroll 0 center;
+    color: #ef392b;
+}
+.Validform_right {
+    background: rgba(0, 0, 0, 0) url("../../../images/icon_right_s.png") no-repeat scroll 0 center;
+}

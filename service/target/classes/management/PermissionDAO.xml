@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kemile.management.dao.PermissionDAO">
+
+    <!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 只要在对应的mapper配置文件中加入<cache />标签即可-->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <sql id="Base_Column_List">
+        id, name, pid, url, iconfont, status
+    </sql>
+
+    <resultMap id="PermissionMap" type="com.kemile.management.domain.Permission">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="pid" column="pid"/>
+        <result property="url" column="url"/>
+        <result property="iconfont" column="iconfont"/>
+        <result property="status" column="status"/>
+        <collection property="permissionSet" column="permissionid" ofType="com.kemile.management.domain.ChildPermission">
+            <id property="id" column="PERMISSION_ID"/>
+            <result property="name" column="PERMISSION_NAME"/>
+            <result property="pid" column="PERMISSION_PID"/>
+            <result property="url" column="PERMISSION_URL"/>
+            <result property="iconfont" column="PERMISSION_ICONFONT"/>
+            <result property="status" column="PERMISSION_STATUS"/>
+        </collection>
+        </resultMap>
+
+    <select id="selectList" resultMap="PermissionMap">
+        SELECT
+          qrp1.id, qrp1.name, qrp1.pid, qrp1.url, qrp1.iconfont, qrp1.status,
+          qrp2.id AS PERMISSION_ID, qrp2.name AS PERMISSION_NAME, qrp2.pid AS PERMISSION_PID,
+          qrp2.url AS PERMISSION_URL, qrp2.iconfont AS PERMISSION_ICONFONT, qrp2.status AS PERMISSION_STATUS
+        FROM
+          permission qrp1,
+          permission qrp2
+        WHERE
+          qrp1.pid IS NULL AND qrp1.id = qrp2.pid
+        ORDER BY id ASC
+    </select>
+
+    <select id="findList" resultMap="PermissionMap">
+        SELECT
+          id,name,pid,url,iconfont,status,PERMISSION_ID,PERMISSION_NAME,PERMISSION_PID,
+          PERMISSION_URL,PERMISSION_ICONFONT,PERMISSION_STATUS
+        FROM (
+            SELECT
+              qrp1.id, qrp1.name, qrp1.pid, qrp1.url, qrp1.iconfont, qrp1.status,
+              qrp2.id AS PERMISSION_ID, qrp2.name AS PERMISSION_NAME, qrp2.pid AS PERMISSION_PID,
+              qrp2.url AS PERMISSION_URL, qrp2.iconfont AS PERMISSION_ICONFONT, qrp2.status AS PERMISSION_STATUS
+            FROM
+              permission qrp1,
+              permission qrp2
+            WHERE
+              qrp1.pid IS NULL AND qrp1.id = qrp2.pid) AS aa
+         ORDER BY id ASC
+    </select>
+
+    <select id="findAll" resultMap="PermissionMap">
+        SELECT
+          qrp1.id, qrp1.name, qrp1.pid, qrp1.url, qrp1.iconfont, qrp1.status,
+          qrp2.id AS PERMISSION_ID, qrp2.name AS PERMISSION_NAME, qrp2.pid AS PERMISSION_PID,
+          qrp2.url AS PERMISSION_URL, qrp2.iconfont AS PERMISSION_ICONFONT, qrp2.status AS PERMISSION_STATUS
+        FROM
+          permission qrp1,
+          permission qrp2
+        WHERE
+          qrp1.pid IS NULL AND qrp1.id = qrp2.pid
+    </select>
+
+    <select id="getPermissionById" resultType="com.kemile.management.domain.Permission">
+        SELECT <include refid="Base_Column_List"/> FROM permission
+        <trim prefix="WHERE" suffixOverrides="AND">
+            <if test="property!=null">${property}=#{value} AND </if>id=#{id}
+        </trim>
+    </select>
+
+    <select id="parentPermissionList" resultType="com.kemile.management.domain.Permission">
+        SELECT <include refid="Base_Column_List"/> FROM permission WHERE pid IS NULL ORDER BY id ASC
+    </select>
+
+    <update id="update">
+        UPDATE permission
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="pid!=null and pid!=''">pid=#{pid},</if>
+            <if test="name!=null and name!=''">`name`=#{name},</if>
+            <if test="url!=null and url!=''">url=#{url},</if>
+            <if test="iconfont!=null and iconfont!=''">iconfont=#{iconfont},</if>
+            <if test="status!=null and status!=''">status=#{status}</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert">
+        INSERT INTO permission (
+        <if test="pid!=null and pid!=''">pid,</if>
+        <if test="name!=null and name!=''">`name`,</if>
+        <if test="url!=null and url!=''">url,</if>
+        <if test="iconfont!=null and iconfont!=''">iconfont,</if>
+        status
+        ) VALUES (
+        <if test="pid!=null and pid!=''">#{pid},</if>
+        <if test="name!=null and name!=''">#{name},</if>
+        <if test="url!=null and url!=''">#{url},</if>
+        <if test="iconfont!=null and iconfont!=''">#{iconfont},</if>
+        #{status}
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <delete id="deleteByIds">
+        DELETE FROM permission
+        <where>
+            id IN
+            <foreach collection="collection" item="id" open="(" separator="," close=")" >
+                #{id}
+            </foreach>
+        </where>
+    </delete>
+
+</mapper>

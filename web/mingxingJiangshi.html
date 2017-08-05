@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <!-- ie7以ie8识别 -->
+    <title>品格学习云平台</title>
+    <!-- css加载 -->
+    <link rel="stylesheet" href="css/qr_base.css" type="text/css">
+    <link rel="stylesheet" href="css/form.css" type="text/css">
+    <link rel="stylesheet" href="css/table.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="" type="text/css" id="width1200">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <!-- js加载 -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="lib/template/underscore.js"></script>
+    <script type="text/javascript" src="lib/template/template.js"></script>
+    <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="js/pinge.js"></script>
+</head>
+
+<body class="bg_f9">
+    <!-- 头部start -->
+    <div id="header" class="wrapbox headbg" include="include/head.html"></div>
+    <!-- 头部end -->
+    <!-- 导航start -->
+    <div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+    <!-- 导航end -->
+    <!--内容开始-->
+    <div class="container">
+      <div class="cf_daoshi">
+         <ul class="iteam_list" id="item_list" style="height: 597px;"></ul>
+         <div class="clearfix"></div>
+          <div id="pages" class="page"></div>
+      </div>
+    </div>
+    <!--内容结束-->
+    <!-- 通用底部开始 -->
+    <div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+    <!-- 通用底部结束 -->
+
+<!-- js加载 -->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<script>
+    var pagesize = 8;//每页显示条数
+    var results = 0;//数据总数
+    var currentpage = 1;//当前页码
+    $(function(){
+        loadData(currentpage,null);
+        $("#search_button").on("click",function(){
+            var keyword = $("#keyword").val();
+            currentpage = 1;//页码重置为1
+            loadData(pageIndex,keyword);
+            loadData(pageIndex,keyword);
+        });
+    });
+	function searchByKeyword(){
+		var keyword = $("#keyword").val();
+		loadData(pageIndex,keyword);
+	}
+    //加载数据
+    function loadData(currentpage,keyword){
+        var condition;
+        if(keyword){//关键字搜索
+            condition = {pagesize:pagesize,name:keyword};
+        }else{
+            condition = {pagesize:pagesize};
+        }
+        ajaxGetFun("Lecturer/list/"+currentpage, condition, function(res){
+            records = res.bizData;
+            renderData(records);
+            results = records.records;
+            setpage("pages",results,currentpage,pagesize);
+        },null, "加载明星讲师数据");
+    }
+    //分页事件
+    function gotopage(target) {
+        pageIndex = target;//当前页码
+        loadData(target);
+        //分页栏id，总页数，目标页码，每页显示条数
+        setpage("pages",results,target,pagesize);
+    }
+
+    function renderData(res){
+        var str = "";
+        $.each(res.rows,function(index,value){
+                var level = value.level;
+                var level_str = "";
+                for(var i=0;i<level;i++){
+                    level_str += '<span class="fa fa-star"></span>';
+                }
+                var schedule = (value.schedule == null || value.schedule == undefined || value.schedule == "") ? "暂无档期" : value.schedule;
+                var intro = (value.intro == null || value.intro == undefined || value.intro == "") ? "..." : value.intro.substr(0,60);
+                if(empty(value.headpic)){
+                    var headpic = '<img src="images/default_user.png" style="width:130px;height:130px;">';
+                }else{
+                    var headpic = '<img src="'+imageShowPath+value.headpic+'" style="width:130px;height:130px;" onerror="javascript:userHeadpic_notfound(this)">';
+                }
+                str += '<li>'
+                        +'<a href=DaoshiXiangqing.html?id='+value.id+'>'+headpic+'</a>'
+                        +'<h4>'
+                        +'<a href=DaoshiXiangqing.html?id='+value.id+'>'+value.name+'</a><span class="rating">'+level_str+'</span>'
+                        +'</h4>'
+                        +'<span class="dangqi">档期：'+schedule+'</span>'
+                        +'<span class="intro">'+intro+'</span>'
+                    +'</li>';
+        });
+        $("#item_list").html(str);
+    }
+    function userHeadpic_notfound(obj){
+        $(obj).removeAttr("onerror");
+        $(obj).attr('src', 'images/default_user.png');
+    }
+</script>
+</body>
+</html>

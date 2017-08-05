@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <!-- ie7以ie8识别 -->
+    <title>资料库</title>
+    <!-- css加载 -->
+    <link rel="stylesheet" href="css/qr_base.css" type="text/css">
+    <link rel="stylesheet" href="css/form.css" type="text/css">
+    <link rel="stylesheet" href="css/table.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="" type="text/css" id="width1200">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <!-- js加载 -->
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="lib/template/underscore.js"></script>
+    <script type="text/javascript" src="lib/template/template.js"></script>
+    <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="js/pinge.js"></script>
+</head>
+
+<body class="bg_f9">
+    <!-- 头部start -->
+	<div id="header" class="wrapbox headbg" include="include/head.html"></div>
+    <!-- 头部end -->
+    <!-- 导航start -->
+    <div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+    <!-- 导航end -->
+    <!--内容开始-->
+    <div class="container">
+		<div id="router_toolbar"></div>
+		<div class="line"></div>
+      <div class="cf_shaixuan">
+        <a href="javascript:void(0);" onclick="searches(1,this)" class="on">全部</a>
+        <a href="javascript:void(0);" onclick="searches(4,this)">视频</a>
+        <a href="javascript:void(0);" onclick="searches(2,this)">图片</a>
+        <a href="javascript:void(0);" onclick="searches('.doc,.docx',this)">DOC</a>
+        <a href="javascript:void(0);" onclick="searches('.ppt,.pptx',this)">PPT</a>
+        <a href="javascript:void(0);" onclick="searches('.xls,.xlsx',this)">XSL</a>
+        <a href="javascript:void(0);" onclick="searches('.pdf',this)">PDF</a>
+        <a href="javascript:void(0);" onclick="searches('.txt',this)">TXT</a>
+        <a href="javascript:void(0);" onclick="searches(6,this)" data-type="other">其他</a>
+      </div>
+
+      <div class="cf_filelist">
+			<!-- 数据列表 -->
+			 <div id="grid" style="display:none;">
+				<ul class="iteam_list" id="item_list"></ul>
+				<div class="clearfix"></div>
+				<div class="page" id="pages"></div>
+			 </div>
+			 <!-- 找不到数据 -->
+			 <div id="notfound" style="display:none;" class="meiyoushuju">
+				<!--暂无数据-->
+				 <img src="images/testimg/zanwushuju.png" style="width:100%;">
+			 </div>
+         </div>
+      </div>
+    </div>
+    <!--内容结束-->
+    <!-- 通用底部开始 -->
+    <div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+    <!-- 通用底部结束 -->
+	
+<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/disk.js"></script>
+<script>
+	var pageSize = 15;//每页显示条数
+    var results = 0;//数据总数
+	var search_condition;//存储当前搜索条件
+	var parent_id;//父节点id
+	var routers = new Array();//存储当前路径
+	var router_index = 0;//路径深度
+	var imageShowPath = "http://101.200.120.239/group1/";
+	routers.push({v:'<a href="javascript:gotoChild()">资料库</a>'});
+    $(function(){
+        load_data("",pageIndex);
+    });
+	/**
+     * 加载数据
+     * @param keyword 搜索关键字
+     * @param pageIndex 页码
+     */
+    function load_data(keyword,pageIndex){
+        var url = "MyFile/list/"+pageIndex;
+        if(keyword){
+            url += "?"+keyword;
+        }
+		var condition = {};
+		var type = $(".on").attr("data-type");
+		if(type == "other"){//其他被选中
+			condition = {direction:1,parent_id:parent_id};
+			if(empty(parent_id)){
+				condition["isshare"] = 1;
+			}
+		}else{
+			condition = {parent_id:parent_id};
+			if(empty(parent_id)){
+				condition["isshare"] = 1;
+			}
+		}
+        ajaxPostFun(url, condition, function(res){
+            $("#notfound").css("display","none");
+            $("#grid").css("display","block");    
+            var records = res.bizData;
+            pageSize = records.pagesize;
+            renderTable(records);
+            results = records.records;
+            setpage("pages",results,pageIndex,pageSize);
+			print_router(routers);
+        }, function(error){
+			$("#grid").css("display","none");
+            $("#notfound").css("display","block");
+			print_router(routers);
+		}, "查询网盘文件列表");
+    }
+	//打印路径
+	function print_router(routers){
+		var routers_toolbar = "";
+		for(var i=0;i<routers.length;i++){
+			routers_toolbar += routers[i].v;
+		}
+		$("#router_toolbar").html(routers_toolbar);
+	}
+	//进入子文件夹
+	function gotoChild(pid,name,b,depth){
+		parent_id = pid;
+		if(!empty(parent_id) && b == true){
+			router_index++;
+			routers.push({v:' > <a href=javascript:gotoChild("'+parent_id+'","'+name+'",false,"'+router_index+'")>'+name+'</a>'});
+		}else{
+			if(empty(depth)){
+				router_index = 0;
+			}else{
+				router_index = depth;
+			}
+			routers.splice(parseInt(router_index)+1, routers.length - router_index);
+		}
+		pageIndex = 1;//重置页码
+		load_data("",pageIndex);
+	}
+    //分页事件
+    function gotopage(target) {
+        pageIndex = target;//当前页码
+		load_data(search_condition,target);
+        //分页栏id，总页数，目标页码，每页显示条数
+        setpage("pages",results,target,pageSize);
+    }
+    function renderTable(res){
+        var str = "";
+        $.each(res.rows,function(index,value){
+			var id = value.id;
+			var key = value.qf_key;
+			var type = value.type;
+
+			/*if(value.name.length > 10){
+				var name = value.name.substr(0,10)+"...";
+			}*/
+			var nametype = value.name.substring(value.name.indexOf("."),value.name.length);//截取格式
+			name=value.name.substring(0,value.name.indexOf("."));//截取文件名
+			if(name.length>10){//如果
+				name = name.substring(0,10)+"..."+nametype;
+			}else{
+				name=name+nametype;
+			}
+			var keystr = "",link = "";
+			if(!empty(key)){//文件夹没有标签，只有文件有标签
+				var keys = key.split(",");
+				for(var i=0;i<keys.length;i++){
+					keystr += '<a href="javascript:void(0);">'+keys[i]+'</a>';
+				}
+			}
+			if(value.type == "adir"){//文件夹,进入下级目录
+				link = "javascript:gotoChild('"+id+"','"+value.name+"',true)";
+			}else{//非文件夹，在线预览
+				link = openFile(type,id);
+			}
+			var isguan = value.teacher_type == 1 ? '<i class="guanfang"></i>' : "";
+            str += '<li> '
+					 +'<a href="'+link+'" class="img_bg">'+isguan+'<img id='+id+' src="'+getImage(type,value)+'"></a>'
+					 +'<h4><a href="'+link+'">'+name+'</a></h4>'
+					 +'<span class="time">发布日期：'+value.createdate.substring(0,11)+'</span>'
+					 +'<span class="author"> 发 布 者：<a href="fabuzheWenjian.html?id='+value.user_id+'">'+value.teacher_name+'</a></span>'
+					 +'<span class="tags">'+keystr+'</span>'
+				   +'</li>';
+        });
+        $("#item_list").html(str);
+    }
+	//根据文件类型显示相应的缩略图
+	function getImage(file_type,value){
+		if(image_arrs.indexOf(file_type) >= 0){//图片
+
+			//return imageShowPath+value.path;
+			return "images/ico/pic.png";
+		}
+		if(video_arrs.indexOf(file_type) >= 0){//视频
+			return "images/ico/video.png";
+		}
+		if(file_type == "adir"){//文件夹
+			return "images/ico/direcory.png";
+		}
+		if(icon_support.indexOf(file_type) >= 0){//其他类型
+			return "images/ico/"+file_type.substr(1,file_type.length)+".png";
+		}
+		return "images/ico/wenjian.png";
+	}
+	
+    //搜索
+    function searches(mode,obj){
+		$(obj).parent().children().removeClass("on");
+		$(obj).addClass("on");
+        switch(mode){
+            case 1://全部
+                search_condition = "";
+                break;
+            case 2://图片
+                search_condition = createLink("pattern",image_arrs);
+                break;
+            case 3://文档
+                search_condition = createLink("pattern",document_arrs);
+                break;
+            case 4://视频
+                search_condition = createLink("pattern",video_arrs);
+                break;
+            case 5://音乐
+                search_condition = createLink("pattern",music_arrs);
+                break;
+            case 6://其他
+                search_condition = createLink("pattern",all_arrs)+"&direction=1";
+                break;
+            default :
+				search_condition = createLink("pattern",mode.split(","));
+                break;
+        }
+        pageIndex = 1;//页码重置为1
+        load_data(search_condition,pageIndex);//加载数据
+    }
+</script>	
+</body>
+</html>

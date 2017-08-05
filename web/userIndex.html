@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /><!-- ie7以ie8识别 -->
+<title>品格学习云平台</title>
+
+<!-- css加载 -->
+<link rel="stylesheet" href="css/qr_base.css" type="text/css">
+<link rel="stylesheet" href="css/form.css" type="text/css">
+<link rel="stylesheet" href="css/table.css" type="text/css">
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="" type="text/css" id="user_width1200">
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+<!-- js加载 -->
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="lib/template/underscore.js"></script>
+    <script type="text/javascript" src="lib/template/template.js"></script>
+    <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="js/pinge.js"></script>
+</head>
+<body>
+
+<!-- 头部start -->
+<div id="header" class="wrapbox headbg" include="include/head.html"></div>
+<!-- 头部end -->
+<!-- 导航start -->
+<div id="header-nav" class="wrapbox navbg" include="include/navigation.html"></div>
+<!-- 导航end -->
+
+<!-- 用户中心 -->   
+    <div class="container beikeshileftbg">
+    <!--侧边菜单开始-->
+        <div class="leftbox fl">
+          <dl>
+              <dd class="on"><a href="userIndex.html"><span class="usericon u_ziliao"></span>基本资料</a></dd>
+              <dd><a href="tuijianJiangshi.html"><span class="usericon u_tuijian"></span>推荐讲师</a></dd>
+              <dd><a href="tongzhiZhongxin.html"><span class="usericon u_tongzhi"></span>通知中心</a></dd>
+          </dl>
+        </div>
+      <!--侧边菜单结束-->
+        <div class="rightbox fr">
+        <h3>基本资料</h3>
+           <div class="line"></div>
+          <table class="table_list" style="width:100%">
+          <tbody>
+            <tr>
+              <td class="ar" width="15%">账号</td>
+              <td><b id="phone"></b></td>
+            </tr>
+            <tr>
+              <td class="ar">姓名</td>
+              <td id="name"></td>
+            </tr>
+             <tr>
+              <td class="ar">Email</td>
+              <td ><input type="text" style="width:260px;" disabled="true" class="ip-text" id="email" value=""> <a href="javascript:void(0)" onclick="changeemail(this)">修改</a></td>
+            </tr>
+            <tr>
+              <td class="ar">单位名称</td>
+              <td id="kindergarten"></td>
+            </tr>
+            <tr>
+              <td class="ar">地区</td>
+              <td id="address"></td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
+    </div>
+<!-- 用户中心结束 --> 
+
+<!-- 通用底部开始 -->
+<div id="foot" class="wrapbox footbg" include="include/foot.html"></div>
+<!-- 通用底部结束 -->
+<script type="text/javascript" src="js/common.js"></script>
+<script>
+   //点击触发修改
+ function changeemail(obj){
+     var html = $(obj).html();
+     if (html=='修改'){
+         var email=$("#email").val();
+         $("#email").attr("disabled",false);
+         $("#email").val("").focus().val(email);
+         $(obj).html("保存");
+     }
+     if(html=='保存'){
+         var email=$("#email").val();
+         //判断邮箱合法性
+         var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+         if(!reg.test(email)){
+             layer.msg("邮箱格式不合法，请重新输入!",{icon: 5,time:1000});
+             $("#email").focus();
+             return false;
+         }
+         $("#email").attr("disabled",true);
+         var successFun = function(res){
+             $(obj).html("修改");
+             layer.msg("修改成功",{icon: 6,time:1000});
+         }
+         var errorFun = function(res){
+             $("#email").attr("disabled",false);
+             layer.msg(res.msg,{icon: 5,time:2000});
+         }
+         ajaxPostFun("Teacher/updateEmail",{email:email},successFun,errorFun,"查询信息")
+     }
+ }
+load();
+function load(){
+    ajaxPostFun("Teacher/info","",function(res){
+
+        var data=res.bizData;
+        $("#phone").html(data.phoneno);
+        $("#name").html(data.username);
+        $("#email").val(data.email);
+        $("#address").html(data.address);
+        $("#kindergarten").html(data.kindergartenName);
+    },null,"查询信息")
+
+}
+</script>
+</body>
+</html>
