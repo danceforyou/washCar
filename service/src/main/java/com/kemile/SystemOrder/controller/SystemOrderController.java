@@ -9,7 +9,7 @@ import com.kemile.common.restful.exception.BizExceptionEnum;
 import com.kemile.common.utils.Global;
 import com.kemile.common.utils.Logger;
 import com.kemile.common.utils.SqlOrderEnum;
-import com.kemile.management.domain.Manages;
+import com.kemile.management.domain.Manager;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -162,7 +162,7 @@ public class SystemOrderController {
     @RequestMapping(value="/Check")
     public int check(String ids, HttpServletRequest request){
         logger.debug("传入参数=====>ids="+ids);
-        Manages mangee = (Manages) request.getSession().getAttribute(Global.QR_MANAGER);
+        Manager mangee = (Manager) request.getSession().getAttribute(Global.QR_MANAGER);
         String mangeeName=mangee.getName();
         logger.debug("传入参数=====>ids="+mangee.getName());
         Map<String,Object> map=new HashMap<String,Object>();
@@ -254,7 +254,7 @@ public class SystemOrderController {
             map.put("post",post);
             map.put("post_num",post_num);
             map.put("id",postid);
-            Manages mangee = (Manages) request.getSession().getAttribute(Global.QR_MANAGER);
+            Manager mangee = (Manager) request.getSession().getAttribute(Global.QR_MANAGER);
             String mangeeName=mangee.getName();
             map.put("post_man",mangeeName);
             try{

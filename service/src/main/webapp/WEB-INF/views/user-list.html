@@ -22,10 +22,10 @@
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>商户列表</title>
+<title>用户列表</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 商户管理 <span class="c-gray en">&gt;</span> 商户列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户管理 <span class="c-gray en">&gt;</span> 用户列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
 	<!--
 	<div class="text-c"> 日期范围：
@@ -37,7 +37,7 @@
 	</div>
 	-->
 	<div class="text-c">
-		<input type="text" class="input-text" style="width:250px" placeholder="请输入姓名进行模糊搜索..." id="keyword" name="keyword">
+		<input type="text" class="input-text" style="width:250px" placeholder="请输入姓名,电话号,账号进行模糊搜索..." id="keyword" name="keyword">
 		<button type="button" class="btn btn-success radius" id="search" ><i class="Hui-iconfont">&#xe665;</i>搜索</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray">
@@ -46,10 +46,10 @@
 				<i class="Hui-iconfont">&#xe6e2;</i> 批量删除
 			</a>
 			<a href="javascript:;" onclick="admin_add('添加商户','admin-add.html','800','500')" class="btn btn-primary radius">
-				<i class="Hui-iconfont">&#xe600;</i> 添加员工
+				<i class="Hui-iconfont">&#xe600;</i> 添加用户
 			</a>
 		</span>
-		<span id="records" class="r">共有数据：<strong id="results">0</strong> 条</span>
+		<span id="records" class="r">共有数据：<strong>0</strong> 条</span>
 	</div>
 	<table class="table table-border table-bordered table-bg">
 		<thead>
@@ -63,12 +63,10 @@
 				<th width="150">登录名</th>
 				<th width="150">电话</th>
 				<th width="130">地址</th>
-				<th width="100">员工类型</th>
 				<th width="100">是否已启用</th>
 				<th width="100">操作</th>
 			</tr>
 		</thead>
-		<tbody id="tbody"></tbody>
 		<tbody>
 
 		</tbody>
@@ -77,12 +75,11 @@
 	</table>
 	<div id="pages"></div>
 </div>
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>  
 <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
-<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script>
-<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/H-ui.js"></script>
-<script type="text/javascript" src="js/H-ui.admin.js"></script>
+<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="js/H-ui.js"></script> 
+<script type="text/javascript" src="js/H-ui.admin.js"></script> 
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/page.js"></script>
 
@@ -139,7 +136,7 @@ function admin_start(obj,id){
 	});
 }
 </script>
-<!--<script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function(){
 	ManagerList(1);
 });
@@ -161,13 +158,6 @@ function ManagerList(curPage){
 			html += '<td>'+rows[i].account+'</td>';
 			html += '<td>'+rows[i].phone+'</td>';
 			html += '<td>'+rows[i].adress+'</td>';
-
-			if (rows[i].type == '0'){
-				html +='<td class="td-status"><span class="label label-success radius">管理员</span></td>';
-			}else{
-				html +='<td class="td-status"><span class="label label-success radius">服务人员</span></td>';
-			}
-
 			if(rows[i].status=='0'){
 				html +='<td class="td-status"><span class="label label-success radius">已启用</span></td>';
 				html +='<td class="td-manage"><a style="text-decoration:none" onClick="admin_stop(this,\''+rows[i].id+'\')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" onclick="admin_edit(\'商户('+rows[i].account+')编辑\',\'admin-add.html\',\''+rows[i].id+'\',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_del(this,\''+rows[i].id+'\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>';
@@ -200,82 +190,6 @@ function gotopage(target) {
 	//分页栏id，总页数，目标页码，每页显示条数
 	setpage("pages",results,target,pageSize);
 }
-</script>-->
-<script type="text/javascript">
-	var results = 0;
-	function findManagerList(keyword,sort,pageIndex,limit){
-		var url = "../Manage/ManagerList";
-		var start = (pageIndex-1) * pageSize;
-		ajaxGetFun(url, {keyword:keyword,sort:sort,start:start,limit:limit}, function(res){
-			records = res.bizData;
-			renderTable(records);
-			results = records.results;
-			$("#results").text(results);
-			setpage("pages",results,pageIndex,limit);
-		}, null, "查询员工列表");
-	}
-	//分页事件
-	function gotopage(target) {
-		pageIndex = target;//当前页码
-		findManagerList("","id",target,pageSize);
-		//分页栏id，总页数，目标页码，每页显示条数
-		setpage("pages",results,target,pageSize);
-	}
-
-	$(function(){
-
-	});
-	function renderTable(res){
-		var html = "";
-		$.each(res.rows,function(index,value){
-			html += '<tr class="text-c">';
-			html += '<td><input type="checkbox" value="'+value.id+'" name="del"></td>';
-			html += '<td>'+value.id+'</td>';
-			html += '<td>'+value.name+'</td>';
-			html += '<td>'+value.account+'</td>';
-			html += '<td>'+value.phone+'</td>';
-			html += '<td>'+value.adress+'</td>';
-
-			if (value.type == '0'){
-				html +='<td class="td-status"><span class="label label-success radius">管理员</span></td>';
-			}else{
-				html +='<td class="td-status"><span class="label label-success radius">服务人员</span></td>';
-			}
-
-			if(value.status=='0'){
-				html +='<td class="td-status"><span class="label label-success radius">已启用</span></td>';
-				html +='<td class="td-manage"><a style="text-decoration:none" onClick="admin_stop(this,\''+value.id+'\')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> ' +
-						'<a title="编辑" href="javascript:;" onclick="admin_edit(\'员工('+value.account+')编辑\',\'admin-add.html\',\''+value.id+'\',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ' +
-						'<a title="删除" href="javascript:;" onclick="admin_del(this,\''+value.id+'\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>';
-			}else{
-				html +='<td class="td-status"><span class="label radius">已禁用</span></td>';
-				html +='<td class="td-manage"><a style="text-decoration:none" onclick="admin_start(this,\''+value.id+'\')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> ' +
-						'<a title="编辑" href="javascript:;" onclick="admin_edit(\'员工('+value.account+')编辑\',\'admin-add.html\',\''+value.id+'\',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ' +
-						'<a title="删除" href="javascript:;" onclick="admin_del(this,\''+value.id+'\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>';
-			}
-			html += '</tr>';
-		});
-		results = res.results;
-		$("#tbody").html(html);
-	}
-	$(function(){
-		findManagerList("","id",pageIndex,pageSize);
-		$('.table-sort tbody').on( 'click', 'tr', function () {
-			if ( $(this).hasClass('selected') ) {
-				$(this).removeClass('selected');
-			}
-			else {
-				$('tr.selected').removeClass('selected');
-				$(this).addClass('selected');
-			}
-		});
-
-		//搜索按钮事件
-		$("#search").on("click",function(){
-			var keyword = $("#keyword").val();
-			findManagerList(keyword,"",pageIndex,pageSize);
-		});
-	});
 </script>
 </body>
 </html>

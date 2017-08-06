@@ -1,6 +1,7 @@
 package com.kemile.management.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.kemile.SystemLoginLog.service.impl.SystemLoginLogService;
 import com.kemile.common.utils.DateUtil;
 import com.kemile.common.utils.Global;
 import com.kemile.common.utils.OSUtils;
+import com.kemile.management.service.impl.ManagerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,15 +22,14 @@ import com.kemile.common.domain.view.BizData4Page;
 import com.kemile.common.restful.exception.BizException;
 import com.kemile.common.restful.exception.BizExceptionEnum;
 import com.kemile.common.utils.SqlOrderEnum;
-import com.kemile.management.domain.Manages;
-import com.kemile.management.service.impl.ManagesServiceImpl;
+import com.kemile.management.domain.Manager;
 
 @Controller
 @RequestMapping(value = "/Manage/")
 public class ManageController {
 
 	@Autowired
-	private ManagesServiceImpl managesService;
+	private ManagerServiceImpl managerService;
 
 //	@Autowired
 //	private LogServiceImpl logService;
@@ -52,7 +53,7 @@ public class ManageController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "Login", method = RequestMethod.POST)
-	public Manages login(
+	public Manager login(
 			@RequestParam(value = "account", required = true) String account,
 			@RequestParam(value = "password", required = true) String password,
 			@RequestParam(value = "vCode", required = true) String vCode,
@@ -65,8 +66,8 @@ public class ManageController {
 
 	}
 
-	private Manages userAndPasswordIsCorrect(String rand, String vCode,
-			String account, String password, HttpServletRequest request) {
+	private Manager userAndPasswordIsCorrect(String rand, String vCode,
+											 String account, String password, HttpServletRequest request) {
 		SystemLoginLogEntity log = new SystemLoginLogEntity();
 		log.setType("登录");
 		log.setName(account);
@@ -74,11 +75,11 @@ public class ManageController {
 
 		// 对比验证码是否相等
 		if (rand.toLowerCase().equals(vCode.toLowerCase())) {
-			Manages manages = new Manages();
+			Manager manages = new Manager();
 			manages.setAccount(account);
 			manages.setPassword(password);
 			// 查询管理员信息
-			manages = managesService.selectOne(null,manages);
+			manages = managerService.selectOne(null,manages);
 			if (manages != null) {
 				// 将管理员信息存入session中
 				session.setAttribute(Global.QR_MANAGER, manages);
@@ -117,12 +118,12 @@ public class ManageController {
      */
 	@ResponseBody
 	@RequestMapping(value = "ManagesInfo")
-	public Manages getManagesInfo() {
-		return (Manages) session.getAttribute(Global.QR_MANAGER);
+	public Manager getManagesInfo() {
+		return (Manager) session.getAttribute(Global.QR_MANAGER);
 	}
 
 	/**
-	 * 查询管理员列表
+	 * 查询管理员列表(暂未用)
 	 * @param conditions
 	 * @return
 	 */
@@ -134,7 +135,7 @@ public class ManageController {
 		BizData4Page<Map<String, Object>> bizData4Page = new BizData4Page<Map<String, Object>>();
 		bizData4Page.setConditions(conditions);
 		bizData4Page.setPage(page);
-		managesService.queryPageByDataPerm(bizData4Page, "id", SqlOrderEnum.ASC);
+		managerService.queryPageByDataPerm(bizData4Page, "id", SqlOrderEnum.ASC);
 		if (bizData4Page.getRecords() == 0) {
 			throw new BizException(BizExceptionEnum.NOTEXISTS.getCode(),
 					BizExceptionEnum.NOTEXISTS.getDesc());
@@ -150,13 +151,13 @@ public class ManageController {
      */
 	@ResponseBody
 	@RequestMapping(value = "SaveManageInfo")
-	public boolean saveManageInfo(Manages manages) {
+	public boolean saveManageInfo(Manager manages) {
 		try {
 			if (manages.getId() == null) {
 				manages.setAccount("LL" + DateUtil.getDateNow("yyyyMMddHHmm"));
-				int i = managesService.insert(manages);
+				int i = managerService.insert(manages);
 			} else {
-				int i = managesService.update(manages);
+				int i = managerService.update(manages);
 			}
 			return true;
 		} catch (Exception e) {
@@ -173,8 +174,8 @@ public class ManageController {
      */
 	@ResponseBody
 	@RequestMapping(value = "ManagesInfoByID/{id}")
-	public Manages managesInfoByID(@PathVariable String id) {
-		Manages manages = managesService.findOne("id", id);
+	public Manager managesInfoByID(@PathVariable String id) {
+		Manager manages = managerService.findOne("id", id);
 		if (manages == null) {
 			throw new BizException(BizExceptionEnum.NOTEXISTS.getCode(),
 					BizExceptionEnum.NOTEXISTS.getDesc());
@@ -192,8 +193,44 @@ public class ManageController {
 	@RequestMapping(value = "DeletManagesByID")
 	public String deletManagesByID(@RequestParam(value = "ids") String ids) {
 		List<String> list = Arrays.asList(ids.split(","));
-		int i = managesService.deleteByIds(list);
+		int i = managerService.deleteByIds(list);
 		return "" + i;
 	}
 
+	/**
+	 * 员工列表
+	 *
+	 * @param keyword
+	 *            查询关键字
+	 * @param sort
+	 *            排序字段
+	 * @param start
+	 *            起始条数
+	 * @param limit
+	 * @return
+	 */
+	@SuppressWarnings("serial")
+	@ResponseBody
+	@RequestMapping(value = "/ManagerList", method = RequestMethod.GET)
+	public Map<String, Object> ManagerList(
+			@RequestParam(value = "keyword") final String keyword,
+			@RequestParam(value = "sort") final String sort,
+			@RequestParam(value = "start", required = true) final String start,
+			@RequestParam(value = "limit", required = true) final String limit) {
+		final Map<String, Object> condition = new HashMap<String, Object>() {
+			{
+				put("keyword", keyword.equals("") ? null : keyword);
+				put("sort", sort.equals("") ? "id" : sort);
+				put("start", start);
+				put("limit", limit);
+			}
+		};
+		final List<Map<String, Object>> managerList = managerService.managerList(condition);
+		return new HashMap<String, Object>() {
+			{
+				put("rows", managerList);
+				put("results", managerService.managerTotal(condition));
+			}
+		};
+	}
 }

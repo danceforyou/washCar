@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kemile.common.utils.OSUtils;
-import com.kemile.management.domain.Manages;
+import com.kemile.management.domain.Manager;
 
 @Controller
 @RequestMapping(value="/admin/")
 public class AdminInterceptController {
 	
-	private static Manages manages = null;
+	private static Manager manages = null;
 
 	@Autowired
 	HttpSession session;
@@ -32,7 +32,7 @@ public class AdminInterceptController {
 	@RequestMapping(value="{url}.html")
 	public ModelAndView interceptIllegalOperation(@PathVariable(value = "url") String url,
 												  HttpServletResponse response) throws IOException{
-		manages = (Manages) session.getAttribute(Global.QR_MANAGER);
+		manages = (Manager) session.getAttribute(Global.QR_MANAGER);
 		if(manages==null && !url.equals("login")){
 			PrintWriter out = response.getWriter();
 			String js = "<script language=JavaScript>";

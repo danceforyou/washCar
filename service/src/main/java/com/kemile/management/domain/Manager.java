@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Manages extends CreateBaseDomain<Integer> {
+public class Manager extends CreateBaseDomain<Integer> {
 
 	/**
 	 * 
@@ -18,7 +18,16 @@ public class Manages extends CreateBaseDomain<Integer> {
 	private String name;
 	private String adress;
 	private String phone;
+	private Integer type;	//商户类型：0-管理员；1-服务人员
 	private Integer status;
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;

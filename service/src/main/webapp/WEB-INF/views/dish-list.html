@@ -39,12 +39,12 @@
         <br />
         <table class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
-            <tr class="text-c">
-                <th width="25"><input type="checkbox" name="" value="0"></th>
-                <th width="50">ID</th>
-                <th width="100">名称</th>
-                <th width="100">操作</th>
-            </tr>
+                <tr class="text-c">
+                    <th width="25"><input type="checkbox" name="" value="0"></th>
+                    <th width="50">ID</th>
+                    <th width="100">名称</th>
+                    <th width="100">操作</th>
+                </tr>
             </thead>
             <tbody id="tbody"></tbody>
         </table>
@@ -70,7 +70,8 @@
             records = res.bizData;
             renderTable(records);
             results = records.results;
-            setpage("pages",records.results,pageIndex,limit);
+            $("#results").text(results);
+            setpage("pages",results,pageIndex,limit);
         }, null, "查询类型列表");
     }
     //分页事件
