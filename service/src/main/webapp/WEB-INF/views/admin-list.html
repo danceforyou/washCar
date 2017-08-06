@@ -184,14 +184,6 @@ function ManagerList(curPage){
 	ajaxPostFun(url, {}, successFun, null, "商户列表");
 
 }
-function saveManages(param, successFun){
-	var url = "../Manage/SaveManageInfo";
-	ajaxPostFun(url, param, successFun, null, "保存管理信息");
-}
-function deletManagesByID(param, successFun){
-	var url = "../Manage/DeletManagesByID";
-	ajaxPostFun(url, param, successFun, null, "删除管理信息");
-}
 
 //分页事件
 function gotopage(target) {
@@ -237,9 +229,9 @@ function gotopage(target) {
 			html += '<td>'+value.adress+'</td>';
 
 			if (value.type == '0'){
-				html +='<td class="td-status"><span class="label label-success radius">管理员</span></td>';
+				html +='<td><span class="label label-success radius">管理员</span></td>';
 			}else{
-				html +='<td class="td-status"><span class="label label-success radius">服务人员</span></td>';
+				html +='<td><span class="label label-success radius">服务人员</span></td>';
 			}
 
 			if(value.status=='0'){
@@ -263,6 +255,12 @@ function gotopage(target) {
 	function deletManagesByID(param, successFun){
 		var url = "../Manage/DeletManagesByID";
 		ajaxPostFun(url, param, successFun, null, "删除食品信息");
+	}
+
+	/* 员工状态保存 */
+	function saveManages(param, successFun){
+		var url = "../Manage/SaveManageInfo";
+		ajaxPostFun(url, param, successFun, null, "保存管理信息");
 	}
 
 	$(function(){
