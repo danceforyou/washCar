@@ -258,6 +258,13 @@ function gotopage(target) {
 		results = res.results;
 		$("#tbody").html(html);
 	}
+
+	/** 员工删除 */
+	function deletManagesByID(param, successFun){
+		var url = "../Manage/DeletManagesByID";
+		ajaxPostFun(url, param, successFun, null, "删除食品信息");
+	}
+
 	$(function(){
 		findManagerList("","id",pageIndex,pageSize);
 		$('.table-sort tbody').on( 'click', 'tr', function () {

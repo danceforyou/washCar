@@ -54,6 +54,17 @@
 			<div class="col-4"> </div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>员工类型：</label>
+			<div class="formControls col-5">
+				<select id="type" name="type" class="input-text" nullmsg="请选择员工类型！">
+					<option value="-1">请选择</option>
+					<option value="0">管理员</option>
+					<option value="1">服务员工</option>
+				</select>
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-3">地址：</label>
 			<div class="formControls col-5">
 				<textarea id="adress" name="adress" cols="" rows="" class="textarea"  placeholder="商户所在地址" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
@@ -87,9 +98,9 @@
 		var successFun = function (data){
 			var manage = data.bizData;
 			$('#name').val(manage.name);
-			$('#email').val(manage.id);
-			$('#creator').val(manage.creator);
-			$('#email').val(manage.email);
+			$('#phone').val(manage.phone);
+			$('#adress').val(manage.adress);
+			$("#type option[value="+manage.type+"]").attr("selected", true);
 		}
 		ajaxPostFun(url, {}, successFun, null, "通过ID获取商户信息");
 	}
