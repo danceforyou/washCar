@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kemile.user.dao.UserDAO">
+
+    <!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 只要在对应的mapper配置文件中加入<cache />标签即可-->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <sql id="Base_Column_List">
+        id, phone, email, account, name, nickname, sex, birth, password, headpic, status, regtime, province, city, openid
+    </sql>
+    <sql id="Base_NotAliasColumn_List">
+        id, phone, email, account, name, nickname, sex, birth, password, headpic, status, regtime, province, city, openid
+    </sql>
+
+    <select id="findOne" resultType="com.kemile.user.domain.User">
+        SELECT id, phone, email, account, name, nickname, sex, birth, password, headpic, status, regtime, province, city, openid
+        FROM user
+        WHERE user.${property} = #{value}
+    </select>
+
+    <select id="selectOne" resultType="com.kemile.user.domain.User">
+        SELECT id, phone, email, account, name, nickname, sex, birth, password, headpic, status, regtime, province, city, openid
+        FROM user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition!=null and condition.account!=null">AND account = #{condition.account}</if>
+            <if test="condition!=null and condition.password!=null">AND password = #{condition.password}</if>
+        </trim>
+    </select>
+
+    <!-- 分页查询（暂未使用） -->
+    <select id="queryPage" resultType="java.util.Map">
+        SELECT id, phone, email, account, name, nickname, sex, birth, password, headpic, status, regtime, province, city, openid
+        FROM user
+        <where>
+            <if test="condition!=null and condition.phone!=null">AND phone = #{condition.phone}</if>
+            <if test="condition!=null and condition.account!=null">AND account = #{condition.account}</if>
+            <if test="condition!=null and condition.name!=null">AND name = #{condition.name}</if>
+        </where>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        LIMIT ${offset}, ${rows}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user
+        <where>
+            <if test="condition!=null and condition.phone!=null">AND phone = #{condition.phone}</if>
+            <if test="condition!=null and condition.account!=null">AND account = #{condition.account}</if>
+            <if test="condition!=null and condition.name!=null">AND name = #{condition.name}</if>
+        </where>
+    </select>
+
+    <!-- 列表 条件  分页-->
+    <select id="userList" resultType="java.util.Map">
+        SELECT id, phone, email, account, name, nickname, sex, birth, password, headpic, status, regtime, province, city, openid
+        FROM user
+        <where>
+            <if test="keyword!=null ">name LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
+        </where>
+        ORDER BY #{sort} DESC
+        LIMIT ${start},${limit}
+    </select>
+    <select id="userTotal" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM user
+        <where>
+            <if test="keyword!=null ">name LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
+        </where>
+    </select>
+
+    <update id="update">
+        UPDATE user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="email!=null">email=#{email},</if>
+            <if test="account!=null">account=#{account},</if>
+            <if test="name!=null">name=#{name},</if>
+            <if test="nickname!=null">nickname=#{nickname},</if>
+            <if test="sex!=null">sex=#{sex},</if>
+            <if test="birth!=null">birth=#{birth},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="headpic!=null">headpic=#{headpic},</if>
+            <if test="status!=null">status=#{status},</if>
+            <if test="regtime!=null">regtime=#{regtime},</if>
+            <if test="province!=null">province=#{province},</if>
+            <if test="city!=null">city=#{city},</if>
+            <if test="openid!=null">openid=#{openid},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert">
+        INSERT INTO user (
+        phone, account, password, name,
+        <if test="email!=null">email,</if>
+        <if test="nickname!=null">nickname,</if>
+        <if test="sex!=null">sex,</if>
+        <if test="birth!=null">birth</if>
+        <if test="headpic!=null">headpic</if>
+        <if test="status!=null">status</if>
+        <if test="regtime!=null">regtime</if>
+        <if test="province!=null">province</if>
+        <if test="city!=null">city</if>
+        <if test="openid!=null">openid</if>
+        )VALUES(
+        #{phone},#{account},#{password},#{name},
+        <if test="email!=null">#{email},</if>
+        <if test="nickname!=null">#{nickname},</if>
+        <if test="sex!=null">#{sex},</if>
+        <if test="birth!=null">#{birth}</if>
+        <if test="headpic!=null">#{headpic}</if>
+        <if test="status!=null">#{status}</if>
+        <if test="regtime!=null">#{regtime}</if>
+        <if test="province!=null">#{province}</if>
+        <if test="city!=null">#{city}</if>
+        <if test="openid!=null">#{openid}</if>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+
+
+    <delete id="deleteByIds">
+        DELETE FROM user
+        <where>
+            id IN
+            <foreach collection="collection" item="id" open="(" separator="," close=")" >
+                #{id}
+            </foreach>
+        </where>
+    </delete>
+
+</mapper>
