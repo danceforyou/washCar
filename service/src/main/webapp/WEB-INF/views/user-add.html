@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加用户</title>
+</head>
+<body>
+<div class="pd-20">
+	<form action="../User/SaveUserInfo" method="post" class="form form-horizontal" id="form-user-add">
+		<input id="mid" name="id" type="hidden">
+		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>用户：</label>
+			<div class="formControls col-5">
+				<input type="text" class="input-text" value="" placeholder="" id="name" name="name" datatype="*2-16" nullmsg="商户名不能为空">
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>电话：</label>
+			<div class="formControls col-5">
+				<input type="text" class="input-text"  name="phone" id="phone"  nullmsg="请输入电话！">
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>邮箱：</label>
+			<div class="formControls col-5">
+				<input type="text" class="input-text"  name="email" id="email"  nullmsg="请输入邮箱！">
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>账号：</label>
+			<div class="formControls col-5">
+				<input type="text" class="input-text"  name="account" id="account"  nullmsg="请输入账号！">
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>昵称：</label>
+			<div class="formControls col-5">
+				<input type="text" class="input-text"  name="nickname" id="nickname"  nullmsg="请输入昵称！">
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>性别：</label>
+			<div class="formControls col-5">
+				<select id="sex" name="sex" class="input-text" nullmsg="请选择性别！">
+					<option value="-1">请选择</option>
+					<option value="1">男</option>
+					<option value="2">女</option>
+				</select>
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>生日：</label>
+			<div class="formControls col-5">
+				<input type="text" class="input-text"  name="birth" id="birth"  nullmsg="请输入生日！">
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>地址：</label>
+			<div class="formControls col-5">
+				<select id="province" name="province" class="input-text" nullmsg="请选择省！">
+					<option value="-1">请选择</option>
+					<option value="1">北京</option>
+					<option value="2">浙江</option>
+				</select>
+				<select id="city" name="city" class="input-text" nullmsg="请选择市！">
+					<option value="-1">请选择</option>
+					<option value="1">杭州</option>
+					<option value="2">温州</option>
+				</select>
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>OPENID：</label>
+			<div class="formControls col-5">
+				<input type="text" class="input-text"  name="openId" id="openId"  nullmsg="请输入OPENID！">
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<div class="col-9 col-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script> 
+<script type="text/javascript" src="js/H-ui.js"></script>
+<script type="text/javascript" src="js/H-ui.admin.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+	var id = $.getUrlParam('id');
+	if(!empty(id)){
+		$('#mid').val(id);
+		getUserById(id);
+	}
+
+	function getUserById(id){
+		var url = "../User/UserInfoByID/"+id;
+		var successFun = function (data){
+			var user = data.bizData;
+			$('#name').val(user.name);
+			$('#phone').val(user.phone);
+			$('#email').val(user.email);
+			$('#account').val(user.account);
+			$('#nickname').val(user.nickname);
+			$("#sex option[value="+user.sex+"]").attr("selected", true);
+			$('#birth').val(user.birth);
+			$('#openId').val(user.openId);
+
+		}
+		ajaxPostFun(url, {}, successFun, null, "通过ID获取用户信息");
+	}
+
+
+</script>
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-user-add").Validform({
+		tiptype:2,
+		callback:function(form){
+			//form[0].submit();
+			ajaxSubmit(form[0], function(data){});
+			var index = parent.layer.getFrameIndex(window.name);
+			//parent.$('.btn-refresh').click();
+			parent.location.replace(parent.location.href);
+			parent.layer.close(index);
+		}
+	});
+});
+</script>
+</body>
+</html>
