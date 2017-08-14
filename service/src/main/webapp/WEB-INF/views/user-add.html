@@ -97,7 +97,7 @@
 		<div class="row cl">
 			<label class="form-label col-3"><span class="c-red">*</span>OPENID：</label>
 			<div class="formControls col-5">
-				<input type="text" class="input-text"  name="openId" id="openId"  nullmsg="请输入OPENID！">
+				<input type="text" class="input-text"  name="openid" id="openid"  nullmsg="请输入OPENID！">
 			</div>
 			<div class="col-4"> </div>
 		</div>
@@ -133,7 +133,9 @@
 			$('#nickname').val(user.nickname);
 			$("#sex option[value="+user.sex+"]").attr("selected", true);
 			$('#birth').val(user.birth);
-			$('#openId').val(user.openId);
+			$("#province option[value="+user.province+"]").attr("selected", true);
+			$("#city option[value="+user.city+"]").attr("selected", true);
+			$('#openid').val(user.openid);
 
 		}
 		ajaxPostFun(url, {}, successFun, null, "通过ID获取用户信息");

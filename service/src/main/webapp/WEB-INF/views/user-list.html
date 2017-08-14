@@ -186,7 +186,15 @@ function renderTable(res){
 			html +='<td>--</td>';
 		}
 		html += '<td>'+value.birth+'</td>';
-		html += '<td>'+value.regtime+'</td>';
+		var regTime = new Date(value.regtime/1000);
+		var y = regTime.getFullYear();
+		var m = regTime.getMonth()+1;
+		var d = regTime.getDate();
+		var h = regTime.getHours();
+		var mm = regTime.getMinutes();
+		var s = regTime.getSeconds();
+		var regTimeStr =  y+'-'+m+'-'+d+' '+h+':'+mm+':'+s;
+		html += '<td>'+regTimeStr+'</td>';
 		html += '<td>'+ value.province +'省'+ value.city +'市</td>';
 		html += '<td>'+value.openid+'</td>';
 
