@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kemile.order.dao.OrderDAO">
+
+    <!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 只要在对应的mapper配置文件中加入<cache />标签即可-->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <sql id="Base_Column_List">
+        id, ware_name, committime, paymenttime, order_numb, order_status, totalmoney, user_id, paymethod, consignee, phone, province, city,
+        address, remark, backgroundremark, aduit_status, check_man, check_time, service_status, service_manager
+    </sql>
+    <sql id="Base_NotAliasColumn_List">
+        id, ware_name, committime, paymenttime, order_numb, order_status, totalmoney, user_id, paymethod, consignee, phone, province, city,
+        address, remark, backgroundremark, aduit_status, check_man, check_time, service_status, service_manager
+    </sql>
+
+    <select id="findOne" resultType="com.kemile.order.domain.Order">
+        SELECT id, ware_name, committime, paymenttime, order_numb, order_status, totalmoney, user_id, paymethod, consignee, phone, province, city,
+        address, remark, backgroundremark, aduit_status, check_man, check_time, service_status, service_manager
+        FROM `order`
+        WHERE user.${property} = #{value}
+    </select>
+
+    <select id="selectOne" resultType="com.kemile.order.domain.Order">
+        SELECT id, ware_name, committime, paymenttime, order_numb, order_status, totalmoney, user_id, paymethod, consignee, phone, province, city,
+        address, remark, backgroundremark, aduit_status, check_man, check_time, service_status, service_manager
+        FROM `order`
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition!=null and condition.account!=null">AND account = #{condition.account}</if>
+            <if test="condition!=null and condition.password!=null">AND password = #{condition.password}</if>
+        </trim>
+    </select>
+
+    <!-- 列表 条件  分页-->
+    <select id="orderList" resultType="java.util.Map">
+        SELECT id, ware_name, committime, paymenttime, order_numb, order_status, totalmoney, user_id, paymethod, consignee, phone, province, city,
+        address, remark, backgroundremark, aduit_status, check_man, check_time, service_status, service_manager
+        FROM `order`
+        <where>
+            <if test="keyword!=null ">ware_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
+            <if test="keyword!=null ">OR user_id LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
+        </where>
+        ORDER BY #{sort} DESC
+        LIMIT ${start},${limit}
+    </select>
+    <select id="orderTotal" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM `order`
+        <where>
+            <if test="keyword!=null ">ware_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
+            <if test="keyword!=null ">OR user_id LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
+        </where>
+    </select>
+
+    <update id="update">
+        UPDATE `order`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="ware_name!=null">ware_name=#{ware_name},</if>
+            <if test="committime!=null">committime=#{committime},</if>
+            <if test="paymenttime!=null">paymenttime=#{paymenttime},</if>
+            <if test="order_numb!=null">order_numb=#{order_numb},</if>
+            <if test="order_status!=null">order_status=#{order_status},</if>
+            <if test="totalmoney!=null">totalmoney=#{totalmoney},</if>
+            <if test="user_id!=null">user_id=#{user_id},</if>
+            <if test="paymethod!=null">paymethod=#{paymethod},</if>
+            <if test="consignee!=null">consignee=#{consignee},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="province!=null">province=#{province},</if>
+            <if test="city!=null">city=#{city},</if>
+            <if test="address!=null">address=#{address},</if>
+            <if test="remark!=null">remark=#{remark},</if>
+            <if test="backgroundremark!=null">backgroundremark=#{backgroundremark},</if>
+            <if test="aduit_status!=null">aduit_status=#{aduit_status},</if>
+            <if test="check_man!=null">check_man=#{check_man},</if>
+            <if test="check_time!=null">check_time=#{check_time},</if>
+            <if test="service_status!=null">service_status=#{service_status},</if>
+            <if test="service_manager!=null">service_manager=#{service_manager},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert">
+        INSERT INTO `order` (
+        ware_name, committime, totalmoney, user_id, consignee, phone, province, city, address
+        <if test="paymenttime!=null">,paymenttime</if>
+        <if test="order_numb!=null">,order_numb</if>
+        <if test="order_status!=null">,order_status</if>
+        <if test="paymethod!=null">,paymethod</if>
+        <if test="remark!=null">,remark</if>
+        <if test="backgroundremark!=null">,backgroundremark</if>
+        )VALUES(
+        #{ware_name},#{committime},#{totalmoney},#{user_id},#{consignee},#{phone},#{province},#{city},#{address}
+        <if test="paymenttime!=null">,#{paymenttime}</if>
+        <if test="order_numb!=null">,#{order_numb}</if>
+        <if test="order_status!=null">,#{order_status}</if>
+        <if test="paymethod!=null">,#{paymethod}</if>
+        <if test="remark!=null">,#{remark}</if>
+        <if test="backgroundremark!=null">,#{backgroundremark}</if>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+
+
+    <delete id="deleteByIds">
+        DELETE FROM `order`
+        <where>
+            id IN
+            <foreach collection="collection" item="id" open="(" separator="," close=")" >
+                #{id}
+            </foreach>
+        </where>
+    </delete>
+
+</mapper>
