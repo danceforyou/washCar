@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <script type="text/javascript" src="lib/PIE_IE678.js"></script>
+    <![endif]-->
+    <link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>订单详情</title>
+</head>
+<body>
+<div class="pd-20">
+    <form action="" method="" class="form form-horizontal" id="form-order-detail">
+        <input id="mid" name="id" type="hidden">
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>用户名称：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="user_id" name="user_id" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>商品名称：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="ware_name" name="ware_name" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>下单时间：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="committime" name="committime" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>支付时间：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="paymenttime" name="paymenttime" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>订单编号：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="order_numb" name="order_numb" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>订单状态：</label>
+            <div class="formControls col-5">
+				<span class="select-box" style="width:150px;">
+					<select id="order_status" class="select" name="order_status" size="1">
+                        <option value="1">未支付</option>
+                        <option value="2">已支付</option>
+                        <option value="3">已失效</option>
+                    </select>
+				</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>总金额：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="totalmoney" name="totalmoney" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>支付方式：</label>
+            <div class="formControls col-5">
+				<span class="select-box" style="width:150px;">
+					<select id="paymethod" class="select" name="paymethod" size="1">
+                        <option value="1">银联支付</option>
+                        <option value="2">微信支付</option>
+                        <option value="3">支付宝支付</option>
+                    </select>
+				</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>收货人姓名：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="consignee" name="consignee" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>收货人电话：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="phone" name="phone" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>收货人地址：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="address" name="address" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>备注：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="remark" name="remark" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>后台备注：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="backgroundremark" name="backgroundremark" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>审核状态：</label>
+            <div class="formControls col-5">
+				<span class="select-box" style="width:150px;">
+					<select id="aduit_status" class="select" name="aduit_status" size="1">
+                        <option value="0">未审核</option>
+                        <option value="1">审核通过</option>
+                        <option value="2">审核未通过</option>
+                    </select>
+				</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>审核人：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="check_man" name="check_man" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>审核时间：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="check_time" name="check_time" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>服务状态：</label>
+            <div class="formControls col-5">
+				<span class="select-box" style="width:150px;">
+					<select id="service_status" class="select" name="service_status" size="1">
+                        <option value="0">还未服务</option>
+                        <option value="1">已服务</option>
+                    </select>
+				</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3"><span class="c-red">*</span>服务人：</label>
+            <div class="formControls col-5">
+                <input type="text" class="input-text" value="" placeholder="" id="service_manager" name="service_manager" datatype="*2-16" nullmsg="">
+            </div>
+            <div class="col-4"> </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/icheck/jquery.icheck.min.js"></script>
+<script type="text/javascript" src="lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="js/H-ui.js"></script>
+<script type="text/javascript" src="js/H-ui.admin.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    var id = $.getUrlParam('id');
+    if(!empty(id)){
+        $('#mid').val(id);
+        getOrderById(id);
+    }
+
+    function getOrderById(id){
+        var url = "../Order/OrderInfoByID/"+id;
+        var successFun = function (data){
+            var order = data.bizData;
+            $('#user_id').val(order.user_id);
+            $('#ware_name').val(order.ware_name);
+            $('#committime').val(order.committime);
+            $('#paymenttime').val(order.paymenttime);
+            $('#order_numb').val(order.order_numb);
+            $('#order_status').find("option[value="+order.order_status+"]").attr("selected",true);
+            $('#totalmoney').val(order.totalmoney);
+            $('#paymethod').find("option[value="+order.paymethod+"]").attr("selected",true);
+            $('#consignee').val(order.consignee);
+            $('#phone').val(order.phone);
+            $('#address').val(order.province + "省" + order.city + "市" + order.address);
+            $('#remark').val(order.remark);
+            $('#backgroundremark').val(order.backgroundremark);
+            $('#aduit_status').find("option[value="+order.aduit_status+"]").attr("selected",true);
+            $('#check_man').val(order.check_man);
+            $('#check_time').val(order.check_time);
+            $('#service_status').find("option[value="+order.service_status+"]").attr("selected",true);
+            $('#service_manager').val(order.service_manager);
+        }
+        ajaxPostFun(url, {}, successFun, null, "通过ID获取订单信息");
+    }
+
+
+</script>
+<script type="text/javascript">
+    $(function(){
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+//        $("#form-admin-add").Validform({
+//            tiptype:2,
+//            callback:function(form){
+//                //form[0].submit();
+//                ajaxSubmit(form[0], function(data){});
+//                var index = parent.layer.getFrameIndex(window.name);
+//                //parent.$('.btn-refresh').click();
+//                parent.location.replace(parent.location.href)
+//                parent.layer.close(index);
+//            }
+//        });
+    });
+</script>
+</body>
+</html>

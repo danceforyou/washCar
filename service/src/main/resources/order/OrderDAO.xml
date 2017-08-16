@@ -19,7 +19,7 @@
         SELECT id, ware_name, committime, paymenttime, order_numb, order_status, totalmoney, user_id, paymethod, consignee, phone, province, city,
         address, remark, backgroundremark, aduit_status, check_man, check_time, service_status, service_manager
         FROM `order`
-        WHERE user.${property} = #{value}
+        WHERE ${property} = #{value}
     </select>
 
     <select id="selectOne" resultType="com.kemile.order.domain.Order">
@@ -114,5 +114,15 @@
             </foreach>
         </where>
     </delete>
+
+    <update id="updateStatus">
+        UPDATE `order`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="order_status!=null">#{order_status}</if>
+            <if test="aduit_status!=null">#{aduit_status}</if>
+            <if test="service_status!=null">#{service_status}</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
 
 </mapper>

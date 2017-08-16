@@ -12,5 +12,8 @@ import java.util.Map;
 public interface OrderDAO extends IBaseDAO<Order> {
 
     List<Map<String,Object>> orderList(Map<String, Object> map);
+
     int orderTotal(Map<String, Object> map);
+
+    boolean updateStatus(Map<String, Object> map);
 }

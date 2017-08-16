@@ -25,20 +25,23 @@ public IBaseDAO<Order> getDao() {
         return orderDAO;
         }
 
+        /**
+         * 查询用户列表
+         */
+        public List<Map<String, Object>> orderList(Map<String, Object> map) {
+                return orderDAO.orderList(map);
+                }
 
-/**
- * 查询用户列表
- */
-public List<Map<String, Object>> orderList(Map<String, Object> map) {
-        return orderDAO.orderList(map);
-        }
+        /**
+         * 查询用户数量
+         */
+        public int orderTotal(Map<String, Object> map) {
+                return orderDAO.orderTotal(map);
+                }
 
-/**
- * 查询用户数量
- */
-public int orderTotal(Map<String, Object> map) {
-        return orderDAO.orderTotal(map);
-        }
-
-        }
+        /**
+         * 更新订单状态
+         */
+        public boolean updateStatus(Map<String, Object> map) { return orderDAO.updateStatus(map); }
+}
 

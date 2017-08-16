@@ -16,4 +16,6 @@ public interface OrderService<D extends IBaseDAO<T>, T extends BaseDomain> exten
     public List<Map<String,Object>> orderList(Map<String, Object> map);
 
     public int orderTotal(Map<String, Object> map);
+
+    public boolean updateStatus(Map<String, Object> map);
 }

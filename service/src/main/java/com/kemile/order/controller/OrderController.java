@@ -109,4 +109,28 @@ public class OrderController {
         int i = orderService.deleteByIds(list);
         return "" + i;
     }
+
+    /**
+     * 更新订单状态
+     * @param
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "UpdateStatus")
+    public boolean updateStatus(
+            @RequestParam(value = "id") final String id,
+            @RequestParam(value = "order_status") final String order_status,
+            @RequestParam(value = "aduit_status") final String aduit_status,
+            @RequestParam(value = "service_status") final String service_status){
+        final Map<String, Object> condition = new HashMap<String, Object>() {
+            {
+                put("id", id.equals("") ? null : Integer.parseInt(id));
+                put("order_status", order_status.equals("") ? null : Integer.parseInt(order_status));
+                put("aduit_status", aduit_status.equals("") ? null : Integer.parseInt(aduit_status));
+                put("service_status", service_status.equals("") ? null : Integer.parseInt(service_status));
+            }
+        };
+        boolean result = orderService.updateStatus(condition);
+        return result;
+    }
 }

@@ -128,6 +128,11 @@ function order_stop(obj,id){
 	});
 }
 
+/* 订单-详情 */
+function order_detail(title,url,id,w,h){
+	layer_show(title,url+'?id='+id,w,h);
+}
+
 /*订单-启用*/
 function order_start(obj,id){
 	layer.confirm('确认要启用吗？',function(index){
@@ -174,33 +179,33 @@ function order_start(obj,id){
 			html += '<td>'+value.address+'</td>';
 			//订单状态
 			if (value.order_status == '0'){
-				html +='<td><span class="label label-success radius">未支付</span></td>';
+				html +='<td><span class="label label-primary radius">未支付</span></td>';
 			}else if (value.order_status == '1'){
 				html +='<td><span class="label label-success radius">已支付</span></td>';
 			}else{
-				html +='<td><span class="label label-success radius">已失效</span></td>';
+				html +='<td><span class="label label-default radius">已失效</span></td>';
 			}
 			//审核状态
 			if (value.aduit_status == '0'){
-				html +='<td><span class="label label-success radius">未审核</span></td>';
+				html +='<td><span class="label label-default radius">未审核</span></td>';
 			}else if (value.aduit_status == '1'){
 				html +='<td><span class="label label-success radius">审核通过</span></td>';
 			}else{
-				html +='<td><span class="label label-success radius">审核未通过</span></td>';
+				html +='<td><span class="label label-danger radius">审核未通过</span></td>';
 			}
 			//服务状态
 			if (value.service_status == '0'){
-				html +='<td><span class="label label-success radius">还未服务</span></td>';
+				html +='<td><span class="label label-default radius">还未服务</span></td>';
 			}else{
 				html +='<td><span class="label label-success radius">已服务</span></td>';
 			}
 
 			if(value.status=='0'){
-				html +='<td class="td-manage"><a style="text-decoration:none" onClick="order_stop(this,\''+value.id+'\')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> ' +
+				html +='<td class="td-manage"><a style="text-decoration:none" onClick="order_detail(\'订单('+value.id+')详情\',\'order-detail.html\',\''+value.id+'\',\'800\',\'500\')" href="javascript:;" title="详细信息"><i class="Hui-iconfont">&#xe6c6;</i></a> ' +
 						'<a title="编辑" href="javascript:;" onclick="order_edit(\'员工('+value.account+')编辑\',\'order-add.html\',\''+value.id+'\',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ' +
 						'<a title="删除" href="javascript:;" onclick="order_del(this,\''+value.id+'\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>';
 			}else{
-				html +='<td class="td-manage"><a style="text-decoration:none" onclick="order_start(this,\''+value.id+'\')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> ' +
+				html +='<td class="td-manage"><a style="text-decoration:none" onclick="order_detail(\'订单('+value.id+')详情\',\'order-detail.html\',\''+value.id+'\',\'800\',\'500\')" href="javascript:;" title="详细信息"><i class="Hui-iconfont">&#xe6c6;</i></a> ' +
 						'<a title="编辑" href="javascript:;" onclick="order_edit(\'员工('+value.account+')编辑\',\'order-add.html\',\''+value.id+'\',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ' +
 						'<a title="删除" href="javascript:;" onclick="order_del(this,\''+value.id+'\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>';
 			}
@@ -210,15 +215,15 @@ function order_start(obj,id){
 		$("#tbody").html(html);
 	}
 
-	/** 员工删除 */
+	/** 订单删除 */
 	function deletManagesByID(param, successFun){
-		var url = "../Manage/DeletOrderByID";
+		var url = "../Order/DeleteOrderByID";
 		ajaxPostFun(url, param, successFun, null, "删除食品信息");
 	}
 
-	/* 员工状态保存 */
+	/* 订单信息保存 */
 	function saveOrder(param, successFun){
-		var url = "../Manage/SaveManageInfo";
+		var url = "../Order/SaveOrderInfo";
 		ajaxPostFun(url, param, successFun, null, "保存管理信息");
 	}
 
