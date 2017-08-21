@@ -22,10 +22,10 @@
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>订单审核</title>
+<title>订单服务</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 订单管理 <span class="c-gray en">&gt;</span> 订单审核 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 订单管理 <span class="c-gray en">&gt;</span> 订单服务 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
 	<div class="text-c">
 		<!--日期范围：
@@ -60,7 +60,7 @@
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr>
-				<th scope="col" colspan="9">待审核订单列表</th>
+				<th scope="col" colspan="9">待服务订单列表</th>
 			</tr>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value="0"></th>
@@ -76,7 +76,7 @@
 				<th width="80">收货人电话</th>
 				<th width="250">详细地址</th>
 				<th width="80">备注</th>
-				<th width="80">订单状态</th>
+				<th width="80">服务状态</th>
 				<th width="100">操作</th>
 			</tr>
 		</thead>
@@ -121,9 +121,16 @@ function order_del(obj,id){
 		});
 	});
 }
-/*订单-编辑*/
-function order_edit(title,url,id,w,h){
-	layer_show(title,url+'?id='+id,w,h);
+
+/*订单-订单服务操作*/
+function order_goser(obj,id){
+	layer.confirm('确认此订单已经服务吗？',function(index){
+		//此处请求后台程序，下方是成功后的前台处理……
+		serviceOrder({"id":id,"status":1,"type":2}, function(data){
+			$(obj).remove();
+			layer.msg('服务操作成功!',{icon: 1,time:1000});
+		});
+	});
 }
 
 /* 订单-详情 */
@@ -131,34 +138,10 @@ function order_detail(title,url,id,w,h){
 	layer_show(title,url+'?id='+id,w,h);
 }
 
-/*订单-审核通过*/
-function order_start(obj,id){
-	layer.confirm('确认要审核通过吗？',function(index){
-		//此处请求后台程序，下方是成功后的前台处理……
-		auditOrder({"id":id,"status":1,"type":1}, function(data){
-			$(obj).parents("tr").remove();
-			$("#results").text($("#results").text()-1);
-			layer.msg('审核通过成功!', {icon: 6,time:1000});
-		});
-	});
-}
-
-/*订单-审核不通过*/
-function order_stop(obj,id){
-	layer.confirm('确认要审核不通过吗？',function(index){
-		//此处请求后台程序，下方是成功后的前台处理……
-		auditOrder({"id":id,"status":2,"type":1}, function(data){
-			$(obj).parents("tr").remove();
-			$("#results").text($("#results").text()-1);
-			layer.msg('审核不通过成功!', {icon: 6,time:1000});
-		});
-	});
-}
-
-//保存审核信息
-function auditOrder(param, successFun) {
+//保存服务信息
+function serviceOrder(param, successFun) {
 	var url = "../Order/UpdateStatus";
-	ajaxPostFun(url, param, successFun, null, "订单信息审核");
+	ajaxPostFun(url, param, successFun, null, "订单确认服务");
 }	
 </script>
 
@@ -180,12 +163,12 @@ function auditOrder(param, successFun) {
 			results = records.results;
 			$("#results").text(results);
 			setpage("pages",results,pageIndex,limit);
-		}, null, "查询待审核订单列表");
+		}, null, "查询待服务订单列表");
 	}
 	//分页事件
 	function gotopage(target) {
 		pageIndex = target;//当前页码
-		findOrderList("","2","0","id",target,pageSize);
+		findOrderList("","2","1","id",target,pageSize);
 		//分页栏id，总页数，目标页码，每页显示条数
 		setpage("pages",results,target,pageSize);
 	}
@@ -217,22 +200,19 @@ function auditOrder(param, successFun) {
 			html += '<td>'+value.province+'省'+value.city+'市'+value.address+'</td>';
 			html += '<td>'+value.remark+'</td>';
 			//订单状态
-			if (value.order_status == '1'){
-				html +='<td><span class="label label-primary radius">未支付</span></td>';
-			}else if (value.order_status == '2'){
-				html +='<td><span class="label label-success radius">已支付</span></td>';
+			if (value.service_status == 0){
+				html +='<td><span class="label label-primary radius">未服务</span></td>';
+			}else if (value.service_status == 1){
+				html +='<td><span class="label label-success radius">已服务</span></td>';
 			}else{
-				html +='<td><span class="label label-default radius">已失效</span></td>';
+				html +='<td><span class="label label-default radius">--</span></td>';
 			}
 
-			if(value.status=='0'){
-				html +='<td class="td-manage"><a style="text-decoration:none" onClick="order_detail(\'订单('+value.id+')详情\',\'order-detail.html\',\''+value.id+'\',\'800\',\'500\')" href="javascript:;" title="详细信息"><i class="Hui-iconfont">&#xe6c6;</i></a> ' +
-						'<a title="通过" href="javascript:;" onclick="order_start(this,\''+value.id+'\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a> ' +
-						'<a title="不通过" href="javascript:;" onclick="order_stop(this,\''+value.id+'\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a></td>';
+			if(value.service_status == 1){
+				html +='<td class="td-manage"><a style="text-decoration:none" onClick="order_detail(\'订单('+value.id+')详情\',\'order-detail.html\',\''+value.id+'\',\'800\',\'500\')" href="javascript:;" title="详细信息"><i class="Hui-iconfont">&#xe6c6;</i></a> ';
 			}else{
 				html +='<td class="td-manage"><a style="text-decoration:none" onclick="order_detail(\'订单('+value.id+')详情\',\'order-detail.html\',\''+value.id+'\',\'800\',\'500\')" href="javascript:;" title="详细信息"><i class="Hui-iconfont">&#xe6c6;</i></a> ' +
-						'<a title="通过" href="javascript:;" onclick="order_start(this,\''+value.id+'\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a> ' +
-						'<a title="不通过" href="javascript:;" onclick="order_stop(this,\''+value.id+'\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a></td>';
+						'<a title="确认服务" href="javascript:;" onclick="order_goser(this,\''+value.id+'\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a> ';
 			}
 			html += '</tr>';
 		});
@@ -241,7 +221,7 @@ function auditOrder(param, successFun) {
 	}
 
 	$(function(){
-		findOrderList("","2","0","id",pageIndex,pageSize);
+		findOrderList("","2","1","id",pageIndex,pageSize);
 		$('.table-sort tbody').on( 'click', 'tr', function () {
 			if ( $(this).hasClass('selected') ) {
 				$(this).removeClass('selected');
@@ -255,7 +235,7 @@ function auditOrder(param, successFun) {
 		//搜索按钮事件
 		$("#search").on("click",function(){
 			var keyword = $("#keyword").val();
-			findOrderList(keyword,"2","0","",pageIndex,pageSize);
+			findOrderList(keyword,"2","1","",pageIndex,pageSize);
 		});
 	});
 </script>
