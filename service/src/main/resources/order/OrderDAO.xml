@@ -40,6 +40,8 @@
         <where>
             <if test="keyword!=null ">ware_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
             <if test="keyword!=null ">OR user_id LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
+            <if test="order_status!=null ">AND order_status = #{order_status} </if>
+            <if test="aduit_status!=null ">AND aduit_status = #{aduit_status} </if>
         </where>
         ORDER BY #{sort} DESC
         LIMIT ${start},${limit}
@@ -50,6 +52,8 @@
         <where>
             <if test="keyword!=null ">ware_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
             <if test="keyword!=null ">OR user_id LIKE CONCAT(CONCAT('%', #{keyword}), '%')</if>
+            <if test="order_status!=null ">AND order_status = #{order_status} </if>
+            <if test="aduit_status!=null ">AND aduit_status = #{aduit_status} </if>
         </where>
     </select>
 
@@ -118,9 +122,12 @@
     <update id="updateStatus">
         UPDATE `order`
         <trim prefix="SET" suffixOverrides=",">
-            <if test="order_status!=null">#{order_status}</if>
-            <if test="aduit_status!=null">#{aduit_status}</if>
-            <if test="service_status!=null">#{service_status}</if>
+            <if test="order_status!=null">order_status = #{order_status}</if>
+            <if test="aduit_status!=null">aduit_status = #{aduit_status}</if>
+            <if test="check_man!=null">,check_man = #{check_man}</if>
+            <if test="check_time!=null">,check_time = #{check_time}</if>
+            <if test="service_status!=null">service_status = #{service_status}</if>
+            <if test="service_manager!=null">,service_manager = #{service_manager}</if>
         </trim>
         WHERE id = #{id}
     </update>
