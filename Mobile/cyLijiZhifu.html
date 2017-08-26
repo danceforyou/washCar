@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>立即支付</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <!-- 网站js -->
+    <!--weiui -->
+    <link rel="stylesheet" href="css/weui.min.css">
+    <script type="text/javascript" src="js/router.min.js"></script>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="lib/layer/2.1/layer.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="scripts/index.js"></script>
+</head>
+<style type="text/css">
+    .lineheight {
+        line-height: 40px;
+    }
+    .aui-radio{
+        margin-left: 0;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="javascript:history.back();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">立即支付</div>
+        <a class="aui-pull-right  drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+    <!--中英文-->
+    <div class="formradiolist">
+        <li class="aui-border-b f_size16 lineheight">总金额<i class="c_red">￥114</i></li>
+        <li class="aui-border-b">
+            <label>
+                <!--disabled="disabled" <i class="c_tishi"> class="c_8"-->
+                <input class="aui-radio" name="demo" type="radio" id="name1" value="1" checked="checked">
+                <i>客房挂账</i>（提示：若押金不足，无法使用此功能）</i></label>
+        </li>
+        <li class="aui-border-b">
+            <label>
+                <input class="aui-radio" name="demo" type="radio" id="name2" value="2"> 现金
+            </label>
+        </li>
+        <!--<li class="aui-border-b">
+            <label>
+                <input class="aui-radio" name="demo" type="radio"> POS
+            </label>
+        </li>-->
+      <!--  <li class="aui-border-b">
+            <label>
+                <input class="aui-radio" name="demo" type="radio"> 支付宝支付
+            </label>
+        </li>-->
+    </div>
+    <div class="aui-content auipadleftright">
+        <a class="aui-btn aui-btn-block blackbgbtn martop" href="#" id="cyzf">确定</a>
+    </div>
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+<!--<script type="text/javascript" src="scripts/cyLijiZhifu.js"></script>-->
+<script type="text/javascript">
+    var orderId = $.getUrlParam("orderId");
+    var cyJsonStr;
+    var paytype="";
+    $(".c_red").html("￥"+$.getUrlParam("price"));
+    $("#cyzf").click(function(){
+       var name1= $("#name1").val();
+       var name2= $("#name2").val();
+        var kfgz;
+        if(name1!=null){
+            paytype = 1;
+            kfgz="客房挂账";
+        }else  if(name2!=null){
+            paytype = 2;
+            kfgz="现金";
+        }else{
+            paytype = 2;
+        }
+
+        paytype =   $('input[name="demo"]:checked ').val();
+
+        if(!paytype){
+            weui.alert("请选择支付类型","",function(){
+            })
+            return false;
+        }
+        var url="/cyDishorder/updateOrderStatus";
+        //orderStatus 订单状态，xml从固定值修改为参数，所以传orderStatus：1  为已支付
+        var data={hotelCode:RoomInfo.hotelCode,room:RoomInfo.room,"orderId":orderId,"payType":paytype,"orderStatus":"1"};
+        var success=function(data){
+            if(data.rtnCode=="0000000"){
+                findDish();
+            }
+        };
+        ajaxPostFun(url,data,success,"","客房送餐");
+    });
+    var cyJsonObj;
+    function findDish(){
+        var dishurl="/cyDishorder/findByOrderdish";//查询下单菜品地址
+        var datadish={orderid:orderId};
+        var succdish=function(data){
+            cyJsonStr=data.bizData;
+            cyJsonObj=JSON.stringify({"payType":paytype,"cyJsonStr":cyJsonStr});
+            sendService();
+        };
+        ajaxPostFun(dishurl,datadish,succdish,"","送餐菜品查询");
+
+    }
+    function sendService(){
+        //发送服务
+        var dtime=new Date();
+        var nowtime= dtime.toLocaleString();
+        var memid=MemberInfo.id;
+        var url2="/ServiceStyle/sendService";//发送服务地址
+        var serdata={hotelCode:RoomInfo.hotelCode,room:RoomInfo.room,accnt:RoomInfo.accnt,scode:"266",stitle:"客房送餐",stime:nowtime,remark:cyJsonObj,memId:memid};
+        var successful=function(data){
+            if(data.rtnCode=="0000000"){
+                weui.alert("客房送餐信息已发送至服务中心","",function(){
+                    window.location.href="cyYongcanFangshi.html";
+                })
+            }
+        };
+        ajaxPostFun(url2,serdata,successful,"","客房送餐发送服务");
+    }
+
+</script>
+</body>
+
+</html>

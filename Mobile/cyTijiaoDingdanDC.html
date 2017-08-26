@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>提交订单</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <!-- 网站js -->
+    <!--weiui -->
+    <link rel="stylesheet" href="css/weui.min.css">
+    <script type="text/javascript" src="js/router.min.js"></script>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</head>
+<style type="text/css">
+    .cantingname {
+        margin-bottom: 15px;
+    }
+
+    .yhjsuojin {
+        text-indent: 10px;
+    }
+    .img{
+        width: 60px;
+        height: 60px;
+        border: 1px solid #e5e5e5;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="javascript:history.back();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">提交订单</div>
+        <a class="aui-pull-right drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+    <dl class="shuxinglist cantingname aui-border-b">
+        <dd id="hyName">姓名：阿帕奇</dd>
+        <dd id="hyTel">电话：15114841641</dd>
+        <dd id="hyRoom">首都大酒店首都大酒店 308号房间</dd>
+    </dl>
+    <div class="aui-content">
+        <ul class="aui-list-view ">
+            <li class="aui-list-view-cell">
+                <a class="aui-arrow-right yhjsuojin" href="cyYouhuijuan.html">
+                    优惠券
+                    <span class="aui-badge nobg c_8">有<i class="c_yellow">2</i>张优惠券可用</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 菜单列表 开始 -->
+    <div class="cailist aui-border-t aui-border-b">
+        <div id="disList">
+
+            <li class="aui-border-b">
+                <span class="name"><img class="img" src="images/cai.jpg"/>土豆丝</span>
+                <span class="num">x2</span>
+                <span class="price c_red">￥48</span>
+            </li>
+            <li class="aui-border-b">
+                <span class="name"><img class="img" src="images/cai.jpg"/>手撕包菜</span>
+                <span class="num">x2</span>
+                <span class="price c_red">￥48</span>
+            </li>
+        </div>
+
+        <span class="zongjia ar f_size16">总金额<i class="c_red" id="count">￥114</i></span>
+    </div>
+    <!-- 菜单列表 结束 -->
+    <!-- 操作容器 -->
+    <div class="padbottom"></div>
+    <div class="bottomcaozuo aui-border-t">
+        <span class="f_size18 price">合计￥<i class="c_red" id="amount">880</i></span><a class="aui-btn aui-btn-primary fr">提交订单Submit</a>
+    </div>
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/cyTijiaoDingdanDC.js"></script>
+</body>
+
+</html>

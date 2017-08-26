@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>订房直通车</title>
+    <link rel="stylesheet" href="css/drawer.css"><!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+<style type="text/css">
+    body {
+        background-color: #fff;
+        overflow-x: hidden;
+    }
+
+    .tableMain{
+        height: 240px;
+        width: 300px;
+        overflow: scroll;
+
+    }
+    .tableMain table{
+        width: 100%;
+
+
+    }
+    .tableMain table td,
+    .tableMain table th{
+        text-align: center;
+        padding: 0.5em;
+    }
+    .tableMain table thead tr th{
+        background-color: #2c3144;
+        color: #fff;
+    }
+    /* table */
+</style>
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <div class="tableMain">
+        <table class="tableCell">
+            <thead>
+            <tr>
+                <th width="50%">日期</th>
+                <th>价格</th>
+            </tr>
+            </thead>
+            <tbody id="tbodys">
+            <tr>
+                <td>2016-1-1</td>
+                <td>182</td>
+            </tr>
+            <tr>
+                <td>2016-1-1</td>
+                <td>182</td>
+            </tr>
+            <tr>
+                <td>2016-1-1</td>
+                <td>182</td>
+            </tr>
+            <tr>
+                <td>2016-1-1</td>
+                <td>182</td>
+            </tr><tr>
+                <td>2016-1-1</td>
+                <td>182</td>
+            </tr><tr>
+                <td>2016-1-1</td>
+                <td>182</td>
+            </tr><tr>
+                <td>2016-1-1</td>
+                <td>182</td>
+            </tr>
+            <tr>
+                <td>2016-1-1</td>
+                <td>182</td>
+            </tr>
+            <tr>
+                <td>2016-1-1</td>
+                <td>182</td>
+            </tr>
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+<script>
+
+
+    var timeduan =getUrlParam("timeduan");
+    var prices =getUrlParam("prices");
+    var startTime = new Date(timeduan.split(",")[0].toString());
+    var endTime = new Date(timeduan.split(",")[1].toString());
+    var html="";
+    var num=0;
+    while((endTime.getTime()-startTime.getTime())>=1){
+        var year = startTime.getFullYear();
+       var month = (startTime.getMonth()+1).toString().length==1?"0"+(startTime.getMonth()+1).toString():(startTime.getMonth()+1).toString();
+        var day = startTime.getDate().toString().length==1?"0"+startTime.getDate():startTime.getDate().toString();
+
+        html+="<tr><td>"+year+"-"+month+"-"+day+"</td><td>￥"+prices.split(",")[num]+"</td></tr>"
+
+        startTime.setDate(startTime.getDate()+1);
+
+
+        num++;
+    }
+    $("#tbodys").html(html);
+
+
+    function getDate(datestr){
+        var temp = datestr.split("-");
+        var date = new Date(temp[0],temp[1],temp[2]);
+        return date;
+    }
+
+    /**
+     * 获取页面传递get参数
+     * @param name 查找字符串
+     * @returns
+     */
+
+        function getUrlParam (name){
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r!=null) return unescape(r[2]); return null;
+        };
+
+
+</script>
+</html>

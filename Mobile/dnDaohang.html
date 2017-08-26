@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>店内导航</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <!-- 网站js -->
+
+</head>
+<style type="text/css">
+.arcview {
+    padding: 0 10px;
+}
+.weui_dialog_confirm{
+    padding: 0;
+}
+#imgContain{
+    width:100%;
+    margin:auto;
+}
+.imgWh{
+    width: 100%;
+    height: 100%;
+}
+.weui_dialog{
+    overflow: visible !important;
+}
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+    <div class="viewport">
+        <header class="aui-bar aui-bar-nav" id="head">
+            <a class="aui-pull-left" href="javascript:history.back();">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </a>
+            <div class="aui-title">店内导航 HOTEL LAYOUT</div>
+            <a class="aui-pull-right  drawer-toggle">
+                <span class="aui-iconfont aui-icon-sort"></span>
+            </a>
+        </header>
+        <!-- 侧边导航开始 -->
+        <div class="drawer-main drawer-default">
+            <nav class="drawer-nav" role="navigation">
+                <!-- 未登录 -->
+                <div id="div_noLogin" class="touxiang">
+                    <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                    <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+                </div>
+                <!-- 登录后 -->
+                <div id="div_okLogin" class="touxiang" style="display:none;">
+                    <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                    <span>jack</span>
+                    <span>黄金会员</span>
+                </div>
+                <ul class="drawer-nav-list">
+                    <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                    <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                    <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                    <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                    <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                    <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                    <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                    <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                    <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                    <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                    <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                    <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- 侧边导航结束 -->
+        <div class="arcview">
+            <h3 class="ac"><b>酒店平面图</b></h3>
+            <div id="dnScreen">
+                <!--<p>酒店一层平面图</p>-->
+                <!--<p><img src="images/zhoubian/daohang1.png" /></p>-->
+                <!--<p>酒店二层平面图</p>-->
+                <!--<p><img src="images/zhoubian/daohang2.png" /></p>-->
+            </div>
+
+        </div>
+<!--弹出放大图片-->
+        <div class="weui_dialog_confirm" id="nddaohangpopu" style="display: none;">
+            <div class="weui_mask"></div>
+            <div class="weui_dialog" id="imgContain">
+                 <img src="" class="imgWh" id="dnImg"/>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/dnDaohang.js"></script>
+    <script type="text/javascript" src="scripts/e-smart-zoom-jquery.min.js"></script>
+</body>
+
+</html>

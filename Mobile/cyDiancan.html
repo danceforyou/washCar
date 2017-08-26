@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>餐厅点餐</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/aui-flex.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script> <!-- 网站js -->
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</head>
+<style type="text/css">
+    body {
+        background-color: #fff;
+    }
+
+    /* 左边分类样式 */
+    .caibox {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .fangxinginfoview h4 {
+        margin-bottom: 0;
+    }
+
+    .padbottom {
+        padding-bottom: 47px;
+        background-color: #fff;
+    }
+
+    .midcailist .aui-list-view-cell{
+        padding: 8px!important;
+    }
+    .midcailist .numbox{
+        padding: 0!important;
+    }
+
+    .cailist {
+        padding: 0;
+    }
+    .aui-list-view{
+        border-left: 1px solid #c8c7cc;
+    }
+    .caileixing li{
+        background:#f5f5f5;
+        color: #777;
+        cursor: pointer;
+    }
+    .caileixing li.hover{
+        color: #333;
+        background: #fff;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="javascript:history.back();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">餐厅点餐</div>
+        <a class="aui-pull-right drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+    <!-- 餐厅列表 开始 -->
+
+    <!-- 餐厅列表 结束 -->
+    <!-- 选菜开始 -->
+    <div class="aui-content caibox" style="margin-bottom:0;width:100%;overflow:hidden;">
+        <div class="aui-flex-col">
+            <div class="aui-flex-item-3 caibox">
+                <ul class="aui-list-view demo-box aui-border-r caileixing" id="caixi">
+
+                </ul>
+            </div>
+            <div class="aui-flex-item-9 caibox">
+                <ul class="aui-list-view midcailist" id="caipin">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 选菜结束 -->
+    <!-- 操作容器 -->
+    <!-- <div class="padbottom"></div> -->
+    <div class="bottomcaozuo aui-border-t">
+        <span class="f_size18 price">总金额<i id="totalAmount" class="c_red">￥0</i></span>
+        <a class="aui-btn aui-btn-primary fr" onclick="countPrice()">添加完成Settlement</a>
+        <span class="aui-iconfont aui-icon-cart gouwuche_bot fr" id="showActionSheet" style="display: none"><i id="carCount">0</i></span>
+        <!-- 购物车图标 -->
+    </div>
+    <!-- 购物车 开始 -->
+
+    <div id="actionSheet_wrap" style="display: none">
+        <div class="weui_mask_transition " id="mask" style="display: none;"></div>
+        <div class="weui_actionsheet " id="weui_actionsheet">
+            <div class="fangxinginfoview">
+                <h4><img src="images/fang_ico_08.jpg" alt="" />购物车<span id="actionsheet_cancel" class="c_8 fr">关闭</span></h4>
+                <div class="cailist" id="gouwuche">
+                </div>
+            </div>
+            <div class="padbottom"></div>
+        </div>
+    </div>
+
+    <!-- 购物车 结束 -->
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="scripts/cyDiancan.js"></script>
+<script type="text/javascript">
+    /*添加收藏*/
+    function bindCyshoucang(){
+        $(".cyshoucang").unbind("click");
+        $(".cyshoucang").bind("click",function() {
+            if ($(this).find("i").hasClass("aui-icon-favor")) {
+                $(this).find("i").removeClass("aui-icon-favor").addClass("aui-icon-favorfill");
+                $(this).find("em").html("取消");
+                saveCollection(this);
+            } else {
+                $(this).find("i").removeClass("aui-icon-favorfill").addClass("aui-icon-favor");
+                $(this).find("em").html("收藏");
+                deleteCollection(this);
+
+            }
+        });
+    }
+    function deleteCollection(obj){
+        var id = $(obj).attr("cid");
+        var name = $(obj).attr("cname");
+        var price =parseFloat($(obj).attr("cprice"));
+        var url = "/myCollection/deleteMyCollectionInfoFromCy";
+        var successFun = function (data) {
+            var datas = data.bizData;
+
+        }
+        ajaxPostFun(url, {"rantId": rantId,"goodsId":id,"price":price,"type":"cy_dishes" }, successFun, null, "获取菜品信息");
+    }
+    function saveCollection(obj){
+        var id = $(obj).attr("cid");
+        var name = $(obj).attr("cname");
+        var price =parseFloat($(obj).attr("cprice"));
+        var url = "/myCollection/saveMyCollectionInfo";
+        var successFun = function (data) {
+            var datas = data.bizData;
+
+        }
+
+        ajaxPostFun(url, {"rantId": rantId,"goodsId":id,"price":price,"type":"cy_dishes" }, successFun, null, "获取菜品信息");
+    }
+    //数量递减
+    function sub(obj){
+        var id = $(obj).attr("cid");
+        var name = $(obj).attr("cname");
+        var price =parseFloat($(obj).attr("cprice"));
+        var picture = $(obj).attr("cpicture");
+        var num = parseInt($(".num"+id).html());
+        var id = $(obj).attr("cid")
+
+        $(".num"+id).html(parseInt($(".num"+id).html())-1);
+        if($(".num"+id).html() <= 0){
+            $(".num"+id).html(0);
+            $("#li_"+id).remove();
+        }else{
+            $(".num_"+id).html(num-1)
+            $(".price_"+id).html("￥"+(price*(num-1)).toFixed(2));
+            $(".price_"+id).attr("price",(price*(num-1)).toFixed(2));
+        }
+        countPrice();
+    }
+    //购物车数量递减到0时等于删除
+    function cartsub(id){
+        $(".num"+id).html(parseInt($(".num"+id).html())-1);
+        if($(".num"+id).html() == 0){
+            $(".num"+id).parent().parent().parent().remove();
+        }
+    }
+
+    //数量递增
+    function add(obj){
+        var id = $(obj).attr("cid");
+        var name = $(obj).attr("cname");
+        var price =parseFloat($(obj).attr("cprice"));
+        var picture = $(obj).attr("cpicture");
+        var num = parseInt($(".num"+id).html());
+        $(".num"+id).html(parseInt($(".num"+id).html())+1);
+
+        if(num < 1){
+            var html ="";
+            html= "<li class='aui-border-b' id='li_"+id+"'>"
+                    +"  <span class='name'>"+name+"</span>"
+                    +"    <span class='num price_"+id+"' price='"+price+"'>￥"+price+"</span>"
+                    +"   <span class='price' id=''>"
+                    +"       <div class='aui-counter aui-pull-right'>"
+                    +"          <div class='aui-counter-minus'  cname='"+name+"' cid='"+id+"' cpicture='"+picture+"' cprice='"+price+"' onclick='sub(this)'></div>"
+                    +"           <span class='aui-counter-input num_"+id+"'>1</span>"
+                    +"           <div class='aui-counter-plus'  cname='"+name+"' cid='"+id+"' cpicture='"+picture+"' cprice='"+price+"' onclick='add(this)'></div>"
+                    +"      </div>"
+                    +"     </span>"
+                    +" </li>";
+            $("#gouwuche").append(html)
+        }else{
+            $(".num_"+id).html(num+1)
+            $(".price_"+id).html("￥"+(price*(num+1)).toFixed(2));
+            $(".price_"+id).attr("price",(price*(num+1)).toFixed(2));
+        }
+        countPrice();
+    }
+
+    function initCaiDanCount(){
+        var list = $("#gouwuche li");
+        for(var i = 0;i<list.length;i++) {
+            var count = $(list[i]).find(".aui-counter-input").html();
+            var id =  $(list[i]).find(".aui-counter-minus").attr("cid");
+            $(".num"+id).html(count)
+
+        }
+    }
+    function countPrice(){
+        var price = 0;
+        var url = "cyCantingDingdanX.html?";
+        var list = $("#gouwuche li");
+        $("#showActionSheet").empty();
+        var jsonArr =[];
+        var showActionSheet=0;
+        for(var i = 0;i<list.length;i++){
+            //$("#showActionSheet").html("<i>"+list.length+"</i>");
+            if($(list[i]).find("span[price]").attr("price")){
+                var cid = $(list[i]).find(".aui-counter-minus").attr("cid");
+                var count = $(".num_"+cid).html();
+                showActionSheet+=parseInt(count);
+                //  var picture=
+                var jsonObj = {};
+                jsonObj.cid=cid;
+                jsonObj.count = count;
+                //    jsonObj.picture=picture;
+                jsonArr.push(jsonObj)
+                price = (price + parseFloat( $(list[i]).find("span[price]").attr("price"))).toFixed(2);
+                price = parseFloat(price);
+            }
+
+        }
+        if(showActionSheet>0){
+            $("#showActionSheet").html("<i>"+showActionSheet+"</i>");
+        }
+        url+="json="+JSON.stringify(jsonArr)
+        if(list.length>0){
+            $(".aui-btn-primary").attr("href",encodeURI(url));
+        } else{
+            weui.alert("请选择菜品");
+            $(".aui-btn-primary").attr("href","#");
+        }
+
+        //alert(price);
+        $(".c_red").html("￥"+price.toFixed(1));
+    }
+    $(function() {
+        /*选菜类型*/
+        $(".caileixing li").each(function(e) {
+            $(this).click(function() {
+                $(this).addClass("hover");
+                //   $(this).siblings().removeClass("hover");
+            })
+        })
+
+        /*选菜容器高度固定*/
+        var h_bottom = $(window).height() - $("header").height() - $(".bottomcaozuo").height();
+        $(".caibox").css({
+            height: h_bottom + "px"
+        });
+
+
+        $('.weui_actionsheet_menu .weui_actionsheet_cell').click(function() {
+            alert($(this).text());
+            $('#showActionSheet1').val($(this).text());
+            $('#actionsheet_cancel').click();
+        })
+
+
+    })
+</script>
+</body>
+
+</html>

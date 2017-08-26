@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>套餐</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <!-- 网站js -->
+    <!--weiui -->
+    <link rel="stylesheet" href="css/weui.min.css">
+    <script type="text/javascript" src="js/router.min.js"></script>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</head>
+<style type="text/css">
+    body {
+        background-color: #fff;
+    }
+
+
+    /* 套餐列表 */
+
+    .taocanlist {
+        display: table-cell;
+        padding: 0 10px;
+    }
+
+    .taocanlist a {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        overflow: hidden;
+        margin-top: 15px;
+    }
+
+    .taocanlist a img {
+        width: auto;
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .taocanlist a .taocanname {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        display: inline-block;
+        width: 100%;
+        line-height: 2.5;
+        text-indent: 15px;
+        text-align: left;
+        color: #fff;
+        background-image: url(images/jianbianbg.png);
+        background-position: center bottom;
+        background-repeat: repeat-x;
+    }
+
+    .loadmore {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="cyYongcanFangshi.html">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">套餐</div>
+        <a class="aui-pull-right drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+    <!-- 套餐列表开始 -->
+    <div class="aui-content">
+        <ul class="taocanlist">
+            <a href="cyTaocanInfo.html">
+                <img src="images/taocan.jpg">
+                <div class="taocanname">
+                    北欧海鲜浓汤
+                </div>
+            </a>
+            <a href="cyTaocanInfo.html">
+                <img src="images/taocan.jpg">
+                <div class="taocanname">
+                    四季豆培根卷
+                </div>
+            </a>
+            <a href="cyTaocanInfo.html">
+                <img src="images/taocan.jpg">
+                <div class="aui-img-body taocanname">
+                    北欧海鲜浓汤
+                </div>
+            </a>
+            <a href="cyTaocanInfo.html">
+                <img src="images/taocan.jpg">
+                <div class="taocanname">
+                    奶油野菌汤
+                </div>
+            </a>
+            <a href="cyTaocanInfo.html">
+                <img src="images/taocan.jpg">
+                <div class="taocanname">
+                    北欧海鲜浓汤
+                </div>
+            </a>
+            <a href="cyTaocanInfo.html">
+                <img src="images/taocan.jpg">
+                <div class="taocanname">
+                    四季豆培根卷
+                </div>
+            </a>
+            <div class="aui-border loadmore"><a href="#"><i class="aui-iconfont"></i>加载更多Load More</a></div>
+        </ul>
+    </div>
+    <!-- 套餐列表结束 -->
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/cyTaocan.js"></script>
+</body>
+
+</html>

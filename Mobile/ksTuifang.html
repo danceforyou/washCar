@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>快速退房</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
+    <!--weiui -->
+    <link rel="stylesheet" href="css/weui.min.css">
+    <script type="text/javascript" src="js/router.min.js"></script>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <!-- 网站js -->
+</head>
+<style type="text/css">
+/* 操作 */
+
+.lianggeanniu {
+    display: table;
+}
+
+.lianggeanniu a {
+    width: 48%;
+}
+
+.heisebg {
+    background-color: #2c3144;
+    color: #fff;
+}
+
+.fhxinxi dd span {
+    display: inline-block;
+    min-width: 70px;
+    text-align: right;
+}
+
+.fangxinginfoview h4 {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.shuxinglist {
+    padding: 10px 0;
+}
+
+.cailist {
+    padding: 0;
+}
+.leftOne{
+    display:block !important;
+    width: 100%;
+    white-space:nowrap !important;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+}
+.cailist li{
+    overflow: hidden;
+}
+    .marginCent{
+        display:block !important;
+        width: 50%;
+        text-align: left;
+        float: left;
+    }
+    .marginLeft{
+        text-align: right;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+    <div class="viewport">
+        <header class="aui-bar aui-bar-nav">
+            <a class="aui-pull-left" href="index.html">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </a>
+            <div class="aui-title">快速退房 EXPRESS CHECK OUT</div>
+            <a class="aui-pull-right drawer-toggle">
+                <span class="aui-iconfont aui-icon-sort"></span>
+            </a>
+        </header>
+        <!-- 侧边导航开始 -->
+        <div class="drawer-main drawer-default">
+            <nav class="drawer-nav" role="navigation">
+                <!-- 未登录 -->
+                <div id="div_noLogin" class="touxiang">
+                    <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                    <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+                </div>
+                <!-- 登录后 -->
+                <div id="div_okLogin" class="touxiang" style="display:none;">
+                    <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                    <span>jack</span>
+                    <span>黄金会员</span>
+                </div>
+                <ul class="drawer-nav-list">
+                    <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                    <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                    <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                    <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                    <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                    <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                    <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                    <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                    <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                    <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                    <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                    <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- 侧边导航结束 -->
+        <dl class="shuxinglist aui-border-b fhxinxi" style="padding:10px;">
+            <dd id="fh"><span>房号：</span>--</dd>
+            <dd id="zh"><span>手机号：</span>--</dd>
+            <dd id="xfje"><span>消费金额：</span>￥0</dd>
+            <!--<dd id="ye"><span>余额：</span>￥0</dd>-->
+        </dl>
+        <!-- 消费明细 开始 -->
+        <div class="fangxinginfoview martop">
+            <h4><img src="images/fang_ico_08.jpg" alt="" />消费明细 consumption</h4>
+            <div class="cailist aui-border-t aui-border-b" id="xiaofei">
+                <!--<li class="aui-border-b" style="text-align: center;">-->
+                    <!--没有消费信息-->
+                <!--</li>-->
+                <!--
+                <li class="aui-border-b">
+                    帝王蟹<em class="c_8 fr">2016-02-12  11:35</em>
+                </li>
+                -->
+            </div>
+        </div>
+        <!-- 消费明细 结束 -->
+        <!-- 选择发票 -->
+        <ul class="aui-list-view martop">
+            <li class="aui-list-view-cell">
+                <a class="aui-arrow-right yhjsuojin" href="tfFapiao.html" style="text-indent:10px;">
+                发票信息（选填）                    
+                </a>
+            </li>
+        </ul>
+        <!-- 选择发票后出现 发票信息 -->
+        <dl id="fapiaoxinxi" class="shuxinglist aui-border-t aui-border-b martop" style="padding:10px; display: none;">
+            <dd><span id="taitou"></span></dd>
+            <dd><span id="mingxi"></span></dd>
+            <dd><span id="fangshi"></span></dd>
+            <dd><span id="address"></span></dd>
+        </dl>
+        <dl class="shuxinglist martop tips" style="padding:10px;">
+            <dd><b>尊敬的客户您好：</b></dd>
+            <dd>退房申请已经提交，以上是您本次消费的当前账单，稍后服务人员查房完毕后请刷新当前页面查看最新账单。</dd>
+        </dl>
+        <dl class="shuxinglist martop tips" style="padding:10px;">
+            <dd style="color: red"><b>此账单仅供参考，以前台账单为准</b></dd>
+        </dl>
+        <!-- 操作容器 -->
+        <div class="padbottom"></div>
+        <div class="bottomcaozuo aui-border-t lianggeanniu">
+            <a href="javascript:;" class="aui-btn aui-btn-primary fl" id="qingsaokefang">有问题Problem？</a>
+            <a href="javascript:;" class="aui-btn aui-btn-primary heisebg fr" id="zdqr">确认账单Confirm</a>
+        </div>
+
+
+        <!--清扫客房alert-->
+    <div class="weui_dialog_confirm" id="qingsaopopu" style="display: none;">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">账单有问题?</strong></div>
+            <div class="weui_dialog_bd">如有疑问请前往前台再次核对</div>
+            <div class="weui_dialog_ft">
+                <a id="quxioa" href="javascript:;" class="weui_btn_dialog default">取消</a>
+                <a id="ok" href="javascript:;" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('#qingsaokefang').click(function() {
+                $('#qingsaopopu').show();
+            });
+            $('#quxioa').click(function() {
+                //alert('你点击了取消!!!');
+                $('#qingsaopopu').hide();
+            });
+            $('#ok').click(function() {
+                $('#qingsaopopu').hide();
+                window.location.href = "index.html";
+            });
+        })
+    </script>
+    </div>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/ksTuifang.js"></script>
+</body>
+
+</html>

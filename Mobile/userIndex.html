@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>会员中心</title>
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <!-- 网站js -->
+    <!--weiui -->
+    <link rel="stylesheet" href="css/weui.min.css">
+    <script type="text/javascript" src="js/router.min.js"></script>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
+
+    <style>
+    body {
+        background-color: #2c3144;
+    }
+    /* 图标 */
+    
+    .index_menu {
+        margin-top: 0.4em;
+    }
+    
+    .menu_iteam {
+        padding: 1em 0;
+        padding: 1em 0 1.5em 4%;
+        border-bottom: 1px solid #464c60;
+    }
+    
+    .menu_iteam:nth-child(odd) {
+        border-right: 1px solid #464c60;
+    }
+    
+    .menu_iteam span {
+        font-size: 1.2em;
+        color: #ffffff;
+    }
+    
+    .menu_ico {
+        height: 2.4em;
+        width: auto;
+        margin-right: 1em;
+        margin-top: 0.5em;
+    }
+    
+    .menu_iteam i {
+        font-style: normal;
+        font-family: 'Regencie3ea1b70812b42';
+        font-size: 0.5em;
+        display: block;
+        color: #9d9ba7;
+    }
+    
+    .menu_iteam a {
+        display: block;
+    }
+    
+    .menu_warp {
+        display: table;
+        overflow: hidden;
+    }
+    
+    .menu_warp li {
+        width: 50%;
+        float: left;
+    }
+    
+    .menu_warp li:hover {
+        background-color: #2a2f3d;
+    }
+    
+    .menu_pic img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    /* 顶部用户信息 */
+    
+    .usertopinfo {
+        display: table;
+        width: 100%;
+        padding: 1.5em 0;
+        background-color: #2a2f3d;
+        position: relative;
+    }
+    
+    .usertopinfo dd {
+        display: inline-block;
+        width: 100%;
+        color: #fff;
+        text-align: center;
+    }
+    
+    .usertopinfo .touxiangimg {
+        display: block;
+        width: 90px;
+        margin: 0 auto;
+        /*border-radius: 50%;*/
+        /*border: 2px solid #e0b563;*/
+    }
+
+    .usertopinfo .touxiangimg img {
+        width: 100%;
+    }
+    
+    .usertopinfo dd.name {
+        font-size: 1.2em;
+        line-height: 2;
+    }
+    
+    .usertopinfo dd.dengji1 {
+        font-size: 0.8em;
+        color: #9d9ba7;
+    }
+    /* 签到 */
+    
+    .qiandao {
+        position: absolute;
+        top: 15px;
+        right: 0;
+        z-index: 2;
+        width: auto;
+        padding: 0 1.2em;
+        height: 35px;
+        line-height: 35px;
+        color: #fff;
+        background-color: rgba(16, 18, 33, 0.5);
+        border-top-left-radius: 35px;
+        border-bottom-left-radius: 35px;
+    }
+    
+    .qiandao i.aui-iconfont {
+        font-size: 1.2em;
+        padding-right: 5px;
+    }
+        /*20161111*/
+        .menu_iteam em{
+            display: block;
+            width: 25%;
+            float: left;
+        }
+    .menu_iteam span{
+        display: block;
+        width:70%;
+        float: left;
+    }
+    .menu_iteam span i{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    </style>
+</head>
+
+<body ontouchstart="" class="drawer drawer-right">
+    <div class="viewport">
+        <header class="aui-bar aui-bar-nav">
+            <a href="index.html" class="aui-pull-left slide-menu"">
+                <span class="aui-iconfont aui-icon-home"></span>
+            </a>
+            <div class="aui-title">会员中心</div>
+            <a class="aui-pull-right drawer-toggle">
+                <span class="aui-iconfont aui-icon-sort"></span>
+            </a>
+        </header>
+        <!-- 侧边导航开始 -->
+        <div class="drawer-main drawer-default">
+            <nav class="drawer-nav" role="navigation">
+                <!-- 未登录 -->
+                <div id="div_noLogin" class="touxiang">
+                    <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                    <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+                </div>
+                <!-- 登录后 -->
+                <div id="div_okLogin" class="touxiang" style="display:none;">
+                    <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                    <span>jack</span>
+                    <span>黄金会员</span>
+                </div>
+                <ul class="drawer-nav-list">
+                    <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                    <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                    <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                    <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                    <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                    <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                    <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                    <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                    <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                    <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                    <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                    <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- 侧边导航结束 -->
+        <!-- 用户信息 开始 -->
+        <div class="usertopinfo">
+            <span class="touxiangimg">
+                <img id="touxiangimg" src="images/touxiang.png" style="width:85px;border-radius:85px;box-shadow:0px 0px 10px #7E7E7E;" />
+            </span>
+            <dd class="name">--</dd>
+            <dd class="dengji0">--</dd>
+           <!-- <dd class="dengji1">GOLD MEMBER</dd>-->
+            <dd class="dengji0" id="icnum"></dd>
+           <!-- <a href="#" class="qiandao"><i class="aui-iconfont aui-icon-calendar"></i>签到</a>-->
+        </div>
+        <!-- 用户信息 结束 -->
+        <!-- 图标导航 开始-->
+        <div class="index_menu">
+            <ul class="menu_warp">
+                <li class="menu_iteam">
+                    <a href="userZhanghaoGuanli.html"><em><img src="images/usericon1.png" class="menu_ico" alt="" /></em><span>个人信息<i>INFORMATION</i></span></a>
+                </li>
+                <li class="menu_iteam">
+                    <a href="userDingdan.html"><em><img src="images/usericon4.png" class="menu_ico" alt="" /></em><span>我的订单<i>MY ORDER</i></span></a>
+                </li>
+                <li class="menu_iteam">
+                    <a href="userMyJifen.html"><em><img src="images/usericon3.png" class="menu_ico" alt="" /></em><span>我的积分<i>MY POINTS</i></span></a>
+                </li>
+                <li class="menu_iteam">
+                    <a href="userMyYouhuijuan.html"><em><img src="images/usericon7.png" class="menu_ico" alt="" /></em><span>我的优惠券<i>MY COUPONS</i></span></a>
+                </li>
+                <li class="menu_iteam">
+                    <a href="sdJiabinhui.html"><em><img src="images/usericon6.png" class="menu_ico" alt="" /></em><span>VIP卡<i>VIP CARD</i></span></a>
+                </li>
+                <li class="menu_iteam">
+                    <a href="userMyShoucang.html"><em><img src="images/usericon5.png" class="menu_ico" alt="" /></em><span>我的收藏<i>MY FAVOURITE</i></span></a>
+                </li>
+                <li class="menu_iteam">
+                    <a href="grGuanlishouhuo.html"><em><img src="images/usericon8.png" class="menu_ico" alt="" /></em><span>邮寄地址<i>INVOICE MAILING ADDRESS</i></span></a>
+                </li>
+                <li class="menu_iteam">
+                    <a href="shoujihaoUpdate.html"><em><img src="images/usericon2.png" class="menu_ico" alt="" /></em><span>修改手机<i>MODIFICATION</i></span></a>
+                </li>
+              <!--  <li class="menu_iteam">
+                    <a href="userJifenShangcheng.html"><img src="images/usericon2.png" class="menu_ico" alt="" /><span>积分商城<i>MODIFICATION</i></span></a>
+                </li>-->
+
+
+
+
+
+
+            </ul>
+            <!-- 图标导航 结束-->
+        </div>
+    </div>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/userIndex.js"></script>
+</body>
+
+</html>
+<script>
+    $(function () {
+        console.log("酒店会员信息");
+        console.log(MemberInfo);
+        if (!empty(MemberInfo)){
+            $("div .usertopinfo dd").get(0).innerText=MemberInfo.phone;
+            console.log(MemberInfo.photo);
+            if(!empty(MemberInfo.photo)){
+                $("#touxiangimg").attr("src",MemberInfo.photo);
+            }
+            if(MemberInfo.cardTyp=="APP"){
+                $("div .usertopinfo dd").get(1).innerText="网站会员";
+            }else{
+                $("div .usertopinfo dd").get(1).innerText=SmitMemberInfo.cardName+" "+"会员号："+SmitMemberInfo.icnum;
+                $("div .usertopinfo dd").get(2).innerText=SmitMemberInfo.desc;
+            }
+        }
+    });
+</script>

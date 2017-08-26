@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>提交申请</title>
+    <link rel="stylesheet" href="css/drawer.css"><!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="js/layer.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <link rel="stylesheet" href="lib/mobiscroll/mobiscroll.custom-2.13.2.min.css">
+    <link rel="stylesheet" href="lib/mobiscroll/css/mobiscroll.core-2.5.2.css">
+    <link rel="stylesheet" href="lib/mobiscroll/css/mobiscroll.animation-2.5.2.css">
+    <link rel="stylesheet" href="lib/mobiscroll/css/mobiscroll.sense-ui-2.5.1.css">
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.core-2.5.2.js"></script>
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.core-2.5.2-zh.js"></script>
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.datetime-2.5.1.js"></script>
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.datetime-2.5.1-zh.js"></script>
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.select-2.5.1.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <style type="text/css">
+        .fontSty{
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="javascript:history.back();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">提交申请</div>
+        <a class="aui-pull-right  drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+
+    <div class="aui-content ">
+        <div class="aui-form formshurubox">
+            <div class="aui-input-row">
+                <label class="aui-input-addon">车型</label>
+                <span id="cartype" class="fontSty"></span>
+                <!--<input type="text" class="aui-input" id="cartype" disabled="disabled" />-->
+            </div>
+            <div class="aui-input-row">
+                <label class="aui-input-addon">人数</label>
+                <!--
+                <input type="number" step="1" min="1" class="aui-input" placeholder="请输入乘车人数" id="number"/>
+                -->
+                <select name="number" id="number" style="display: none">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="aui-input-row">
+                <label class="aui-input-addon">时间</label>
+                <input type="text" min="new date()" class="aui-input dateiconbg" placeholder="请输入时间" id="date"/>
+            </div>
+            <div class="aui-input-row">
+                <label class="aui-input-addon">地点</label>
+                <input type="text" class="aui-input" placeholder="请输入地点" id="place"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="aui-content auipadleftright">
+        <a class="aui-btn aui-btn-block blackbgbtn martop" onclick="submit()">提交Submit</a>
+    </div>
+
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+</body>
+
+<script>
+    $(function () {
+        id = $.getUrlParam("id");
+        var name = decodeURI($.getUrlParam("name"));
+        if(name)
+        {
+            $("#cartype").text(name);
+        }
+    });
+
+    function submit()
+    {
+        zuchefuwu();
+    }
+
+    function selectDatetime() {
+        var currYear = (new Date()).getFullYear();
+        var opt = {};
+        opt.date = { preset: 'date' };
+        opt.datetime = { preset: 'datetime' };
+        opt.time = { preset: 'time' };
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            lang: 'zh',
+            startYear: currYear - 100, //开始年份
+            endYear: currYear + 0 //结束年份
+        };
+
+        //$("#ApptDate").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+        var optDateTime = $.extend(opt['datetime'], opt['default']);
+        //var optTime = $.extend(opt['time'], opt['default']);
+        $("#date").mobiscroll(optDateTime).datetime(optDateTime);
+        //$("#ApptDate").mobiscroll(optTime).time(optTime);
+    }
+    selectDatetime();
+
+    $(function () {
+        $('#number').mobiscroll().select({
+            headerText:'乘车人数',//头部提示文字
+            theme: 'android-ics',
+            mode: 'scroller', //操作方式【scroller】【clickpick】【mixed】
+            width: 160,//三组滚动框的宽度
+            lang: 'zh',
+            display: 'modal', //显示方【modal】【inline】【bubble】【top】【bottom】
+            showLabel:false,//是否显示labels
+            onSelect: function (valueText) {
+                $('#number').val(valueText);
+            }
+        });
+        $('#number_dummy').attr("style","margin-bottom:0;line-height:15px;border:0px");
+    })
+
+    function zuchefuwu(){
+        var room=RoomInfo.room;
+        var password=RoomInfo.password;
+        var url = "/guestChekInfo/findByRoomAndPass";
+
+        var success=function(data){
+            //校验信息
+            if(!$("#cartype").text())
+            {
+                layer.msg("请输入车型信息");
+                return false;
+            }
+            if( $("#number").val()=="" )
+            {
+                layer.msg("请输入乘车人数");
+                return false;
+            }
+            if($("#date").val()=="")
+            {
+                layer.msg("请输入乘车日期");
+                return false;
+            }
+            if($("#place").val()=="")
+            {
+                layer.msg("请输入乘车地点");
+                return false;
+            }
+            var memid;
+            if(!empty(MemberInfo)){
+                memid=MemberInfo.id;
+            }else{
+                memid=0;
+            }
+            var serviceData = {"id" : id,"name" : $("#cartype").text(),"number" : $("#number").val(), "time":$("#date").val(), "place" : $("#place").val()};
+            var url = "/ServiceStyle/sendService";
+            var jsonData = {"memId":memid, "room":RoomInfo.room, "accnt":RoomInfo.accnt, "hotelCode":RoomInfo.hotelCode, "scode":"382", "stitle":"租车", "remark":JSON.stringify(serviceData)};
+            var success=function(data){
+                weui.Loading.hide();
+                weui.alert("您的服务请求已发送成功，稍后服务人员会联系您！","",function(){
+                    window.location.href="lbFuwu.html";
+                })
+            };
+            weui.Loading.show();
+            ajaxPostFun(url,jsonData,success, null,"提交租车申请");
+        }
+
+        var error=function (){
+            window.location.href="index.html";
+        }
+
+        ajaxPostFun(url,{hotelCode:"capital",room:room,password:password},success, error,"验证码是否失效");
+    }
+</script>
+</html>

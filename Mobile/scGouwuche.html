@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>购物车</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/aui-flex.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script> <!-- 网站js -->
+</head>
+<style type="text/css">
+body {
+    background-color: #fff;
+}
+
+/* 左边分类样式 */
+.caibox {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.fangxinginfoview h4 {
+    margin-bottom: 0;
+}
+
+.padbottom {
+    padding-bottom: 47px;
+    background-color: #fff;
+}
+
+.midcailist .aui-list-view-cell{
+    padding: 8px!important;
+}
+.midcailist .numbox{
+    padding: 0!important;
+}
+
+.cailist {
+    padding: 0;
+}
+/*201611091125*/
+.iconBg{
+    background: #02bc01;
+}
+.weui_cells{
+    margin-top:0px;
+}
+.weui_cells_checkbox{
+    display: inline-block;
+    float: left;
+}
+.cailist li span.name{
+    width: 30%;
+}
+.name,
+.num,
+.price{
+    line-height: 40px;
+}
+.cailist li span.num{
+    width: 15%;
+}
+.cailist li span.price{
+    float: right;
+    margin-right:1em;
+    margin-top: 0.5em;
+}
+.weui_cellBot{
+    padding: 0;
+    
+}
+.weui_cellBot .weui_cell_hd{
+    width: 5em;
+}
+.weui_cellBot .weui_cell_hd .weui_icon_checked{
+    display: inline-block;
+    position: relative;
+    top: 0.5em;
+
+}
+.ym_span{
+    display: inline-block;
+    padding:0.46em 1em;
+    color: #ee7921;
+    cursor: pointer;
+}
+.ym_margin{
+    margin-right: 1em;
+}
+.selectList,
+#SelectOut{
+    display: inline-block;
+    padding:0.6em 1em;
+    cursor: pointer;
+    float: left;
+}
+#SelectOut{
+    padding: 0;
+    height: 34px;
+    line-height: 34px;
+}
+#SelectOut i{
+    position: relative;
+    top: 0.4em;
+}
+#SelectOut i.aui-icon-check{
+    top: 0;
+}
+.selectList i,
+#SelectOut i{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 22px;
+    text-align: center;
+    line-height: 16px;
+    background-color: #02bc01;
+    color: #fff;
+    font-size: 18px;
+    border: 1px solid #02bc01;
+
+}
+.selectList i.check,
+#SelectOut i.check{
+    background-color: #fff;
+    border: 1px solid #c8c7cc;
+}
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+    <div class="viewport">
+        <header class="aui-bar aui-bar-nav">
+            <a class="aui-pull-left" href="javascript:history.back();">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </a>
+            <div class="aui-title">餐厅点餐</div>
+            <a class="aui-pull-right drawer-toggle">
+                <span class="aui-iconfont aui-icon-sort"></span>
+            </a>
+        </header>
+        <!-- 侧边导航开始 -->
+        <div class="drawer-main drawer-default">
+            <nav class="drawer-nav" role="navigation">
+                <!-- 未登录 -->
+                <div class="touxiang">
+                    <a href="login.html" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                    <span><a href="login.html">登录</a><a href="register.html">注册</a></span>
+                </div>
+                <!-- 登录后 -->
+                <div class="touxiang" style="display:none;">
+                    <a href="userCenter.html" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                    <span>jack</span>
+                    <span>黄金会员</span>
+                </div>
+                <ul class="drawer-nav-list">
+                    <li><a href="userIndex.html"><i class="menuicon1"></i>会员中心</a></li>
+                    <li><a href="dfZhitongcheInfo.html"><i class="menuicon2"></i>订房直通车</a></li>
+                    <li><a href="cyYongcanFangshi.html"><i class="menuicon3"></i>餐饮定制</a></li>
+                    <li><a href="kfFuwu.html"><i class="menuicon4"></i>客房服务</a></li>
+                    <li><a href="lbFuwu.html"><i class="menuicon5"></i>礼宾服务</a></li>
+                    <li><a href="kfyanzhu.html"><i class="menuicon6"></i>客房延住</a></li>
+                    <li><a href="ksTuifang.html"><i class="menuicon7"></i>快速退房</a></li>
+                    <li><a href="dnDaohang.html"><i class="menuicon8"></i>店内导航</a></li>
+                    <li><a href="jdList.html"><i class="menuicon9"></i>周边信息</a></li>
+                    <li><a href="sdJiabinhui.html"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                    <li><a href="userJifenShangcheng.html"><i class="menuicon11"></i>积分商城</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- 侧边导航结束 -->
+        <!-- 选菜开始 -->
+        <div class="aui-content caibox" style="margin-bottom:0;width:100%;overflow:hidden;">
+
+
+                <div class="productList">
+                    
+                    <div class="cailist">
+                        
+                        <li class="aui-border-b">
+                            <div class="selectList">
+                                <i class="aui-iconfont check"></i>
+                            </div>
+                            <span class="name">芝士蛋糕</span>
+                            <span class="num">￥28</span>
+                            <span class="price">
+                                <div class="aui-counter aui-pull-right">
+                                    <div class="aui-counter-minus" onclick="cartsub(13);"></div><!-- 参数传id -->
+                                    <span class="aui-counter-input num13">1</span><!-- 参数传id -->
+                                    <div class="aui-counter-plus" onclick="add(13);"></div><!-- 参数传id -->
+                                </div>
+                            </span>
+                        </li>
+                        <li class="aui-border-b">
+                            <div class="selectList">
+                                <i class="aui-iconfont check"></i>
+                            </div>
+                            <span class="name">芝士蛋糕</span>
+                            <span class="num">￥28</span>
+                            <span class="price">
+                                <div class="aui-counter aui-pull-right">
+                                    <div class="aui-counter-minus" onclick="cartsub(14);"></div><!-- 参数传id -->
+                                    <span class="aui-counter-input num14">1</span><!-- 参数传id -->
+                                    <div class="aui-counter-plus" onclick="add(14);"></div><!-- 参数传id -->
+                                </div>
+                            </span>
+                        </li>
+                        <li class="aui-border-b">
+                            <div class="selectList">
+                                <i class="aui-iconfont check"></i>
+                            </div>
+                            <span class="name">芝士蛋糕</span>
+                            <span class="num">￥28</span>
+                            <span class="price">
+                                <div class="aui-counter aui-pull-right">
+                                    <div class="aui-counter-minus" onclick="cartsub(15);"></div><!-- 参数传id -->
+                                    <span class="aui-counter-input num15">1</span><!-- 参数传id -->
+                                    <div class="aui-counter-plus" onclick="add(15);"></div><!-- 参数传id -->
+                                </div>
+                            </span>
+                        </li>
+                    </div>
+                </div>
+                <div class="padbottom"></div>
+            </div>
+
+        <!-- 购物车 结束 -->
+        
+        <!-- 选菜结束 -->
+        <!-- 操作容器 -->
+        <!-- <div class="padbottom"></div> -->
+        <div class="bottomcaozuo aui-border-t">
+            <!-- 全选 -->
+            <div id="SelectOut">
+
+                <i class="aui-iconfont check"></i>
+                全选
+            </div>
+            <span class="ym_span">删除</span>
+            <a href="cyTijiaoDingdan.html" class="aui-btn aui-btn-primary fr">去结算Settlement</a>
+            <span class="price fr ym_margin">总金额<i class="c_red">￥880</i></span>
+            <!-- <span class="aui-iconfont aui-icon-cart gouwuche_bot fr" id="showActionSheet"><i>5</i></span> -->
+            <!-- 购物车图标 -->
+        </div>
+    </div>
+    <script type="text/javascript">
+    /*添加收藏*/
+    $(".cyshoucang").click(function() {
+        if ($(this).find("i").hasClass("aui-icon-favor")) {
+            $(this).find("i").removeClass("aui-icon-favor").addClass("aui-icon-favorfill");
+            $(this).find("em").html("取消");
+        } else {
+            $(this).find("i").removeClass("aui-icon-favorfill").addClass("aui-icon-favor");
+            $(this).find("em").html("收藏");
+        }
+    })
+
+    //数量递减
+    function sub(id){
+        $(".num"+id).html(parseInt($(".num"+id).html())-1);
+        if($(".num"+id).html()<=0){
+            $(".num"+id).html(0);
+        }
+    }
+    //购物车数量递减到0时等于删除
+    function cartsub(id){
+        $(".num"+id).html(parseInt($(".num"+id).html())-1);
+        if($(".num"+id).html() == 0){
+            $(".num"+id).parent().parent().parent().remove();
+        }
+    }
+    //数量递增
+    function add(id){
+        $(".num"+id).html(parseInt($(".num"+id).html())+1);
+    }
+
+    $(function() {
+        /*选中/取消 餐厅*/
+        $(".cantingscr li").each(function(e) {
+            $(this).click(function() {
+                if ($(this).hasClass("hover")) {
+                    $(this).attr("class", "");
+                } else {
+                    $(this).attr("class", "hover");
+                    $(this).siblings().attr("class", "");
+                }
+            })
+        })
+
+        /*选菜类型*/
+        $(".caileixing li").each(function(e) {
+            $(this).click(function() {
+                $(this).addClass("hover");
+                $(this).siblings().removeClass("hover");
+            })
+        })
+
+        /*选菜容器高度固定*/
+        var h_bottom = $(window).height() - $("header").height() - $(".cantingbox").height() - $(".bottomcaozuo").height();
+        $(".caibox").css({
+            height: h_bottom + "px"
+        });
+        $('.weui_actionsheet_menu .weui_actionsheet_cell').click(function() {
+            alert($(this).text());
+            $('#showActionSheet1').val($(this).text());
+            $('#actionsheet_cancel').click();
+        });
+
+        $(".selectList").click(function(){
+            var iChild=$(this).children().attr("class");
+            if (iChild=="aui-iconfont aui-icon-check") {
+                $(this).children().addClass("check");
+                $(this).children().removeClass("aui-icon-check");
+                
+                $("#SelectOut").children().addClass("check");
+                $("#SelectOut").children().removeClass("aui-icon-check");
+            }else{
+                $(this).children().addClass("aui-icon-check");
+                $(this).children().removeClass("check");
+            };
+        });
+        $("#SelectOut").click(function(){
+            var iChild=$(this).children().attr("class");
+            if (iChild=="aui-iconfont aui-icon-check") {
+                $(this).children().addClass("check");
+                $(this).children().removeClass("aui-icon-check");
+                $(".selectList").children().addClass("check");
+                $(".selectList").children().removeClass("aui-icon-check");
+            }else{
+                $(this).children().addClass("aui-icon-check");
+                $(this).children().removeClass("check");
+                
+                $(".selectList").children().addClass("aui-icon-check");
+                $(".selectList").children().removeClass("check");
+            };
+        });
+        $(".ym_span").click(function(){
+            var iChildQ=$("#SelectOut").children().attr("class");
+            if (iChildQ=="aui-iconfont aui-icon-check") {
+                $(".cailist").html("");
+                $("#SelectOut").children().addClass("check");
+                $("#SelectOut").children().removeClass("aui-icon-check");
+            }else{
+                alert("请选择商品");
+            }
+            
+        })
+    })
+    </script>
+</body>
+
+</html>

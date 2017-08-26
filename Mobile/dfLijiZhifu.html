@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>立即支付</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/weui.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <!-- 网站js -->
+</head>
+<style type="text/css">
+    .lineheight {
+        line-height: 40px;
+    }
+    .aui-radio{
+        margin-left: 0;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="javascript:history.back();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">立即支付</div>
+        <a class="aui-pull-right  drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+    <!--中英文-->
+    <div class="formradiolist">
+        <li class="aui-border-b f_size16 lineheight">总金额<i id="orderprice" class="c_red">￥114</i></li>
+        <!--<li class="aui-border-b">-->
+            <!--<label>-->
+                <!--&lt;!&ndash;disabled="disabled" <i class="c_tishi"> class="c_8"&ndash;&gt;-->
+                <!--<input class="aui-radio" name="demo" type="radio" >-->
+                <!--<i>客房挂账</i>（提示：当前账户是否可以使用客房挂账功能）</i></label>-->
+        <!--</li>-->
+        <!--<li class="aui-border-b">-->
+            <!--<label>-->
+                <!--<input class="aui-radio" name="demo" type="radio"> 现金-->
+            <!--</label>-->
+        <!--</li>-->
+        <!--<li class="aui-border-b">-->
+            <!--<label>-->
+                <!--<input class="aui-radio" name="demo" type="radio"> POS-->
+            <!--</label>-->
+        <!--</li>-->
+        <li class="aui-border-b">
+            <label>
+                <input id="AliPay" class="aui-radio" name="demo" type="radio"> 支付宝支付
+            </label>
+        </li>
+        <li class="aui-border-b">
+            <label>
+                <input id="bankpay" class="aui-radio" name="demo" type="radio"> 银联支付
+            </label>
+        </li>
+        <li class="aui-border-b">
+            <label>
+                <input id="wxpay" class="aui-radio" name="demo" type="radio"> 微信支付
+            </label>
+        </li>
+    </div>
+    <div class="aui-content auipadleftright">
+        <a id="pay" class="aui-btn aui-btn-block blackbgbtn martop" href="javascript:pay();">确定</a>
+    </div>
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+</body>
+
+</html>
+<script>
+    var userid = MemberInfo.id;
+    var Request = new Object();
+    Request = getRequest();
+    //获得订单号
+    var orderprice = Request['orderprice'];
+    $("#orderprice").html("￥"+orderprice);
+
+    var pay_orderno = $.getUrlParam("orderNum");//132456789341
+    if (empty(pay_orderno)){
+        location.href = "dfZhitongcheInfo.html";
+    }
+
+    //判断是否是授权回来的outh
+    var outh = $.getUrlParam("outh");
+    if (!empty(outh)){
+        //说明outh不为空，即为授权回来的，则直接微信支付
+        wxzhifu();
+    }
+
+    function getRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    //跳转到支付页面
+    function pay() {
+        if($("#AliPay")[0].checked) {
+            location.href = server+"/AliPay/" + pay_orderno;
+        }else if($("#bankpay")[0].checked) {
+                location.href = server+"/Chinapay/" + pay_orderno;
+        }else if($("#wxpay")[0].checked){
+            layer.msg("微信支付暂未开放");
+//            //查询该用户是否微信授权
+//            var url = server+"/Member/FindById/"+userid;
+//            var successFun = function (data) {
+//                if(empty(data.bizData.openid)){
+//                    //如果该用户没有授权，则进行授权操作
+//                   // wxshouquan();
+//                }else{
+//                    //用户已经授权，直接微信支付
+//                    wxzhifu();
+//                }
+//
+//            }
+//            ajaxPostFun(url, {}, successFun, null, "查询用户是否授权");
+        }else {
+                layer.msg("请选择支付方式");
+                return false;
+            }
+    }
+
+
+    //微信授权
+    function  wxshouquan() {
+        var url = server+"/WechatPay/outh";
+        var successFun = function (data) {
+        }
+        ajaxPostFun(url, {userid:userid}, successFun, null, "微信授权");
+    }
+
+    //微信支付
+    function wxzhifu(){
+        var url = "/WechatPay/"+pay_orderno;
+        ajaxPostFun(url, {userid:userid}, function(res) {
+            var _data = res.bizData;
+            function onBridgeReady(){
+                WeixinJSBridge.invoke(
+                        'getBrandWCPayRequest', {
+                            "appId":_data.appId,     //公众号名称，由商户传入
+                            "timeStamp":_data.timeStamp,         //时间戳，自1970年以来的秒数
+                            "nonceStr":_data.nonceStr, //随机串
+                            "package" :_data.package,
+                            "signType":_data.signType,         //微信签名方式：
+                            "paySign": _data.paySign //微信签名
+                        },
+                        function(ress){
+                            alert( JSON.stringify(ress));
+//                            if(ress.err_msg == "get_brand_wcpay_request:ok" ) {
+//                                layer.msg("支付成功！",{time:2000});
+//                                window.location.href = "buyGoodsChenggong.html?orderid="+orderid;
+//                            }else if(ress.err_msg == "get_brand_wcpay_request:cancel"){
+//                                layer.msg("支付取消！",{time:2000});
+//                            }else {
+//                                layer.msg("未知错误！",{time:2000});
+//                            }    // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                        }
+                );
+            }
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                    document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                }
+            }else{
+                onBridgeReady();
+            }
+        }, null, "微信支付获取package包");
+
+    }
+
+
+
+
+</script>

@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>商品详情</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/responsiveslides.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>    <!-- 网站js -->
+    <script type="text/javascript" src="js/responsiveslides2.min.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</head>
+<style type="text/css">
+    .lineheight {
+        line-height: 40px;
+    }
+
+    .fangxinginfoview h4 {
+        margin-bottom: 0;
+    }
+
+    .padbottom {
+        padding-bottom: 47px;
+    }
+
+    .cailist {
+        padding: 0;
+    }
+
+
+    /* 轮播 */
+    .callbacks_tabs li,
+    .callbacks_tabs li a {
+        background: none!important;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="javascript:history.back();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">商品详情</div>
+        <a class="aui-pull-right drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+    <!--套餐图开始-->
+    <div class="callbacks_container">
+        <ul class="rslides" id="slider">
+            <li>
+                <a href="#"><img src="images/taocan.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/taocan.jpg" alt=""></a>
+            </li>
+        </ul>
+        <h3 class="lunbotxt">朗琨特干牛肉干  原味</h3>
+    </div>
+    <!--套餐图结束-->
+    <!-- 详情开始 -->
+    <div class="aui-content">
+        <ul class="aui-list-view">
+            <li class="aui-list-view-cell">
+                <b class="f_size16 lineheight c_red">￥30/份</b>
+                    <span class="fr">
+
+                    <!-- 未收藏 -->
+                    <a href="#" class="shoucang fl">
+                        <i class="aui-iconfont aui-icon-favor"></i>
+                        <em>收藏</em>
+                    </a>
+                    <div class="aui-btn aui-btn-primary"><a href="javascript:;"><span class="aui-iconfont aui-icon-cart"></span>加入购物车Add</a>
+                    </div>
+
+                    </span>
+            </li>
+        </ul>
+    </div>
+    <div class="fangxinginfoview">
+        <h4><img src="images/fang_ico_09.jpg" alt="" />商品信息</h4>
+        <div class="arcview">
+            <p>原味：刚入口有一股很浓的油腥味，很清淡，口感清脆非常香，比较符合南方人的口味，清香脆。盐焗味：经过调味的果仁口感更好，更加香脆，淡淡的咸味，更符合北方人的口味，咸香。原味：刚入口有一股很浓的油腥味，很清淡，口感清脆非常香，比较符合南方人的口味，清香脆。盐焗味：经过调味的果仁口感更好，更加香脆，淡淡的咸味，更符合北方人的口味，咸香。</p>
+        </div>
+    </div>
+    <!-- 详情结束 -->
+    <!-- 操作容器 -->
+    <div class="padbottom"></div>
+    <!-- 无视此行 -->
+    <div class="bottomcaozuo aui-border-t">
+        <span class="f_size18 price">总金额<i class="c_red">￥880</i></span>
+        <a href="cyTijiaoDingdan.html" class="aui-btn aui-btn-primary fr">去结算Settlement</a>
+        <span class="aui-iconfont aui-icon-cart gouwuche_bot fr" id="showActionSheet"><i>5</i></span>
+        <!-- 购物车图标 -->
+    </div>
+    <!-- 购物车 开始 -->
+    <div id="actionSheet_wrap">
+        <div class="weui_mask_transition " id="mask" style="display: none;"></div>
+        <div class="weui_actionsheet " id="weui_actionsheet">
+            <div class="fangxinginfoview">
+                <h4><img src="images/fang_ico_08.jpg" alt="" />购物车<span id="actionsheet_cancel" class="c_8 fr">关闭</span></h4>
+                <div class="cailist">
+                    <li class="aui-border-b">
+                        <span class="name">冰激凌</span>
+                        <span class="num">￥28</span>
+                        <span class="price">
+                                <div class="aui-counter aui-pull-right">
+                                    <div class="aui-counter-minus" onclick="cartsub(70);"></div> <!-- 参数传id -->
+                                    <span class="aui-counter-input num70">1</span><!-- 参数传id -->
+                                    <div class="aui-counter-plus" onclick="add(70);"></div><!-- 参数传id -->
+                                </div>
+                            </span>
+                    </li>
+                    <li class="aui-border-b">
+                        <span class="name">牛肉面</span>
+                        <span class="num">￥28</span>
+                        <span class="price">
+                                <div class="aui-counter aui-pull-right">
+                                    <div class="aui-counter-minus" onclick="cartsub(11);"></div><!-- 参数传id -->
+                                    <span class="aui-counter-input num11">1</span><!-- 参数传id -->
+                                    <div class="aui-counter-plus" onclick="add(11);"></div><!-- 参数传id -->
+                                </div>
+                            </span>
+                    </li>
+                    <li class="aui-border-b">
+                        <span class="name">提拉米苏</span>
+                        <span class="num">￥28</span>
+                        <span class="price">
+                                <div class="aui-counter aui-pull-right">
+                                    <div class="aui-counter-minus" onclick="cartsub(22);"></div><!-- 参数传id -->
+                                    <span class="aui-counter-input num22">1</span><!-- 参数传id -->
+                                    <div class="aui-counter-plus" onclick="add(22);"></div><!-- 参数传id -->
+                                </div>
+                            </span>
+                    </li>
+                    <li class="aui-border-b">
+                        <span class="name">芝士蛋糕</span>
+                        <span class="num">￥28</span>
+                        <span class="price">
+                                <div class="aui-counter aui-pull-right">
+                                    <div class="aui-counter-minus" onclick="cartsub(33);"></div><!-- 参数传id -->
+                                    <span class="aui-counter-input num33">1</span><!-- 参数传id -->
+                                    <div class="aui-counter-plus" onclick="add(33);"></div><!-- 参数传id -->
+                                </div>
+                            </span>
+                    </li>
+                </div>
+            </div>
+            <div class="padbottom"></div>
+        </div>
+    </div>
+    <!-- 购物车 结束 -->
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/jpInfo.js"></script>
+<script type="text/javascript">
+    //数量递减
+    function sub(id){
+        $(".num"+id).html(parseInt($(".num"+id).html())-1);
+        if($(".num"+id).html()<=1){
+            $(".num"+id).html(1);
+        }
+    }
+    //购物车数量递减到0时等于删除
+    function cartsub(id){
+        $(".num"+id).html(parseInt($(".num"+id).html())-1);
+        if($(".num"+id).html() == 0){
+            $(".num"+id).parent().parent().parent().remove();
+        }
+    }
+    //数量递增
+    function add(id){
+        $(".num"+id).html(parseInt($(".num"+id).html())+1);
+    }
+
+    $(function() {
+        // Slideshow
+        $("#slider").responsiveSlides({
+            auto: true,
+            pager: false,
+            nav: false,
+            speed: 500,
+            timeout: 4000,
+            pager: true,
+            pauseControls: true,
+            namespace: "callbacks"
+        });
+
+        /*添加收藏*/
+        $(".shoucang").click(function() {
+            if ($(this).find("i").hasClass("aui-icon-favor")) {
+                $(this).find("i").removeClass("aui-icon-favor").addClass("aui-icon-favorfill");
+                $(this).find("em").html("取消");
+            } else {
+                $(this).find("i").removeClass("aui-icon-favorfill").addClass("aui-icon-favor");
+                $(this).find("em").html("收藏");
+            }
+        })
+
+
+        /*弹出购物车*/
+        $('#showActionSheet').click(function() {
+            var mask = $('#mask');
+            var weuiActionsheet = $('#weui_actionsheet');
+            weuiActionsheet.addClass('weui_actionsheet_toggle');
+            mask.show().addClass('weui_fade_toggle').click(function() {
+                hideActionSheet(weuiActionsheet, mask);
+            });
+            $('#actionsheet_cancel').click(function() {
+                hideActionSheet(weuiActionsheet, mask);
+            });
+            weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
+
+            function hideActionSheet(weuiActionsheet, mask) {
+                weuiActionsheet.removeClass('weui_actionsheet_toggle');
+                mask.removeClass('weui_fade_toggle');
+                weuiActionsheet.on('transitionend', function() {
+                    mask.hide();
+                }).on('webkitTransitionEnd',
+                        function() {
+                            mask.hide();
+                        })
+            }
+        });
+        $('.weui_actionsheet_menu .weui_actionsheet_cell').click(function() {
+            alert($(this).text());
+            $('#showActionSheet1').val($(this).text());
+            $('#actionsheet_cancel').click();
+        })
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>订房直通车</title>
+    <link rel="stylesheet" href="css/drawer.css"><!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="js/iscroll.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script><!-- menu -->
+    <!--weiui -->
+    <link rel="stylesheet" href="css/weui.min.css">
+    <script type="text/javascript" src="js/router.min.js"></script>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
+
+    <link rel="stylesheet" href="lib/mobiscroll/mobiscroll.custom-2.13.2.min.css">
+    <link rel="stylesheet" href="lib/mobiscroll/css/mobiscroll.android-ics-2.5.2.css">
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.core-2.5.2.js"></script>
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.core-2.5.2-zh.js"></script>
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.datetime-2.5.1.js"></script>
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.datetime-2.5.1-zh.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</head>
+<style type="text/css">
+    .dateiconbg{
+        text-align: left;
+    }
+    .smf{
+        font-size: x-small;
+    }
+    .fangxing .aui-list-view .title{
+        width: 60%;
+        display: inline-block;
+    }
+    .xiangqing{
+        margin-top: -55px;
+    }
+
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="index.html">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">订房直通车 DIREOT ROOM BOOKING</div>
+        <a class="aui-pull-right  drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+
+
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+
+    <div class="aui-content ">
+        <form id="frmSearch" action="">
+            <div class="aui-form formshurubox">
+                <div class="aui-input-row">
+                    <label class="aui-input-addon">入住日期</label>
+                    <input id="arrDate" min="new Date()" name="arrDate" type="text" class="aui-input dateiconbg" placeholder="请选择入住时间" onchange="changetime()"/>
+                </div>
+                <div class="aui-input-row">
+                    <label class="aui-input-addon">离开日期</label>
+                    <input id="depDate" min="new Date()" name="depDate" type="text" class="aui-input dateiconbg" placeholder="请选择离开时间" onchange="comparetime()"/>
+                </div>
+               <!-- <div class="aui-input-row">
+                    <label class="aui-input-addon">房间数量</label>
+                    <input id="roomNums" min="1" name="roomNums" type="number" class="aui-input" placeholder="请选择房间数量"/>
+                </div>-->
+            </div>
+        </form>
+    </div>
+
+    <div class="aui-content auipadleftright">
+        <a class="aui-btn aui-btn-block blackbgbtn martop btnSearch" id="btnSearch">查询</a>
+    </div>
+
+    <div class="fangxing">
+        <ul class="aui-list-view ">
+
+        </ul>
+         <div class="clearfix"> </div>
+        <!--
+        <div class="aui-border loadmore"><a href="javascript:;"><i class="aui-iconfont"></i>加载更多Load More</a></div>
+        -->
+    </div>
+
+</div>
+</body>
+
+</html>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script  charset='utf-8'  type="text/javascript" src="scripts/dfZhitongcheInfo.js"  ></script>
+
+<script>
+    //选择时间
+    function selectDatetime() {
+        var currYear = (new Date()).getFullYear();
+        var opt = {};
+        opt.date = { preset: 'date' };
+        opt.datetime = { preset: 'datetime' };
+        opt.time = { preset: 'time' };
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            lang: 'zh',
+            startYear: currYear -0, //开始年份
+            endYear: currYear + 100 //结束年份
+        };
+
+        //$("#ApptDate").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+        var optDateTime = $.extend(opt['datetime'], opt['default']);
+        //var optTime = $.extend(opt['time'], opt['default']);
+        $("#arrDate").mobiscroll(optDateTime).date(optDateTime);
+        $("#depDate").mobiscroll(optDateTime).date(optDateTime);
+        //$("#ApptDate").mobiscroll(optTime).time(optTime);
+    }
+   selectDatetime();
+    function changetime(){
+        var time=$("#arrDate").val();
+        addDate(time,1);
+    }
+//入住时间和离开时间保持联动
+    function addDate(date,days){
+        var d=date;
+        str = d.replace(/-/g,"/");
+        var time = new Date(str );
+        time.setDate(time.getDate()+days);
+        var m=time.getMonth()+1;
+        var leavetime=time.getFullYear()+'-'+m+'-'+time.getDate();
+//        alert(typeof leavetime == "string")
+        $("#depDate").val(leavetime);
+        localStorage.setItem('x',leavetime);
+    }
+//比较离开和入住时间，若选择的离开时间小于入住时间，默认恢复比选择的入住时间大于一天
+    function comparetime(){
+        var renttime= $("#arrDate").val();//字符串
+        var leavetime=$("#depDate").val();
+        if((new Date(renttime.replace(/-/g,"\/"))) > (new Date(leavetime.replace(/-/g,"\/")))){
+            $("#depDate").val(localStorage.getItem('x'));
+        }
+    }
+</script>

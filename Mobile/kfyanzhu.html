@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">	<title>客房延住</title>
+	<link rel="stylesheet" href="css/drawer.css">
+	<!-- menu -->
+	<link rel="stylesheet" href="css/aui.css">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/qr_base.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/iscroll.js"></script>
+	<!-- menu -->
+	<script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+	<!-- menu -->
+	<script type="text/javascript" src="js/js.js"></script>
+	<!-- 网站js -->
+	<script type="text/javascript" src="js/weui_example.js"></script>
+
+	<link rel="stylesheet" href="lib/mobiscroll/mobiscroll.custom-2.13.2.min.css">
+	<link rel="stylesheet" href="lib/mobiscroll/css/mobiscroll.core-2.5.2.css">
+	<link rel="stylesheet" href="lib/mobiscroll/css/mobiscroll.animation-2.5.2.css">
+	<script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.core-2.5.2.js"></script>
+	<script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.core-2.5.2-zh.js"></script>
+	<script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.datetime-2.5.1.js"></script>
+	<script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.datetime-2.5.1-yanzhu.js"></script>
+	<script type="text/javascript" src="scripts/index.js"></script>
+</head>
+<style type="text/css">
+	.dateiconbg{
+		text-align: left;
+	}
+	.dwwl4{
+		display: none !important;
+	}
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+	<header class="aui-bar aui-bar-nav">
+		<a class="aui-pull-left" href="index.html">
+			<span class="aui-iconfont aui-icon-left"></span>
+		</a>
+		<div class="aui-title">客房延住 STAY EXTENSION</div>
+		<a class="aui-pull-right  drawer-toggle">
+			<span class="aui-iconfont aui-icon-sort"></span>
+		</a>
+	</header>
+	<!-- 侧边导航开始 -->
+	<div class="drawer-main drawer-default">
+		<nav class="drawer-nav" role="navigation">
+			<!-- 未登录 -->
+			<div id="div_noLogin" class="touxiang">
+				<a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+				<span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+			</div>
+			<!-- 登录后 -->
+			<div id="div_okLogin" class="touxiang" style="display:none;">
+				<a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+				<span>jack</span>
+				<span>黄金会员</span>
+			</div>
+			<ul class="drawer-nav-list">
+				<li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+				<li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+				<li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+				<li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+				<li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+				<li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+				<li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+				<li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+				<li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+				<li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+				<li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+				<li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+			</ul>
+		</nav>
+	</div>
+	<!-- 侧边导航结束 -->
+	<dl class="shuxinglist tips">
+		<dd><b>尊敬的宾客您好：</b></dd>
+		<dd>您正在申请客房延住，提交成功后会有工作人员联系您</dd>
+	</dl>
+	<!--<div class="formradiolist martop aui-border-b aui-border-t">
+		<li class="aui-border-b">
+			<label>
+				<input class="aui-radio" name="demo" type="radio"> 自助退房
+				<i class="c_tishi">（您也可以直接到前台办理退房手续）</i></label>
+		</li>
+		<li>
+			<label>
+				<input class="aui-radio" name="demo" type="radio"> 延期退房
+			</label>
+		</li>
+	</div>-->
+	<div class="aui-content martop">
+		<div class="aui-form formshurubox">
+			<div class="aui-input-row">
+				<label class="aui-input-addon">离店日期</label>
+				<input type="text" min="new Date()" class="aui-input dateiconbg" placeholder="请选择离开日期" id="levTime" />
+			</div>
+		</div>
+	</div>
+	<div class="aui-content auipadleftright" id="kfyzSubmit">
+		<a class="aui-btn aui-btn-block blackbgbtn martop" href="#">提交Submit</a>
+	</div>
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		selectDatetime();
+	})
+
+	function selectDatetime() {
+		var currYear = (new Date()).getFullYear();
+		var opt = {};
+		opt.date = { preset: 'date' };
+		opt.datetime = { preset: 'datetime' };
+		opt.time = { preset: 'time' };
+		opt.default = {
+			theme: 'android-ics light', //皮肤样式
+			display: 'modal', //显示方式
+			mode: 'scroller', //日期选择模式
+			lang: 'zh',
+			startYear: currYear - 0, //开始年份
+			endYear: currYear + 0 //结束年份
+		};
+		var optDateTime = $.extend(opt['datetime'], opt['default']);
+		$("#levTime").mobiscroll(optDateTime).datetime(optDateTime);
+	}
+
+	$("#kfyzSubmit").click(function(){
+		kefangyanzhu();
+	})
+
+	//用来判断房间验证码是否失效
+	function kefangyanzhu(){
+		var room=RoomInfo.room;
+		var password=RoomInfo.password;
+		var url = "/guestChekInfo/findByRoomAndPass";
+
+		var success=function(data){
+			var bizData = data.bizData;
+			var Roomstatus=bizData.status;
+			if(Roomstatus== 1){//1为在店状态，即可发送请求
+				var dtime=new Date();
+				var nowtime=dtime.toLocaleDateString();
+
+				var levTime=$("#levTime").val();
+				if(levTime==""){
+					weui.alert("请选择离店时间");
+					return;
+				}
+
+				//判断离店时间必须大于当前时间
+//
+//		var lev = levTime.split("-");
+//		var levtime = new Date(lev[0], lev[1], lev[2]);
+//		var levtimes = levtime.getTime();
+//
+//		var now = nowtime.split("/");
+//		var nowdate = new Date(now[0], now[1], now[2]);
+//		var nowdates = nowdate.getTime();
+//
+//		if (nowdates >= levtimes) {
+//
+//			weui.alert('离店时间不能小于当前时间');
+//			return false;
+//		}
+
+				var hoteCode=RoomInfo.hotelCode;
+				var room=RoomInfo.room;
+				var accnt=RoomInfo.accnt;
+				var memId;
+				if(!empty(MemberInfo)){
+					memId=MemberInfo.id;
+				}else{
+					memId=0;
+				}
+				var url="/ServiceStyle/sendService";
+				var data={hotelCode:hoteCode,room:room,accnt:accnt,scode:"381",stitle:"客房延住",stime:nowtime,remark:levTime,memId:memId};
+				var success=function(data){
+					if(data.rtnCode=="0000000"){
+						weui.alert("您的服务请求已发送成功，稍后服务人员会联系您！","",function(){
+							window.location.href="index.html";
+						})
+					}
+				};
+				ajaxPostFun(url,data,success,"","客房延住");
+			}else {
+				window.location.href="index.html";
+			}
+		}
+
+		var error=function (){
+			window.location.href="index.html";
+		}
+
+		ajaxPostFun(url,{hotelCode:"capital",room:room,password:password},success, error,"验证码是否失效");
+	}
+
+
+
+	function codeCheckOut(){
+		var room=RoomInfo.room;
+		var password=RoomInfo.password;
+		var url = "/guestChekInfo/findByRoomAndPass";
+		var success=function(data){
+			var bizData = data.bizData;
+			var Roomstatus=bizData.status;
+			if(Roomstatus== 1){//1为在店状态，即可发送请求
+				var dtime=new Date();
+				var nowtime=dtime.toLocaleDateString();
+
+				var levTime=$("#levTime").val();
+				if(levTime==""){
+					weui.alert("请选择离店时间");
+					return;
+				}
+
+				//判断离店时间必须大于当前时间
+//
+//		var lev = levTime.split("-");
+//		var levtime = new Date(lev[0], lev[1], lev[2]);
+//		var levtimes = levtime.getTime();
+//
+//		var now = nowtime.split("/");
+//		var nowdate = new Date(now[0], now[1], now[2]);
+//		var nowdates = nowdate.getTime();
+//
+//		if (nowdates >= levtimes) {
+//
+//			weui.alert('离店时间不能小于当前时间');
+//			return false;
+//		}
+
+				var hoteCode=RoomInfo.hotelCode;
+				var room=RoomInfo.room;
+				var accnt=RoomInfo.accnt;
+				var memId;
+				if(!empty(MemberInfo)){
+					memId=MemberInfo.id;
+				}else{
+					memId=0;
+				}
+				var url="/ServiceStyle/sendService";
+				var data={hotelCode:hoteCode,room:room,accnt:accnt,scode:"381",stitle:"客房延住",stime:nowtime,remark:levTime,memId:memId};
+				var success=function(data){
+					if(data.rtnCode=="0000000"){
+						weui.alert("您的服务请求已发送成功，稍后服务人员会联系您！","",function(){
+							window.location.href="index.html";
+						})
+					}
+				};
+				ajaxPostFun(url,data,success,"","客房延住");
+			}else {
+				window.location.href="index.html";
+			}
+		}
+		ajaxPostFun(url,{hotelCode:"capital",room:room,password:password},success, null,"退房成功以后验证码失效");
+	}
+</script>
+</body>
+
+</html>

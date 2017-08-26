@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>提交订单</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <!-- 网站js -->
+    <!--weiui -->
+    <link rel="stylesheet" href="css/weui.min.css">
+    <script type="text/javascript" src="js/router.min.js"></script>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+
+    <link rel="stylesheet" href="lib/mobiscroll/mobiscroll.custom-2.13.2.min.css">
+    <link rel="stylesheet" href="lib/mobiscroll/css/mobiscroll.core-2.5.2.css">
+    <link rel="stylesheet" href="lib/mobiscroll/css/mobiscroll.animation-2.5.2.css">
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.core-2.5.2.js"></script>
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.core-2.5.2-zh.js"></script>
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.datetime-2.5.1.js"></script>
+    <script type="text/javascript" src="lib/mobiscroll/js/mobiscroll.datetime-2.5.1-zh.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="lib/layer/2.1/layer.js"></script><!-- 网站js -->
+</head>
+<style type="text/css">
+    .cantingname {
+        margin-bottom: 15px;
+        hetght:60px;
+    }
+
+    .yhjsuojin {
+        text-indent: 10px;
+    }
+    .img{
+        width: 60px;
+        height: 60px;
+        border: 1px solid #e5e5e5;
+    }
+    .cailist li span.price{
+        width: 25%;
+    }
+    .aui-btn-primary{
+        width: 100%;
+    }
+    .diancan{
+        display: inline-block;
+        position: absolute;
+        padding: 0.2em 0.5em;
+        top: 4.4em;
+        width: auto !important;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="javascript:history.back();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">确认订单</div>
+        <a class="aui-pull-right drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+    <dl class="shuxinglist cantingname aui-border-b">
+        <dd id="hyName"></dd>
+        <dd id="hyTel"></dd>
+    </dl>
+    <div class="aui-content">
+        <div class="aui-form formshurubox">
+            <div class="aui-input-row">
+                <label class="aui-input-addon">用餐时间:</label>
+                <span id="useTime" ></span>
+            </div>
+            <div class="aui-input-row">
+                <label class="aui-input-addon">用餐人数:</label>
+                <span id="peoplenumber" ></span>
+            </div>
+            <div class="aui-input-row">
+                <label class="aui-input-addon">订&nbsp;&nbsp;餐&nbsp;&nbsp;人:</label>
+                <span id="orderpeopler" ></span>
+            </div>
+            <div class="aui-input-row">
+                <label class="aui-input-addon">手&nbsp;&nbsp;机&nbsp;&nbsp;号:</label>
+                <span id="peplPhone"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 餐厅点餐菜单列表开始 -->
+   <div class="cailist aui-border-t aui-border-b">
+        <div id="disList">
+
+        </div>
+        <span class="zongjia ar f_size16" style="display:none">菜品信息<i class="c_red" id="canpin"></i></span><!-- 预存菜品信息字符串 -->
+        <span class="zongjia ar f_size16">菜品总额<i class="c_red" id="cptotal"></i></span>
+        <span class="zongjia ar f_size16" >服务费<i class="c_red" id="fuwufei"></i></span>
+
+       <span class="zongjia ar f_size16" style="display: none" >菜品预定费<i class="c_red" id="earnestMoney"></i></span>
+       <span class="zongjia ar f_size16" style="display: none" >菜品预定费比例<i class="c_red" id="earnestRatio"></i></span>
+       <span class="zongjia ar f_size16" >预定金额<i class="c_red" id="ydmoney"></i></span>
+       <span class="zongjia ar f_size16" >待付金额<i class="c_red" id="dfmoney"></i></span>
+       <span class="zongjia ar f_size16">总金额<i class="c_red">￥</i>
+            <i class="c_red" id="count"></i>
+            <small id="bili">(含<small id = "fwRatio"></small>%服务费)</small>
+       </span>
+    </div>
+    <!-- 餐厅点餐菜单列表结束 -->
+
+    <!-- 操作容器 -->
+    <div class="padbottom"></div>
+    <div class="bottomcaozuo aui-border-t">
+        <a class="aui-btn aui-btn-primary fr" id="submitdd">提交订单Submit</a>
+    </div>
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/cyTijiaoDingdanX.js"></script>
+<script type="text/javascript">
+    var orderPrice;
+    var sumpri;//含服务费的价格
+    var rantId; //餐厅id；
+
+
+    $(function (){
+        //通过session获取预定餐厅信息
+        var result=localStorage.getItem("rantInfo");
+        var data=JSON.parse(result);
+        //alert(JSON.stringify(data));
+        rantId = data.rantId;
+         $("#hyName").html("餐厅名称:"+data.hyName);
+         $("#hyTel").html(data.hyTel);
+         $("#useTime").html(data.useTime);
+         $("#peoplenumber").html(data.peoplenumber);
+         $("#orderpeopler").html(data.orderpeopler);
+         $("#peplPhone").html(data.peplPhone);
+
+
+        var json = JSON.parse($.getUrlParam("json"));
+        saveCollection($.getUrlParam("json"));
+        var ids = [];
+        var cyJson = {};
+        for (var i = 0; i <json.length; i++){
+            var cid = json[i].cid;
+            ids.push(json[i].cid);
+            cyJson["" + cid + ""] = json[i].cid.count;
+        }
+    });
+
+    function saveCollection(json){
+        var url = "/CyDishEntity/queryOrderPriceByDish";
+        var successFun = function(data){
+            var datas = data.bizData;
+            var html = "";
+            var sumPrice = 0;
+
+            charge(datas);//查询服务费比例
+            coverCharge();//查询菜品预定费比例
+        };
+       ajaxPostFun(url, {"rantId": rantId, "json": json}, successFun, null, "获取菜品信息");
+    }
+
+    function charge(datas){
+        var serurl="/System/SerCharge/findBySerStatus";
+        var ratio;
+        var accAdds;
+        var success = function (data) {
+            var canpin = "";
+            if(data.bizData.length>0){
+                ratio=data.bizData[0].ratio;
+                var html = "";
+                var sumPrice = 0;
+                var servicePrice=0;
+                for (var i = 0; i < datas.length; i++) {
+                    var dis = datas[i];
+                    html += "<li class='aui-border-b'>"
+                            + " <span class='name spanname'>"
+                            + dis.name + "</span>"
+                            + " <span class='num'>x" + dis.count + "</span>"
+                            + "  <span class='price c_red'>￥" + dis.sum + "</span>"
+                            + "</li>";
+                    canpin = canpin + dis.name + "*" + dis.count + "=" + dis.sum + ",";//菜品信息拼接字符串
+                    sumPrice += dis.sum;
+                    $("#cptotal").html("￥" + sumPrice.toFixed(1));
+                }
+                servicePrice=sumPrice*ratio/100;
+                var accDivs=accDiv(ratio,100);
+                var accMuls=accMul(accDivs,sumPrice);
+                sumpri=accAdd(accMuls,sumPrice);
+                orderPrice = sumpri;
+                $("#count").html(sumpri.toFixed(1));
+                $("#fuwufei").html("￥" + servicePrice.toFixed(1));
+                $("#fwRatio").html(ratio);
+                $("#amount").html(sumpri.toFixed(1));
+                $("#disList").append(html);
+            }else{
+                var html = "";
+                var sumPrice = 0;
+                for (var i = 0; i < datas.length; i++) {
+                    var dis = datas[i];
+                    html += "<li class='aui-border-b'>"
+                            + " <span class='name spanname'>"
+                            + dis.name + "</span>"
+                            + " <span class='num'>x" + dis.count + "</span>"
+                            + "  <span class='price c_red'>￥" + dis.sum + "</span>"
+                            + "</li>";
+                    canpin = canpin + dis.name + "*" + dis.count + "=" + dis.sum + ",";//菜品信息拼接字符串
+                    sumPrice += dis.sum;
+                }
+                orderPrice = sumPrice
+                $("#count").html("￥" + sumPrice);
+                $("#amount").html(sumPrice);
+                $("#disList").append(html);
+
+            }
+            canpin = canpin.substring(0,canpin.length-1);
+            $("#canpin").html(canpin);
+        }
+        ajaxPostFun(serurl,{},success,null,"查询服务费")
+
+    }
+
+    function coverCharge(){
+        var serurl = "/System/SerCharge/findRatioBySerStatusAndType";
+        var ratio;
+        var success = function (data) {
+            ratio = data.bizData;
+            var sumprice = $("#cptotal").text().substring(1);; //菜品总金额
+            $("#earnestRatio").html(ratio); //存放菜品预定费比例
+            $("#earnestMoney").html(sumprice*ratio/100); //存放预定费金额
+
+            //处理获取不到sumprice，出现NaN问题
+            if(null==sumprice||sumprice == ""){
+                coverCharge();
+            }else{
+                var cpearnest = sumprice*ratio/100;   //菜品预定费
+                var servicePrice = $("#fuwufei").text().substring(1);//获取服务费
+                var earnest = parseFloat(cpearnest) + parseFloat(servicePrice);
+                $("#ydmoney").html("￥" + earnest.toFixed(1));
+                var surplus = parseFloat(sumprice) + parseFloat(servicePrice) - earnest;
+                $("#dfmoney").html("￥" + surplus.toFixed(1));
+            }
+
+        }
+        ajaxPostFun(serurl,"",success,null,"查询菜品预付费")
+    }
+
+
+
+    //说明：javascript的加法结果会有误差，在两个浮点数相加的时候会比较明显。这个函数返回较为精确的加法结果。
+    //调用：accAdd(arg1,arg2)
+    //返回值：arg1加上arg2的精确结果
+    function accAdd(arg1,arg2){
+        var r1,r2,m;
+        try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+        try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+        m=Math.pow(10,Math.max(r1,r2))
+        return (arg1*m+arg2*m)/m
+    }
+    //说明：javascript的乘法结果会有误差，在两个浮点数相乘的时候会比较明显。这个函数返回较为精确的乘法结果。
+    //调用：accMul(arg1,arg2)
+    //返回值：arg1乘以arg2的精确结果
+    function accMul(arg1,arg2)
+    {
+        var m=0,s1=arg1.toString(),s2=arg2.toString();
+        try{m+=s1.split(".")[1].length}catch(e){}
+        try{m+=s2.split(".")[1].length}catch(e){}
+        return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m)
+    }
+    //说明：javascript的除法结果会有误差，在两个浮点数相除的时候会比较明显。这个函数返回较为精确的除法结果。
+    //调用：accDiv(arg1,arg2)
+    //返回值：arg1除以arg2的精确结果
+    function accDiv(arg1,arg2){
+        var t1=0,t2=0,r1,r2;
+        try{t1=arg1.toString().split(".")[1].length}catch(e){}
+        try{t2=arg2.toString().split(".")[1].length}catch(e){}
+        with(Math){
+            r1=Number(arg1.toString().replace(".",""))
+            r2=Number(arg2.toString().replace(".",""))
+            return (r1/r2)*pow(10,t2-t1);
+        }
+    }
+
+</script>
+</body>
+
+</html>

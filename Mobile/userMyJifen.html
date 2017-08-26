@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>我的积分</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/weui.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <!-- 网站js -->
+    <script type="text/javascript" src="js/router.min.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="js/zepto.min.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="js/weui_example.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="lib/layer/2.1/layer.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="scripts/index.js"></script>
+
+</head>
+<style type="text/css">
+body {
+    background-color: #2c3144;
+}
+
+
+/* 积分情况 */
+
+.jifentopinfo {
+    display: inline-block;
+    width: 100%;
+    padding: 1em 0;
+    background-color: #2a2f3d;
+}
+
+.jifentopinfo dd {
+    width: 100%;
+    height: auto;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.jifentopinfo dd .dangqianjifen {
+    display: block;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 4px solid #a2863d;
+    background-color: #e0b563;
+}
+
+.jifentopinfo dd .dangqianjifen big {
+    display: block;
+    font-size: 2.6em;
+}
+
+.jifentopinfo dd .dangqianjifen small {
+    display: block;
+    padding-top: 1em;
+    font-size: 1.3em;
+}
+
+.jifentopinfo dd.caozuo a {
+    width: auto;
+    padding: 7px 18px;
+    border: 1px solid #e0b563;
+    color: #e0b563;
+    font-size: 1em;
+    margin: 0 5px;
+    border-radius: 100px;
+}
+
+
+/* 标题 */
+
+.fangxinginfoview {
+    background-color: #2c3144;
+    color: #fff;
+}
+
+.fangxinginfoview h4 {
+    border-bottom: 1px solid #464c60!important;
+}
+
+
+/* 积分 */
+
+.jifenlist {
+    display: table;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.jifenlist li {
+    display: table;
+    width: 100%;
+    height: auto;
+    padding: 12px 0;
+    border-bottom: 1px solid #464c60;
+}
+
+.jifenlist p {
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    font-size: 1.1em;
+    width:50%;
+    float:right;
+}
+
+.jifenlist p:nth-child(2) {
+    color: #999;
+    font-size: 1em;
+}
+
+.jifenlist span {
+    color: #e0b561;
+    float:left;
+}
+
+.jifenlist span big {
+    font-size: 2.5em;
+
+}
+
+.jifenlist span small {
+    font-size: 1em;
+}
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+    <div class="viewport">
+        <header class="aui-bar aui-bar-nav">
+            <a class="aui-pull-left" href="javascript:history.back();">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </a>
+            <div class="aui-title">我的积分</div>
+            <a class="aui-pull-right  drawer-toggle">
+                <span class="aui-iconfont aui-icon-sort"></span>
+            </a>
+        </header>
+        <!-- 侧边导航开始 -->
+        <div class="drawer-main drawer-default">
+            <nav class="drawer-nav" role="navigation">
+                <!-- 未登录 -->
+                <div id="div_noLogin" class="touxiang">
+                    <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                    <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+                </div>
+                <!-- 登录后 -->
+                <div id="div_okLogin" class="touxiang" style="display:none;">
+                    <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                    <span>jack</span>
+                    <span>黄金会员</span>
+                </div>
+                <ul class="drawer-nav-list">
+                    <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                    <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                    <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                    <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                    <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                    <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                    <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                    <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                    <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                    <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                    <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                    <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- 侧边导航结束 -->
+        <div class="jifentopinfo">
+            <dd>
+                <span class="dangqianjifen">
+                <small>当前积分</small>
+                <big id="jifen">0</big>
+              </span>
+            </dd>
+            <dd class="caozuo"><a href="userJifenGuize.html">积分规则Rule</a><a href="userJifenShangcheng.html">积分商城Shop</a></dd>
+        </div>
+        <div class="fangxinginfoview">
+            <h4><img src="images/fang_ico_07.jpg" alt="" />积分记录</h4>
+        </div>
+        <ul class="jifenlist" id="jifenJilu">
+            <!--积分兑换记录-->
+            <div class="clearfix"></div>
+            <!--
+            <div class="aui-border martop loadmore"><a href="#"><i class="aui-iconfont"></i>加载更多Load More</a></div>
+            -->
+        </ul>
+    </div>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/userMyJifen.js"></script>
+</body>
+
+</html>

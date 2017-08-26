@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>洗衣</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <!-- 网站js -->
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="js/layer.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+
+</head>
+<style type="text/css">
+    body {
+        background-color: #fff;
+    }
+
+    .quzhifubtn {
+        background-color: #2c3144;
+        width: 100%;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="javascript:history.back();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">洗衣 LAUNDRY</div>
+        <a class="aui-pull-right drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+    <!-- 规则开始 -->
+    <div class="fangxinginfoview">
+        <h4><img src="images/fang_ico_07.jpg" alt="" />注意事项</h4>
+        <div class="arcview">
+            <p>1.请在单据上填写与签名，连同衣物放入洗衣袋内，若有数量不符合，将会预先通知客人，若贵客没有列明衣物数量，则以酒店之点核为准。
+                <br> Please complete, sign and place this list together with your laundry in the bag provided. Should there be any discrepancies between guest count and hotel count.
+                <br> You will be notified accordingly. Should the list be omitted or not itemized, the hotel count will be taken as correct.
+            </p>
+            <p>2.贵客知悉，所有清洗衣物由贵客负全责。酒店当尽量小心，赔偿金额不超过洗涤价之十倍。酒店一概不负任何遗失及损毁之情况。
+                <br> The hotel at the owner’s risk accepts all laundry. While the utmost care is being exercised by the hotel, the liability of the hotel is limited to ten(10)times the value of the laundry charges. The hotel cannot be held responsible for any further loss or damages.
+            </p>
+            <p>3.任何要求应在二十四小时内提出。
+                <br> Any claims must be made within twenty- four (24) hours.
+            </p>
+            <p>4.折叠与上浆的衣物每件加收人民币5元。
+                <br> All folded and starch laundry will be charge a minimum of RMB5.00per item.
+            </p>
+            <p>基本服务：当日上午十点前收取衣物可在同日六时以后送回
+                <br> REGULAR SERVICE:Garments collected before 10:00 am will be returned the same day after 6:00pm.
+            <p>特快服务：衣物可在四小时内送回（最后收衣为下午三时）费用收双倍
+                <br> EXPRESS SERVICE: Garments will be returned within 4 hours from the time of collection (latest collection 3:00 pm).
+                <br> Garments collected before 10:00 am will be returned the same day after 6:00pm.
+                <br> A 100% Express Charge will be applicable
+            </p>
+        </div>
+    </div>
+    <!-- 规则结束 -->
+    <!-- 操作容器 -->
+    <div class="padbottom"></div>
+    <div class="bottomcaozuo aui-border-t" id="subXy">
+        <span><a class="aui-btn aui-btn-primary quzhifubtn">同意并确认申请洗衣服务Determine</a></span>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(function(){
+        verificationCodeCheckOut();
+    })
+    $("#subXy").click(function(){
+        xiyifuwu();
+    })
+
+    function xiyifuwu(){
+        var room=RoomInfo.room;
+        var password=RoomInfo.password;
+        var url = "/guestChekInfo/findByRoomAndPass";
+        var success=function(data){
+            var hoteCode=RoomInfo.hotelCode;
+            var room=RoomInfo.room;
+            var accnt=RoomInfo.accnt;
+            var dtime=new Date();
+            var nowtime= dtime.toLocaleString();
+            var memid;
+            if(!empty(MemberInfo)){
+                memid=MemberInfo.id;
+            }else{
+                memid=0;
+            }
+            var url="/ServiceStyle/sendService";
+            var data={hotelCode:hoteCode,room:room,accnt:accnt,scode:"157",stitle:"洗衣",stime:nowtime,remark:"",memId:memid};
+            var success=function(data){
+                if(data.rtnCode=="0000000"){
+                    weui.alert("您的服务请求已发送成功，稍后服务人员会联系您！","",function(){
+                        window.location.href="kfFuwu.html";
+                    })
+                }
+            };
+            ajaxPostFun(url,data,success,"","客房洗衣");
+        }
+
+        var error=function (){
+            window.location.href="index.html";
+        }
+
+        ajaxPostFun(url,{hotelCode:"capital",room:room,password:password},success, error,"退房成功以后验证码失效");
+    }
+</script>
+</body>
+</html>

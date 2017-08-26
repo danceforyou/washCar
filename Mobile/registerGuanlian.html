@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>注册</title>
+    <link rel="stylesheet" href="css/drawer.css"><!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="scripts/verification.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="js/layer.js"></script><!-- 网站js -->
+</head>
+<style type="text/css">
+    .tongyixieyi{
+        display: table;
+        margin: 0;
+        padding: 10px 15px 0;
+    }
+    .tongyixieyi input{
+        margin: 0 10px 0 0;
+    }
+
+</style>
+<body ontouchstart="" class="drawer drawer-right">
+    <div class="viewport">
+        <header class="aui-bar aui-bar-nav">
+            <a class="aui-pull-left" href="javascript:history.back();">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </a>
+            <div class="aui-title">注册</div>
+            <a class="aui-pull-right  drawer-toggle">
+                <span class="aui-iconfont aui-icon-sort"></span>
+            </a>
+        </header>
+
+        <!-- 侧边导航开始 -->
+        <div class="drawer-main drawer-default">
+            <nav class="drawer-nav" role="navigation">
+                <!-- 未登录 -->
+                <div class="touxiang">
+                    <a href="login.html" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                    <span><a href="login.html">登录</a><a href="register.html">注册</a></span>
+                </div>
+                <!-- 登录后 -->
+                <div class="touxiang" style="display:none;">
+                    <a href="userCenter.html" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                    <span>jack</span>
+                    <span>黄金会员</span>
+                </div>
+                <ul class="drawer-nav-list">
+                    <li><a href="userIndex.html"><i class="menuicon1"></i>会员中心</a></li>
+                    <li><a href="dfZhitongcheInfo.html"><i class="menuicon2"></i>订房直通车</a></li>
+                    <li><a href="cyYongcanFangshi.html"><i class="menuicon3"></i>餐饮定制</a></li>
+                    <li><a href="kfFuwu.html"><i class="menuicon4"></i>客房服务</a></li>
+                    <li><a href="lbFuwu.html"><i class="menuicon5"></i>礼宾服务</a></li>
+                    <li><a href="kfyanzhu.html"><i class="menuicon6"></i>客房延住</a></li>
+                    <li><a href="ksTuifang.html"><i class="menuicon7"></i>快速退房</a></li>
+                    <li><a href="dnDaohang.html"><i class="menuicon8"></i>店内导航</a></li>
+                    <li><a href="jdList.html"><i class="menuicon9"></i>周边信息</a></li>
+                    <li><a href="sdJiabinhui.html"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                    <li><a href="userJifenShangcheng.html"><i class="menuicon11"></i>积分商城</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- 侧边导航结束 -->
+           <div class="aui-content">
+                <div class="aui-form formshurubox">
+                    <div class="aui-input-row aui-warning"><!-- 错误警告aui-warning -->
+                        <label class="aui-input-addon">手机号</label>
+                        <input type="text" class="aui-input" placeholder="请输入手机号"id="phone" onblur="verifyphone()"/>
+                        <i class="aui-input-addon aui-iconfont aui-icon-warnfill"></i><!-- 错误警告 -->
+                    </div>
+                    <div class="aui-input-row">
+                        <label class="aui-input-addon">验证码</label>
+                        <input type="text" class="aui-input" placeholder="请输入验证码"/>
+                        <a class="yanzhengma">发送验证码</a><!-- 正确提示 -->
+                    </div>
+                    <div class="aui-input-row aui-success"><!-- 正确提示aui-success -->
+                        <label class="aui-input-addon">密码</label>
+                        <input type="password" class="aui-input" placeholder="请输入密码" id="password" onblur="verifypassword()"/>
+                        <i class="aui-input-addon aui-iconfont aui-icon-roundcheckfill"></i><!-- 正确提示 -->
+                    </div>
+                </div>
+                <p class="tongyixieyi"><label><input class="aui-radio fl" type="radio" name="demo1"><a href="#">同意《注册协议》</a></label></p>
+            </div>
+
+           <div class="aui-content auipadleftright">
+                <a class="aui-btn aui-btn-block blackbgbtn martop">注册并关联</a>
+                <p class="ac"><a href="login.html" class="c_8">已有账户，直接登录</a></p>                 
+           </div>
+        
+    </div>
+
+</body>
+
+</html>

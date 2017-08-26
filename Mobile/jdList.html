@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>周边信息</title>
+	<link rel="stylesheet" href="css/drawer.css">
+	<!-- menu -->
+	<link rel="stylesheet" href="css/aui.css">
+	<link rel="stylesheet" href="css/qr_base.css">
+	<link rel="stylesheet" href="css/common.css">
+	<script src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/iscroll.js"></script>
+	<!-- menu -->
+	<script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+	<!-- menu -->
+	<script type="text/javascript" src="js/js.js"></script>
+	<script type="text/javascript" src="scripts/index.js"></script>
+	<!-- 网站js -->
+</head>
+<style type="text/css">
+	.zblist {
+		display: table;
+		width: 100%;
+		padding: 0 10px;
+	}
+
+	.zblist a,
+	.zblist a span {
+		display: inline-block;
+		width: 100%;
+	}
+
+	.zblist a {
+		margin-top: 10px;
+		position: relative;
+	}
+
+	.zblist a img {
+		width: 100%;
+	}
+
+	.zblist a span.bg,
+	.zblist a span.txt {
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.zblist a span.bg {
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+
+	.zblist a:hover span.bg {
+		background-color: rgba(0, 0, 0, 0);
+	}
+
+	.zblist a span.txt {
+		top: 45%;
+		z-index: 1;
+		height: 40px;
+		line-height: 40px;
+		font-size: 1.3em;
+		color: #fff;
+		text-align: center;
+		background-image: url(images/zhoubian/zbbg_l.png), url(images/zhoubian/zbbg_r.png);
+		background-size: auto 16%, auto 16%;
+		background-repeat: no-repeat, no-repeat;
+		background-position: left center, right center;
+	}
+
+	.loadmore {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.zblist a span.txt i{
+		display: inline-block;
+		width: 6em;
+		font-size: 0.8em;
+		text-align: center;
+		white-space:nowrap;
+		text-overflow:ellipsis;
+		overflow: hidden;
+	}
+	@media screen and (min-width:360px){
+		.zblist a span.txt i{
+			width: 8em;
+		}
+	}
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+	<header class="aui-bar aui-bar-nav">
+		<a class="aui-pull-left" href="javascript:history.back();">
+			<span class="aui-iconfont aui-icon-left"></span>
+		</a>
+		<div class="aui-title">周边信息 SURROUNDING</div>
+		<a class="aui-pull-right  drawer-toggle">
+			<span class="aui-iconfont aui-icon-sort"></span>
+		</a>
+	</header>
+	<!-- 侧边导航开始 -->
+	<div class="drawer-main drawer-default">
+		<nav class="drawer-nav" role="navigation">
+			<!-- 未登录 -->
+			<div id="div_noLogin" class="touxiang">
+				<a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+				<span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+			</div>
+			<!-- 登录后 -->
+			<div id="div_okLogin" class="touxiang" style="display:none;">
+				<a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+				<span>jack</span>
+				<span>黄金会员</span>
+			</div>
+			<ul class="drawer-nav-list">
+				<li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+				<li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+				<li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+				<li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+				<li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+				<li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+				<li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+				<li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+				<li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+				<li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+				<li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+				<li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+			</ul>
+		</nav>
+	</div>
+	<!-- 侧边导航结束 -->
+	<ul class="zblist">
+		<!--<a href="jdInfo.html">-->
+			<!--<img src="images/zhoubian/01.png">-->
+			<!--<span class="bg"></span>-->
+			<!--<span class="txt">王府井步行街</span>-->
+		<!--</a>-->
+	</ul>
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript">
+	var pageIndexOrder = 1;//页码
+	var pageIndexOrderLoading = true;//是否可以加载下一页
+
+	$(document).ready(function(){
+		loadData();
+	});
+	var results = 0;//数据总数
+	var currentpage = 1;//当前页码
+
+	function getTotalPage(num,pageSize){
+		var a = num / pageSize;
+		if(num % pageSize > 0){
+			return parseInt(a)+1;
+		}else{
+			return a;
+		}
+	}
+	//周边信息
+	function loadData(){
+
+		if (pageIndexOrderLoading == false) {
+			return false;
+		}
+		ajaxGetFun("/MobileZbInfo/queryZbInfo/" + pageIndexOrder,{remrak:''},function (res) {
+			var bizData = res.bizData;
+			renderInfo(bizData);
+			var num= bizData.records;
+			var pageSize= bizData.pagesize;
+			var totalPage=getTotalPage(num,pageSize);
+			if(pageIndexOrder>=totalPage || bizData.rows.length==0 ){
+				$("#loadData").css("display","none");
+			}
+			if (bizData.rows.length > 0) {
+				pageIndexOrder++;
+			} else {
+				pageIndexOrderLoading = false;
+			}
+		}, function (err) {
+			(err.msg);
+		}, "查询周边信息");
+	}
+
+	function renderInfo(res) {
+		var str = "";
+		var rows = res.rows;
+		for(var i=0;i < rows.length;i++) {
+			str +='<a href="jdInfo.html?id='+rows[i].id+'">'
+				+'<img src="'+rows[i].picture+'">'
+				+'<span class="bg">'
+				+'</span>'
+				+'<span class="txt"><i>'+rows[i].name+'</i></span>'
+				+'</a>';
+		}
+		$(".zblist").append(str);
+	}
+</script>
+<div class="aui-border loadmore"><a href="#" id="loadData" onclick="loadData()"><i class="aui-iconfont"></i>加载更多Load More</a></div>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>积分规则</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+
+    <!-- 网站js -->
+</head>
+<style type="text/css">
+body {
+    background-color: #fff;
+}
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+    <div class="viewport">
+        <header class="aui-bar aui-bar-nav">
+            <a class="aui-pull-left" href="javascript:history.back();">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </a>
+            <div class="aui-title">积分规则INTEGRAL RULE</div>
+            <a class="aui-pull-right drawer-toggle">
+                <span class="aui-iconfont aui-icon-sort"></span>
+            </a>
+        </header>
+        <!-- 侧边导航开始 -->
+        <div class="drawer-main drawer-default">
+            <nav class="drawer-nav" role="navigation">
+                <!-- 未登录 -->
+                <div id="div_noLogin" class="touxiang">
+                    <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                    <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+                </div>
+                <!-- 登录后 -->
+                <div id="div_okLogin" class="touxiang" style="display:none;">
+                    <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                    <span>jack</span>
+                    <span>黄金会员</span>
+                </div>
+                <ul class="drawer-nav-list">
+                    <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                    <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                    <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                    <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                    <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                    <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                    <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                    <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                    <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                    <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                    <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                    <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- 侧边导航结束 -->
+        <!-- 规则开始 -->
+        <div class="fangxinginfoview">
+            <h4><img src="images/fang_ico_08.jpg" alt="" />End User积分政策</h4>
+            <div class="arcview">
+                <p>1.会员入住时房费、计入房帐的杂费、餐饮零点消费、杂费等个人实际消费总和按照1元人民币赚取1分的原则计入积分，无任何房价限制。会员办理退房手续过夜审，即24小时后自动转成积分记录在会员账户中。积分限于会员本人本房间的消费，由其他房间转入的消费，本人付款的费用予以积分，本房间转出的消费若不是会员不予积分。会员卡仅限于本人使用，不可转借他人使用。如会员卡丢失，会员可与酒店前台或网络营销部联系补办事宜。</p>
+                <p>2.通过旅行社和订房中心预订并入住的客人，如成功注册成为会员，房费消费不予积分，但餐饮以及杂费、其它费用均予以积分</p>
+                <p>3.积分根据客源市场划分：官网预订、公司散客、业主散客、部委散客，以上四类市场会员可积分。会议市场，公付的一概不积分。
+                </p>
+                <p>4. 会员生日当天，如在店消费，积分可享受三倍政策(待定)。</p>
+                <p>5.因酒店原因导致会员没有得到相应的积分，前厅部审核确认无误后负责填写《End User补漏积分申请单》并福入住凭证复印件，经财务审核后交至网络营销部输入遗漏积分，从客人提出补漏积分要求到积分补录到会员账户需4周。
+                </p>
+                <p>6.会员升级政策：结账离店后，经夜审审核达到升级标准在系统中自动升级,原会员卡号不变。</p>
+                <p>7.积分政策中，所有相关服务费项目一概不可打折。</p>
+            </div>
+            <h4><img src="images/fang_ico_08.jpg" alt="" />Booker积分政策:</h4>
+            <div class="arcview">
+                <p>1.只订房的Booker的积分标准是无论任何房型50分/间夜。积分程序同End User。一个预定中只录入一个Booker的会员号，结账的消费金额只记录在一个Booker账户中。如果会员付费后没有得到规定的积分，由负责此公司的销售经理填写《补漏积分申请单》并附消费凭证复印件，交至销售部总监，财务部审核签字确认后，由销售部交网络营销部输入遗漏积分。因酒店原因，造成End User和Booker都没有得到应有积分，前厅部应填写补漏End User积分申请单的同时抄送销售部补漏Booker积分。</p>
+                <p>2.只订宴会的Booker积分为实际计入房费的场租费、茶歇费和会议用餐费等其他消费的总和除以22，所有费用结清过夜审后，方可积分，积分及兑换礼品程序以及与End User一致。补漏积分程序同上</p>
+                <p>3.既订房又订宴会的Booker是1和2的组合使用。
+                </p>
+            </div>
+        </div>
+        <!-- 规则结束 -->
+    </div>
+    <script type="text/javascript" src="scripts/app.js"></script>
+</body>
+
+</html>

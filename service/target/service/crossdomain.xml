@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<!-- flexpaper跨域配置文件 -->
-<cross-domain-policy>
-    <allow-access-from domain="*" />
-</cross-domain-policy>

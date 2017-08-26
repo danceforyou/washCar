@@ -1,0 +1,348 @@
+/* 底部带操作按钮容器 */
+.bottomcaozuo{
+	display: table;
+	background-color: #fff;
+	padding: 5px 10px 5px;
+	position: fixed;
+	bottom: 0;
+	z-index: 3;
+	width: 100%;
+	max-width: 640px;
+	min-width: 320px;
+	height: auto;
+	margin: 0 auto!important
+}
+.bottomcaozuo .price{
+	line-height: 34px;
+}
+.padbottom{
+	padding-bottom: 60px;
+}
+/* 订房列表 */
+.fangxing  .aui-list-view  price {
+    font-size:1.4em;
+    color:#d91f20;
+    margin-top:0.8em;
+}
+.fangxing  .aui-list-view  price em{
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	border-radius: 25px;
+	margin-left: 10px;
+	background-color: #e0b561;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.fangxing  .aui-list-view .title {
+    font-size:1.2em;
+}
+.fangxing  .aui-list-view b{
+	margin-left: 10%;
+	font-size: 14px;
+	color: #d91f20;
+}
+.fangxing  .aui-list-view li {
+background: -ms-linear-gradient(top, #fff,  #babcc2);        /* IE 10 */
+background:-moz-linear-gradient(top,#fff,#babcc2);/*火狐*/ 
+background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#fff), to(#babcc2));/*谷歌*/ 
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#babcc2));      /* Safari 4-5, Chrome 1-9*/
+background: -webkit-linear-gradient(top, #fff, #babcc2);   /*Safari5.1 Chrome 10+*/
+background: -o-linear-gradient(top, #fff, #babcc2);  /*Opera 11.10+*/
+}
+.fangxing  .aui-list-view li:hover {
+    opacity:0.8;
+}
+.fangxing  .aui-list-view li p span {
+    margin-right:0.5em;
+}
+/* 详情页属性描述 */
+.shuxinglist{
+	display: table;
+	padding: 0 10px;
+	width: 100%;
+	background-color: #fff;	
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.shuxinglist dd{
+	width: 100%;
+	line-height: 2;
+}
+.shuxinglist dt{
+	font-size: 16px;
+	line-height: 2;
+}
+/* 餐厅滑动 */
+.cantingbox{
+	display: block;
+	width: 100%;
+	overflow-y: hidden;
+	overflow-x: auto;
+	background-color: #1e2233;
+}
+.cantingbox .cantingscr{
+	display: inline;
+	width: auto;
+	height: auto;
+	padding-left: 10px;
+	white-space: nowrap;
+}
+.cantingbox .cantingscr li{
+	display: inline-block;
+	width: 80px;
+	height: 64px;
+	position: relative;
+	border: 2px solid #1e2233;
+	white-space: nowrap;
+	margin: 10px 10px 10px 0;
+}
+.cantingbox .cantingscr li span{
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+.cantingbox .cantingscr li span.img{
+	height: 60px;
+	overflow: hidden;
+}
+.cantingbox .cantingscr li span.img img{
+	height: 100%;
+	display: block;
+	margin: 0 auto;
+}
+.cantingbox .cantingscr li span.txt{
+	height: 60px;
+	line-height: 60px;
+	color: #fff;
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.cantingbox .cantingscr li.hover{
+	border: 2px solid #fff;
+}
+.cantingbox .cantingscr li.hover span.txt{
+	display: none;
+}
+/* 菜列表里的收藏 */
+.cyshoucang em{
+	color: #888;
+}
+.cyshoucang .aui-iconfont {
+	font-size: 18px !important;
+	padding: 0 !important;
+	margin-right: 3px!important;
+}
+.cyshoucang .aui-icon-favor{
+	color: #555!important;	
+}
+.cyshoucang .aui-icon-favorfill{
+	color: #ffc501 !important;	
+}
+/* input时间图标背景 */
+.dateiconbg{
+	background-image: url(../images/fang_ico_06.jpg);
+	background-position: right center;
+	background-size: 20px;
+	background-repeat: no-repeat;
+}
+/* 购物车 */
+.gouwuche_bot{
+	font-size: 20px;
+	position: relative;
+	padding: 0 15px;
+	margin-right: 10px;
+}
+.gouwuche_bot i{
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #fff;
+	font-size: 13px!important;
+	background-color: #d91f20;
+	display: block;
+	width: auto;
+	min-width: 20px;
+	padding: 0 3px;
+	height: 20px;
+	line-height: 20px!important;
+	text-align: center;
+	border-radius: 20px;
+}
+/* 菜单列表 */
+.cailist{
+	display: table;
+	width: 100%;
+	padding: 0 10px;
+	background-color: #fff;
+}
+.cailist li,
+.cailist span.zongjia{
+	display: inline-block;
+	width: 100%;
+	padding: 12px 0;
+}
+.cailist li span{
+	float: left;
+	display: inline-block;
+}
+.cailist li span.name{
+	width: 50%;
+}
+.cailist li span.num{
+	width: 25%;
+	text-align: center;
+}
+.cailist li span.price{
+	width: 25%;
+	text-align: right;
+}
+/* 九宫格 */
+.jiugongge{
+	display: table;
+	width: 100%;
+	background-color: #fff;
+}
+.jiugongge a{
+	display: table-cell;
+	width: 50%;
+	height: auto;
+	padding: 25px 0;
+	float: left;
+	text-align: center;
+}
+.jiugongge a i.icon,
+.jiugongge a span{
+	display: inline-block;
+	width: 100%;
+}
+.jiugongge a i.icon{
+	height: 35px;
+	background-size: auto 80%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.jiugongge a span{
+	padding-top: 10px;
+}
+/* 当前选中菜分类样式 */
+.caileixing{
+	position: relative;
+	z-index: 1;
+}
+.caileixing li{
+	position: relative;
+    left: 1px;	
+	z-index: 5;
+	border-right: 1px solid #c8c7cc;
+	color: #888;
+}
+.caileixing li.hover{/* 当前 */
+	border-right: 1px solid #fff!important;
+	background-color: #fff;
+	color: #333;
+}
+/* 单选按钮列表 */
+.formradiolist{
+	display: table;
+	width: 100%;
+	background-color: #fff;
+	padding: 0 1em;
+}
+.formradiolist li{
+	display: table;
+	width: 100%;
+	height: auto;
+	padding: 6px 0;
+}
+.formradiolist li label{
+	line-height: 36px;
+}
+/* 优惠券列表 */
+.youhuijuanlist{
+	display: table;
+	width: 100%;
+	padding: 0 10px;
+}
+.youhuijuanlist dl{
+	display: table;
+	width: 100%;
+	padding:10px 0;
+	color: #030303;
+	border-radius: 5px;
+	margin-top: 15px;
+	background: url(../images/youhuijuanbg.png) #e0b561;	
+	background-position: bottom;
+	background-repeat: repeat-x;
+	background-size: 15px;
+}
+.youhuijuanlist dl.guoqi{ /* 过期 */
+	background: url(../images/youhuijuanbg0.png) #c2c2c2;	
+	background-position: bottom;
+	background-repeat: repeat-x;
+	background-size: 15px;
+}
+.youhuijuanlist dt,
+.youhuijuanlist dd{
+	float: left;
+	height: auto;
+	padding: 5px 0;
+	display: table-cell;
+}
+.youhuijuanlist dl dt{
+	min-width: 85px;
+	padding-left: 10px;
+}
+.youhuijuanlist dt span,
+.youhuijuanlist dd span{
+	display: block;
+	height: 45px;
+	margin-top: -5px;
+}
+.youhuijuanlist dd span{
+	margin-top: 15px;
+	margin-bottom: -21px;
+}
+.youhuijuanlist dl dt span i{
+	font-size: 32px;
+}
+.youhuijuanlist p{
+	display: inline-block;
+	width: 100%;
+	margin: 0;
+	padding: 5px 0;
+	line-height: 34px;
+	text-indent: 15px;
+	border-top: 1px solid rgba(255,255,255,0.3);
+}
+.youhuijuanlist p a{
+	display: block;
+	min-width: 80px;
+	height: 34px;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 5px;
+	margin-right: 15px;
+	text-indent: 0;
+}
+
+.oldisplay{
+	display:none;
+}
+.xiangqing{
+	position:absolute;
+	z-index: 1;
+	right: 5px;
+	margin-top: -35px;
+	color: #2c3144;
+	text-decoration: underline;
+
+}
+.infoxiangqing{
+	color: #2c3144;
+	text-decoration: underline;
+	font-size: 10px;
+	margin-left: 10px;
+}

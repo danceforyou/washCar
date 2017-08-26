@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>上传头像</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/aui-flex.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/upload.css" type="text/css" />
+
+    <script src="js/jquery.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <script src="js/upload/sonic.js"></script>
+    <script src="js/upload/comm.js"></script>
+    <script src="js/upload/hammer.js"></script>
+    <script src="js/upload/iscroll-zoom.js"></script>
+    <script src="js/upload/jquery.photoClip.js?v=1"></script>
+
+    <script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
+    <!--<script type="text/javascript" src="js/iscroll-zoom.js"></script>-->
+
+    <!-- 网站js -->
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="scripts/e-smart-zoom-jquery.min.js"></script>
+
+</head>
+<style type="text/css">
+
+    .butcls{
+        width: 40%;
+        background-color: #2c3144;
+        color:#fff;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+    <div class="viewport">
+        <header class="aui-bar aui-bar-nav">
+            <a class="aui-pull-left" href="javascript:history.back();">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </a>
+            <div class="aui-title">头像上传</div>
+            <!--<a class="aui-pull-right  drawer-toggle">-->
+                <!--<span class="aui-iconfont aui-icon-sort"></span>-->
+            <!--</a>-->
+        </header>
+        <!-- 侧边导航开始 -->
+        <div class="drawer-main drawer-default">
+            <nav class="drawer-nav" role="navigation">
+
+            </nav>
+        </div>
+        <!-- 侧边导航结束 -->
+        <div class="container tuxiang">
+            <!--加载资源-->
+            <div class="lazy_tip" id="lazy_tip"><span>1%</span><br>	载入中......</div>
+            <div class="lazy_cover"></div>
+            <div class="resource_lazy hide"></div>
+            <div class="pic_edit">
+                <!--<h2 style="color:#4eaf7a;">双指旋转和双指缩放</h2>-->
+                <div id="clipArea"></div>
+                <button id="upload2">选择图片</button>
+                <button id="clipBtn">裁切</button>
+                <input type="file" id="file" style="opacity: 0;position: fixed;bottom: -100px">
+                <div id="plan" style="display:none">
+                    <canvas id="myCanvas"></canvas>
+                    <div>
+                        <button onClick="Close();" class="butcls">关闭</button>
+                        <button onClick="uploadImg();" class="butcls">上传</button>
+                        <!--<h2 onClick="Close();" style="cursor:pointer; display:inline-block">关闭</h2>-->
+                        <!--<h2 onClick="upload();" style="cursor:pointer; display:inline-block">上传</h2>-->
+                    </div>
+                    </div>
+
+            </div>
+            <img src="" fileName="" id="hit" style="display:none;z-index: 9">
+
+            <div id="cover"></div>
+        </div>
+        <!--<div class="aui-content auipadleftright">-->
+            <!--<a class="aui-btn aui-btn-block blackbgbtn martop submit" id="submitBut">提交</a>-->
+        <!--</div>-->
+    </div>
+    <script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript">
+    var hammer = '';
+    var currentIndex = 0;
+    var body_width = $('body').width();
+    var body_height = $('body').height();
+    var blob;
+    var srcURL;
+    var fileType;
+
+    $("#clipArea").photoClip({
+        width: body_width * 0.8125,
+        height: body_width * 0.8125,
+        file: "#file",
+        view: "#hit",
+        ok: "#clipBtn",
+        loadStart: function () {
+            //console.log("照片读取中");
+            $('.lazy_tip span').text('');
+            $('.lazy_cover,.lazy_tip').show();
+        },
+        loadComplete: function () {
+            //console.log("照片读取完成");
+            fileType=$('#file').val();
+            console.log("3333333333333333333");
+            console.log(fileType);
+            $('.lazy_cover,.lazy_tip').hide();
+        },
+        clipFinish: function (dataURL) {
+            $('#hit').attr('src', dataURL);
+            srcURL=dataURL;
+            saveImageInfo();
+        }
+    });
+
+    //图片上传
+    function saveImageInfo() {
+        var filename = $('#hit').attr('fileName');
+        var img_data = $('#hit').attr('src');
+        if(img_data==""){alert('null');}
+        render(img_data);
+
+    }
+
+    /*获取文件拓展名*/
+    function getFileExt(str) {
+        var d = /\.[^\.]+$/.exec(str);
+        return d;
+    }
+
+    //图片上传结束
+    $(function () {
+        $('#upload2').on('touchstart', function () {
+            //图片上传按钮
+//            if(navigator.userAgent.match(/OS 9_[1-9] /i)   || navigator.userAgent.match(/OS 9_[1-9]_[0-9] /i) || navigator.userAgent.match(/OS [8-9]_[0-9] /i)  || navigator.userAgent.match(/OS [8-9]_[0-9]_[0-9] /i)){
+//                //9.1以上
+//                    weui.alert("ios9以上版本不支持上传图像");
+//            }else{
+                $('#file').click();
+//            }
+
+        });
+    })
+    // 渲染 Image 缩放尺寸
+    function render(src){
+        var MAX_HEIGHT = 300;  //Image 缩放尺寸
+        // 创建一个 Image 对象
+        var image = new Image();
+
+        // 绑定 load 事件处理器，加载完成后执行
+        image.onload = function(){
+            // 获取 canvas DOM 对象
+            var canvas = document.getElementById("myCanvas");
+            // 如果高度超标
+            if(image.height > MAX_HEIGHT) {
+                // 宽度等比例缩放 *=
+                image.width *= MAX_HEIGHT / image.height;
+                image.height = MAX_HEIGHT;
+            }
+            // 获取 canvas的 2d 环境对象,
+            // 可以理解Context是管理员，canvas是房子
+            var ctx = canvas.getContext("2d");
+            // canvas清屏
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            canvas.width = image.width;        // 重置canvas宽高
+            canvas.height = image.height;
+            // 将图像绘制到canvas上
+            ctx.drawImage(image, 0, 0, image.width, image.height);
+            // !!! 注意，image 没有加入到 dom之中
+
+            var dataurl = canvas.toDataURL("image/jpeg");
+            var imagedata =  encodeURIComponent(dataurl);
+            $('#plan').attr('data-src',dataurl);
+            $('#plan').show();
+        };
+        // 设置src属性，浏览器会自动加载。
+        // 记住必须先绑定render()事件，才能设置src属性，否则会出同步问题。
+        image.src = src;
+    };
+
+    function Close(){$('#plan').hide();}
+    function uploadImg(){
+        var  url="/FileUpload/touxiangUpload";
+//        var form = new FormData();
+//        form.append("file", blob);// 文件对象
+        var  csdata={imgStr:srcURL};
+        var  successfull=function(bizData){
+            console.log(bizData.bizData);
+            var touxiang=bizData.bizData;
+            window.location.href ="userZhanghaoGuanli.html?touxiang="+touxiang;
+        }
+        ajaxPostFun(url,csdata,successfull,null,"图片上传");
+    }
+    $("#submitBut").click(function(){
+        var data=canvas.toDataURL();
+        //bate64转图片格式
+        // dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
+        data=data.split(',')[1];
+        data=window.atob(data);
+        var ia = new Uint8Array(data.length);
+        for (var i = 0; i < data.length; i++) {
+            ia[i] = data.charCodeAt(i);
+        };
+         blob=new Blob([ia], {type:"image/png"});
+    })
+
+</script>
+</body>
+
+</html>

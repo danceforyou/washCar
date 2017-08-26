@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>首都大酒店贴身管家</title>
+    <link rel="stylesheet" href="css/aui.css">
+    <!--<link href='http://api.youziku.com/webfont/CSS/575d6d18f629d80a94d95bcb' rel='stylesheet' type='text/css' />-->
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/responsiveslides.css">
+    <link rel="stylesheet" href="css/drawer.css"><!-- menu -->
+    <link rel="stylesheet" href="css/weui.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/responsiveslides.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="lib/layer/2.1/layer.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="js/layer.js"></script><!-- 网站js -->
+    <script type="text/javascript" src="scripts/verification.js"></script><!-- 网站js -->
+    <style>
+    body{
+        background-color: #000;
+    }
+    .user {
+        background: #101221;
+        margin-top: 1em;
+        overflow: hidden;
+    }
+    .index_menu {
+        margin-top:0.4em;
+    }
+    .menu_iteam {
+        padding: 1em 0;
+        margin: 0.2em 0;
+    }
+    
+    .menu_iteam span {
+        display: block;
+        width: 60%;
+        float: left;
+        text-align: left;
+        font-size: 1.2em;
+        color: #ffffff;
+        margin-left: 5%;
+    }
+    
+    .menu_ico {
+        height: 2em;
+        width: auto;
+        margin-top: 0.5em;
+    }
+    
+    .user .menu_ico {
+        height: 2.5em;
+        margin-top: 0em;
+        width: auto;
+    }
+    
+    .menu_iteam i {
+        font-style: normal;
+        font-family: 'Regencie3ea1b70812b42';
+        font-size: 0.5em;
+        display: block;
+        color: #9d9ba7;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .menu_iteam a {
+        display:block;
+        overflow: hidden;
+    }
+    .menu_iteam a em{
+        display: block;
+        width: 30%;
+        float: left;
+        text-align: right;
+    }
+    .user a em{
+        width: 40%;
+    }
+    .user a span{
+        width: 50%;
+    }
+
+    .menu_warp {
+        margin: 0 -0.5%;
+        overflow: hidden;
+    }
+    
+    .menu_warp li {
+        width: 49%;
+        float: left;
+        margin: 0.5%;
+    }
+    
+    .menu_pic img {
+        width: 100%;
+        height: auto;
+        display: block
+    }
+    
+    .menu_txt,
+    .menu_txt2 {
+        text-align: center;
+        padding: 1em 0;
+    }
+    
+    .menu_txt {
+        background: url(images/index_26.jpg) no-repeat;
+        background-size: 100% 100%;
+    }
+    
+    .menu_txt2 {
+        background: url(images/index_28.jpg) no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .hujiaoguanjia{
+        position: absolute;
+        top: 55px;
+        right: 0;
+        z-index: 99;
+        width: 7em;
+        height: auto;
+    }
+    .hujiaoguanjia img{
+        width: 100%;
+    }
+
+    /* 红包 */
+    .hongbao{
+        position: fixed;
+        right: 0;
+        bottom: 15px;
+        top:65%;
+        z-index: 4;
+        width: auto;
+    }
+    .hongbao img{
+        width: 55px;
+    }
+
+    .loginOut{
+        position: fixed;
+        width: 100%;
+        background-color: rgba(0,0,0,0.5);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 9999;
+    }
+    .loginOut .loginDiv{
+        width: 300px;
+        height: 340px;
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -150px;
+        margin-top: -170px;
+        overflow: hidden;
+    }
+    .regOut{
+        position: fixed;
+        width: 100%;
+        background-color: rgba(0,0,0,0.5);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 9999;
+    }
+    .regOut .regDiv{
+        width: 300px;
+        height: 400px;
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -150px;
+        margin-top: -200px;
+        overflow: hidden;
+    }
+    .viewport{
+        min-width: 260px;
+    }
+    .aui-pull-right{
+        width: 40px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .tongyixieyi input{
+        margin: 0 10px 0 10px;
+    }
+    </style>
+</head>
+
+<body ontouchstart="" class="drawer drawer-right">
+
+<div class="viewport">
+
+    <header class="aui-bar aui-bar-nav">
+        <!--<a class="aui-pull-left slide-menu" href="javascript:history.back();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>-->
+        <div class="aui-title">首都大酒店贴身管家</div>
+        <a class="aui-pull-right drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">  
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>  
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>
+                    返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+
+
+    <!--焦点图开始-->
+    <span class="hujiaoguanjia"><a href="tel:4009199988"><img src="images/tell.png"></a></span>
+    <div class="callbacks_container">
+        <ul class="rslides" id="slider">
+            <!--<li>
+                <a href="#"><img src="images/lunbo/1.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/lunbo/2.jpg" alt=""></a>
+            </li>-->
+        </ul>
+    </div>
+    <!--焦点图结束-->
+
+    <!-- 图标导航 开始-->
+    <div class="index_menu">
+        <div class="user ac menu_iteam hymenu_iteam">
+        <a href="javascript:gotoUrl('userIndex.html')"><em><img src="images/index_03.png" class="menu_ico" alt="" /></em><span>会员中心<i>MEMBER CENTER</i></span></a>
+        </div>
+        <ul class="menu_warp">
+            <li class="menu_pic">
+                <a href="javascript:gotoUrl('cyYongcanFangshi.html')"><img src="images/indeximg1.jpg" alt="" /></a>
+            </li>
+
+
+              <!----订房直通车  如果是会员可以页面跳转如果不是会员则不能进行页面跳--->
+
+            <li  class="menu_pic">
+                <a href="javascript:gotoUrl('dfZhitongcheInfo.html')"> <img src="images/indeximg2.jpg" alt="" /></a>
+            </li>
+            <div id="isVisible">
+                <li class="menu_txt menu_iteam">
+                    <a href="javascript:gotoService('kfFuwu.html');"><em><img src="images/index_04.png" class="menu_ico" alt="" /></em><span>客房服务<i>ROOM SERVICE</i></span></a>
+                </li>
+                <li class="menu_txt2 menu_iteam">
+                    <a href="javascript:gotoService('lbFuwu.html');"><em><img src="images/index_05.png" class="menu_ico" alt="" /></em><span>礼宾服务<i>CONCIERGE</i></span></a>
+                </li>
+                <li class="menu_txt menu_iteam">
+                    <a href="javascript:gotoService('kfyanzhu.html');" ><em><img src="images/index_06.png" class="menu_ico" alt="" /></em><span>客房延住<i>STAY EXTENSION</i></span></a>
+                </li>
+                <li class="menu_txt2 menu_iteam">
+                    <a href="javascript:gotoService('ksTuifang.html');"><em><img src="images/index_07.png" class="menu_ico" alt="" /></em><span>快速退房<i>EXPRESS CHECK OUT</i></span></a>
+                </li>
+                <li class="menu_txt menu_iteam">
+                    <a href="javascript:gotoUrl('dnDaohang.html');"><em><img src="images/index_09.png" class="menu_ico" alt="" /></em><span>店内导航<i>HOTEL LAYOUT</i></span></a>
+                </li>
+                <li class="menu_txt2 menu_iteam">
+                    <a href="javascript:gotoUrl('jdList.html');"><em><img src="images/index_08.png" class="menu_ico" alt="" /></em><span>周边信息<i>NEARBY ATTRACTBONS</i></span></a>
+                </li>
+                <li class="menu_txt menu_iteam">
+                    <a href="javascript:gotoUrl('sdJiabinhui.html');"><em><img src="images/index_10.png" class="menu_ico" alt="" /></em><span>首都嘉宾会<i>CEC</i></span></a>
+                </li>
+                <li class="menu_txt2 menu_iteam">
+                    <a href="javascript:gotoUrl('userJifenShangcheng.html')"><em><img src="images/index_11.png" class="menu_ico" alt="" /></em><span>积分商城<i>POINTS CONVERSION</i></span></a>
+                </li>
+            </div>
+
+        </ul>
+        <!-- 图标导航 结束-->
+    </div>
+    <a class="hongbao" href="javascript:gotoUrl('userLqYouhuijuan.html');"><img src="images/hongbao.png"></a>
+    <!-- 红包 -->
+
+</div>
+
+<!--弹框 -->
+<div class="loginOut" style="display:none;">
+    <!-- <iframe src="login.html" class="loginDiv"></iframe> -->
+    <div class="loginDiv">
+        <div class="viewport">
+            <header class="aui-bar aui-bar-nav">
+                <div class="aui-title">登录</div>
+                <a class="aui-pull-right gb">
+                    X
+                </a>
+            </header>
+            <!-- 侧边导航结束-->
+            <div class="aui-content">
+                <form id="loginFrm" action="" >
+                    <div class="aui-form formshurubox">
+                        <div class="aui-input-row" id="phone-warn"><!-- 错误警告aui-warning -->
+                            <label class="aui-input-addon">手机号</label>
+                            <input type="tel" id="phone" name="phone" class="aui-input"  placeholder="请输入手机号"onblur="verifyphone()"/><!--鼠标失去焦点onblur="onphone()"-->
+                            <!-- <i class="aui-input-addon aui-iconfont aui-icon-warnfill"></i>--><!-- 错误警告 -->
+                        </div>
+                        <div class="aui-input-row" id="pass-succ"><!-- 正确提示aui-success -->
+                            <label class="aui-input-addon">密码</label>
+                            <input type="password" id="password" name="password"  class="aui-input" placeholder="请输入密码" onblur="verifypassword()" maxlength="8"/><!--鼠标失去焦点onblur="onpass()"-->
+                            <!-- <i class="aui-input-addon aui-iconfont aui-icon-roundcheckfill"></i>--><!-- 正确提示 -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="aui-content auipadleftright">
+                <a class="aui-btn aui-btn-block blackbgbtn martop" id="btnLogin">登录</a>
+                <a class="aui-btn aui-btn-block  martop" id="btnreg">注册</a>
+                <p class="ac"><a href="wangjiMima.html" class="c_8">忘记密码？</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 注册 -->
+<div class="regOut" style="display:none;">
+    <!-- <iframe src="login.html" class="loginDiv"></iframe> -->
+    <div class="regDiv">
+        <div class="viewport">
+            <header class="aui-bar aui-bar-nav">
+                <div class="aui-title">注册</div>
+                <a class="aui-pull-right gbReg">
+                    X
+                </a>
+            </header>
+            <div class="aui-content">
+                <form id="frmRegister" action="" >
+                    <div class="aui-form formshurubox">
+                        <div class="aui-input-row"><!-- 错误警告aui-warning -->
+                            <label class="aui-input-addon">手机号</label>
+                            <input type="text" name="phone" required class="aui-input" placeholder="请输入手机号" id="tel" onblur="verifytel()" />
+                            <!--<i class="aui-input-addon aui-iconfont aui-icon-warnfill"></i>--><!-- 错误警告 -->
+                        </div>
+                        <div class="aui-input-row"><!-- 错误警告aui-warning -->
+                            <label class="aui-input-addon">姓&nbsp&nbsp&nbsp&nbsp名</label>
+                            <input type="text" name="name" required class="aui-input" placeholder="请确保与身份证姓名一致" id="name" />
+                            <!--<i class="aui-input-addon aui-iconfont aui-icon-warnfill"></i>--><!-- 错误警告 -->
+                        </div>
+                        <div class="aui-input-row"><!-- 正确提示aui-success -->
+                            <label class="aui-input-addon">密&nbsp&nbsp&nbsp码</label>
+                            <input type="password"  name="password" required class="aui-input" placeholder="请输入4-8位数字和英文" id="pas" onblur="verifypas()" maxlength="8"/>
+                            <!-- <i class="aui-input-addon aui-iconfont aui-icon-roundcheckfill"></i>--><!-- 正确提示 -->
+                        </div>
+                        <div class="aui-input-row">
+                            <label class="aui-input-addon">验证码</label>
+                            <input type="text" name="verifyCode" required class="aui-input" placeholder="请输入验证码"/>
+                            <input type="button" value="获取验证码" onclick="sendCode(this)" class="yanzhengma" />
+                            <!-- <span class="yanzhengma" id="yanzhengma">发送验证码</span>--><!-- 正确提示 -->
+                        </div>
+                    </div>
+                </form>
+                <p class="tongyixieyi"><label><input class="aui-radio fl" type="radio" name="regxy" checked="false"><a href="#">同意<a onclick="agree()" style="color: #d91f20"target="_blank" >《注册协议》</a></a></label></p>
+            </div>
+
+            <div class="aui-content auipadleftright">
+                <a class="aui-btn aui-btn-block blackbgbtn martop" id="btnRegister">注册</a>
+                <p class="ac"><a id="exited" class="c_8">已有账户，直接登录</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 注册 -->
+<div class="agreement" style="display:none;">
+    <!-- <iframe src="login.html" class="loginDiv"></iframe> -->
+    <div class="regDiv">
+        <div class="viewport">
+            <!--<header class="aui-bar aui-bar-nav">-->
+                <!--<div class="aui-title">条款和细则</div>-->
+            <!--</header>-->
+            <div class="aui-content">
+                1、申请成为会员并获得会员号码表明已接受所有有关嘉宾会的信息，并同意首都大酒店邮寄有关会籍和酒店优惠促销的信息。</br>
+                2、对任何以首都嘉宾会名义进行欺诈或滥用首都嘉宾会礼遇和积分的行为，首都大酒店有权提起行政处罚或法律诉讼。</br>
+                3、因装修改造或其他原因，酒店有权力临时或永久关闭酒店内的任何商店和餐厅。</br>
+                4、首都嘉宾会有权纠正任何由于处理失误造成的会员账单、积分奖励等错误。</br>
+                5、在不事先通知的情况下，首都大酒店有权在任何时候终止、撤销或修改本计划的内容、会员礼遇、积分政策、条款细则和任何登在页面及宣传品中的信息错误，将不承担任何责任和义务。首都嘉宾会信息以官方网站上刊登的为准。</br>
+                6、首都嘉宾会在无正当理由的情况下未能向会员提供积分累积或礼遇，其赔偿责任仅限于该积分累积或礼遇的同等价值。</br>
+                7、首都嘉宾会的条款与细则受中华人民共和国法律管辖，对其解释以中华人民共和国法律为依据。</br>
+                8、如首都都嘉宾会会员的年龄不满18周岁，则消费不能积分。如会员或申请人所在国家的法律不允许，其会员和申请人资格将被视为无效。</br>
+                </br>
+                本计划在网上公布的所有首都嘉宾会信息的最终解释权归属于首都大酒店。</br>
+                如有疑问，请发邮件至cec@capitalhotel.com.cn或致电（010）58159988转3380/3305。</br>
+                首都嘉宾会由首都大酒店管理运作，会员资格、会员号码及其服务项目的提供完全由首都大酒店确定，酒店有权获得会员资料。
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+$(function() {
+    // Slideshow
+});
+</script>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/index.js"></script>
+<script type="text/javascript" src="scripts/login.js"></script>
+<script type="text/javascript" src="scripts/register.js"></script>
+</body>
+
+<script>
+    $(document).ready(function(){
+        if(empty(gologin)){
+            $(".regOut").hide();
+            $(".loginOut").hide();
+        }
+        if(gologin==1) {
+            $(".loginOut").show();
+            $(".regOut").hide();
+        }
+        if(gologin==2){
+            $(".regOut").show();
+            $(".loginOut").hide();
+        }
+
+        $(".gb").click(function(){
+            $(".loginOut").hide();
+        });
+        $(".gbReg").click(function(){
+            $(".regOut").hide();
+        });
+    });
+
+    function verifytel(){
+        var ab = /^1[3|4|5|7|8]\d{9}$/;
+        var phone=$("#tel").val();
+        if (ab.test(phone) == false) {
+            layer.msg('手机号码格式不正确', {icon: 5});
+        }
+    }
+    //验证密码格式(只能输入数字和字母)
+    function verifypas(){
+//        var abc = /^[A-Za-z0-9]{4,8}$/;
+        var abc=/^(?![^a-zA-Z]+$)(?!\D+$).{4,8}/;
+        var password=$("#pas").val();
+        if (abc.test(password) == false) {
+            layer.msg('请输入4-8位数字英文和密码', {icon: 5});
+            $("#pas").val("");
+        }
+    }
+
+    function agree(){
+        layer.open({
+            type: 1,
+            area: ['80%', '90%'],
+            title:"条款和细则" ,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 1, //不显示关闭按钮
+            shift: 2,
+            shadeClose: true, //开启遮罩关闭
+            content:$(".agreement").html()
+        });
+    }
+</script>
+</html>

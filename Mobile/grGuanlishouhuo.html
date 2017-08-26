@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>收货地址</title>
+    <link rel="stylesheet" href="css/drawer.css">
+    <!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script>
+    <!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script>
+    <!-- 网站js -->
+    <script type="text/javascript" src="js/weui_example.js"></script>
+    <script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</head>
+<style type="text/css">
+    body {
+        background-color: #2c3144;
+    }
+
+    .shdizhilist dl {
+        background: none;
+        color: #fff;
+        border-bottom: 1px solid #464c60;
+    }
+
+    .shdizhilist dl dd.name b {
+        font-size: 1.3em;
+    }
+
+    .shdizhilist dl dd.name span i {
+        color: #e0b561;
+    }
+
+    .shdizhilist dl dd.name span i txt {
+        color: #acadb2;
+    }
+
+    .loadmorebox {
+        display: table;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+
+    /* 操作按钮 */
+
+    .jibenziliaobot {
+        background-color: #2c3144;
+    }
+
+    .border-t {
+        border-top: 1px solid #464c60;
+    }
+
+    .jibenziliaobot a {
+        width: 100%;
+        color: #2c3144;
+    }
+
+    .fontsize {
+        font-size: 18px;
+    }
+</style>
+
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="userIndex.html">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">收货地址</div>
+        <a class="aui-pull-right drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="javascript:userImgClick('userIndex.html')" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="index.html?gologin=1">登录</a><a href="index.html?gologin=2">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userIndex.html" class="touxiangimg"><img src="images/touxiang.png" id="cetoux" width="100%" style="margin-top:2px;box-shadow:0px 0px 12px #7E7E7E;"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="javascript:gotoUrl('index.html')"><i class="aui-iconfont aui-icon-homefill"></i>返回首页</a></li>
+                <li><a href="javascript:gotoUrl('userIndex.html')"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="javascript:gotoUrl('dfZhitongcheInfo.html')"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="javascript:gotoUrl('cyYongcanFangshi.html')"><i class="menuicon3"></i>餐饮订制</a></li>
+                <li><a href="javascript:gotoService('kfFuwu.html')"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="javascript:gotoService('lbFuwu.html')"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="javascript:gotoService('kfyanzhu.html')"><i class="menuicon6"></i>客房延住</a></li>
+                <li><a href="javascript:gotoService('ksTuifang.html')"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="javascript:gotoUrl('dnDaohang.html')"><i class="menuicon8"></i>店内导航</a></li>
+                <li><a href="javascript:gotoUrl('jdList.html')"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="javascript:gotoUrl('sdJiabinhui.html')"><i class="menuicon10"></i>首都嘉宾会</a></li>
+                <li><a href="javascript:gotoUrl('userJifenShangcheng.html')"><i class="menuicon11"></i>积分商城</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+    <div style="color: red ;font-size:14px" >温馨提示：仅限 【快速退房】 使用</div>
+    <div class="shdizhilist" id="deliveryaddrlist">
+    </div>
+    <dl class="loadmorebox">
+        <div class="aui-border martop loadmore"><a href="javascript:loadMore()"><i class="aui-iconfont"></i>加载更多Load More</a></div>
+    </dl>
+    <!--删除弹框-->
+    <div class="weui_dialog_confirm" id="dialog1" style="display: none;">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">温馨提示</strong></div>
+            <div class="weui_dialog_bd">你确定要删除吗？</div>
+            <div class="weui_dialog_ft">
+                <a id="quxiao" href="javascript:;" class="weui_btn_dialog default">取消</a>
+                <a id="ok" href="javascript:deleteAddress();" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 操作容器  未支付的话出现支付按钮 -->
+    <div class="padbottom"></div>
+    <div class="bottomcaozuo border-t jibenziliaobot">
+            <span><a href="xjshouhuoadress.html" class="aui-btn aui-btn-primary quzhifubtn"><i class="fontsize">+</i> &nbsp;新建收货地址New Address</a>
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/grGuanlishouhuo.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>注册成功</title>
+    <link rel="stylesheet" href="css/drawer.css"><!-- menu -->
+    <link rel="stylesheet" href="css/aui.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/qr_base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/jquery.drawer.min.js"></script><!-- menu -->
+    <script type="text/javascript" src="js/js.js"></script><!-- 网站js -->
+</head>
+<style type="text/css">
+
+</style>
+<body ontouchstart="" class="drawer drawer-right">
+<div class="viewport">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left" href="javascript:history.back();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">注册成功</div>
+        <a class="aui-pull-right  drawer-toggle">
+            <span class="aui-iconfont aui-icon-sort"></span>
+        </a>
+    </header>
+
+    <!-- 侧边导航开始 -->
+    <div class="drawer-main drawer-default">
+        <nav class="drawer-nav" role="navigation">
+            <!-- 未登录 -->
+            <div id="div_noLogin" class="touxiang">
+                <a href="login.html" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span><a href="login.html">登录</a><a href="register.html">注册</a></span>
+            </div>
+            <!-- 登录后 -->
+            <div id="div_okLogin" class="touxiang" style="display:none;">
+                <a href="userCenter.html" class="touxiangimg"><img src="images/touxiang.png" width="100%"></a>
+                <span>jack</span>
+                <span>黄金会员</span>
+            </div>
+            <ul class="drawer-nav-list">
+                <li><a href="userCenter.html"><i class="menuicon1"></i>会员中心</a></li>
+                <li><a href="dfZhitongche.html"><i class="menuicon2"></i>订房直通车</a></li>
+                <li><a href="cyDiancan.html"><i class="menuicon3"></i>餐厅点餐</a></li>
+                <li><a href="kfFuwu.html"><i class="menuicon4"></i>客房服务</a></li>
+                <li><a href="lbFuwu.html"><i class="menuicon5"></i>礼宾服务</a></li>
+                <li><a href="kfYanhuan.html"><i class="menuicon6"></i>客房延缓</a></li>
+                <li><a href="kuaisuTuifang.html"><i class="menuicon7"></i>快速退房</a></li>
+                <li><a href="ksTuifang.html"><i class="menuicon8"></i>隐私保护</a></li>
+                <li><a href="zbXinxi.html"><i class="menuicon9"></i>周边信息</a></li>
+                <li><a href="yhHuiyi.html"><i class="menuicon10"></i>宴会会议</a></li>
+                <li><a href="ktYule.html"><i class="menuicon11"></i>康体娱乐</a></li>
+            </ul>
+
+        </nav>
+    </div>
+    <!-- 侧边导航结束 -->
+
+    <!-- 实例演示 -->
+    <a href="javascript:;" id="showDialog1">点击弹出Dialog样式一</a><br>
+    <a href="javascript:;" id="showDialog2">点击弹出Dialog样式二</a>
+
+    <!--BEGIN dialog1-->
+    <div class="weui_dialog_confirm" id="dialog1" style="display: none;">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">弹窗标题</strong></div>
+            <div class="weui_dialog_bd">自定义弹窗内容，居左对齐显示，告知需要确认的信息等</div>
+            <div class="weui_dialog_ft">
+                <a id="quxioa" href="javascript:;" class="weui_btn_dialog default">取消</a>
+                <a id="ok" href="javascript:;" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
+
+    <!--BEGIN dialog2-->
+    <div class="weui_dialog_alert" id="dialog2" style="display: none;">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">弹窗标题</strong></div>
+            <div class="weui_dialog_bd">弹窗内容，告知当前页面信息等</div>
+            <div class="weui_dialog_ft">
+                <a id="ok1" href="javascript:;" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            $('#showDialog1').click(function() {
+                $('#dialog1').show();
+            });
+            $('#quxioa').click(function() {
+                alert('你点击了取消!!!');
+                $('#dialog1').hide();
+            });
+            $('#ok').click(function() {
+                alert('你点击了确认！！！');
+            });
+            $('#showDialog2').click(function() {
+                $('#dialog2').show();
+            });
+            $('#ok1').click(function() {
+                alert('你点击了确认！！！');
+                $('#dialog2').hide();
+            });
+        })
+    </script>
+</div>
+
+</body>
+
+</html>
